@@ -48,6 +48,15 @@ describe('Auth (e2e)', () => {
     await http().get('/health').expect(200, { status: 'ok', db: 'up', version: 'dev' });
   });
 
+  it('serves routes under the public /api prefix too (Vercel services rewrite)', async () => {
+    await http().get('/api/health').expect(200);
+    const res = await http()
+      .post('/api/v1/auth/otp/request')
+      .send({ phone: '0601234567' })
+      .expect(400);
+    expect(res.body.code).toBe('VALIDATION_FAILED');
+  });
+
   it('rejects invalid phone numbers', async () => {
     const res = await http().post('/v1/auth/otp/request').send({ phone: '0601234567' }).expect(400);
     expect(res.body.code).toBe('VALIDATION_FAILED');

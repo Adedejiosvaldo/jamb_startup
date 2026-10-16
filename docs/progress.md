@@ -46,7 +46,7 @@ Tracks spec §25. Update this file in the same PR as the work.
 
 **Decisions** ([DECIDE])
 
-1. Hosting: **Vercel** chosen (web + API serverless + Neon Postgres). Config and guide ready in `docs/deploy-vercel.md`; needs your Vercel account to connect the repo.
+1. Hosting: **Vercel** — one project with two services (`web` at `/`, `api` at `/api`) + Neon Postgres. Root `vercel.json` and `docs/deploy-vercel.md` ready; needs your Vercel account to import the repo.
 2. Product name + domain (code uses "ScoreCoach", `scorecoach.ng`, `pay.scorecoach.ng`).
 3. Price (seed uses ₦12,000), early-bird coupon, teacher commission (default 20%) and student discount (default 10%).
 4. MVP subject list; whether under-18 sign-up needs parental consent (§14).

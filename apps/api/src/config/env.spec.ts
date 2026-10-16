@@ -13,6 +13,15 @@ describe('loadEnv', () => {
     expect(env.SMS_PROVIDER).toBe('console');
   });
 
+  it('defaults WEB_URL to the Vercel domain (web and API share it)', () => {
+    expect(
+      loadEnv({ ...base, VERCEL_PROJECT_PRODUCTION_URL: 'scorecoach.vercel.app' }).WEB_URL,
+    ).toBe('https://scorecoach.vercel.app');
+    expect(
+      loadEnv({ ...base, WEB_URL: 'https://scorecoach.ng', VERCEL_URL: 'x.vercel.app' }).WEB_URL,
+    ).toBe('https://scorecoach.ng');
+  });
+
   it('rejects short secrets', () => {
     expect(() => loadEnv({ ...base, JWT_ACCESS_SECRET: 'short' })).toThrow(/JWT_ACCESS_SECRET/);
   });
