@@ -2,6 +2,17 @@ import { z } from 'zod';
 
 const schema = z.object({
   NODE_ENV: z.enum(['development', 'test', 'staging', 'production']).default('development'),
+  /**
+   * Deployment tier. Hosts like Vercel force NODE_ENV=production everywhere, so
+   * staging is told apart with APP_ENV. Defaults to NODE_ENV.
+   * Only `production` refuses test providers (console SMS, fake payments).
+   */
+  APP_ENV: z.enum(['development', 'test', 'staging', 'production']).optional(),
+  /** Staging/dev convenience: every OTP is this 6-digit code. Refused in production. */
+  DEV_FIXED_OTP: z
+    .string()
+    .regex(/^\d{6}$/)
+    .optional(),
   PORT: z.coerce.number().int().default(4000),
   DATABASE_URL: z.string().url(),
   CORS_ORIGINS: z.string().default('http://localhost:3000'),
@@ -22,7 +33,9 @@ const schema = z.object({
   SUPPORT_WHATSAPP: z.string().default(''),
 });
 
-export type Env = z.infer<typeof schema>;
+export type Env = Omit<z.infer<typeof schema>, 'APP_ENV'> & {
+  APP_ENV: NonNullable<z.infer<typeof schema>['APP_ENV']>;
+};
 
 export function loadEnv(source: NodeJS.ProcessEnv = process.env): Env {
   const parsed = schema.safeParse(source);
@@ -30,13 +43,13 @@ export function loadEnv(source: NodeJS.ProcessEnv = process.env): Env {
     const issues = parsed.error.issues.map((i) => `  ${i.path.join('.')}: ${i.message}`).join('\n');
     throw new Error(`Invalid environment configuration:\n${issues}`);
   }
-  const env = parsed.data;
-  const deployed = env.NODE_ENV === 'production' || env.NODE_ENV === 'staging';
-  if (deployed && env.SMS_PROVIDER === 'console') {
-    throw new Error('SMS_PROVIDER=console is not allowed in staging/production');
-  }
-  if (deployed && env.PAYMENT_PROVIDER === 'fake') {
-    throw new Error('PAYMENT_PROVIDER=fake is not allowed in staging/production');
+  const env = { ...parsed.data, APP_ENV: parsed.data.APP_ENV ?? parsed.data.NODE_ENV };
+  if (env.APP_ENV === 'production') {
+    if (env.SMS_PROVIDER === 'console')
+      throw new Error('SMS_PROVIDER=console is not allowed in production');
+    if (env.PAYMENT_PROVIDER === 'fake')
+      throw new Error('PAYMENT_PROVIDER=fake is not allowed in production');
+    if (env.DEV_FIXED_OTP) throw new Error('DEV_FIXED_OTP is not allowed in production');
   }
   if (env.PAYMENT_PROVIDER === 'paystack' && !env.PAYSTACK_SECRET_KEY) {
     throw new Error('PAYSTACK_SECRET_KEY is required when PAYMENT_PROVIDER=paystack');

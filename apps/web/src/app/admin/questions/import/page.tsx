@@ -99,6 +99,13 @@ export default function ImportPage() {
         description="Paste CSV (with a header row) or a JSON array. Everything imports as drafts for review. If any row is invalid, nothing is imported."
       />
       <Alert tone="info" title="CSV columns">
+        <a
+          href="/templates/questions-template.csv"
+          download
+          className="mb-1 block font-medium text-accent underline"
+        >
+          Download the template
+        </a>
         <code className="text-xs break-all">{COLUMNS.join(',')}</code>
       </Alert>
       <label className="flex min-h-11 items-center gap-2 text-sm font-medium">

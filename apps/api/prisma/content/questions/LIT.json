@@ -1,0 +1,290 @@
+[
+  {
+    "topicName": "Drama",
+    "stem": "A play in which the main character suffers a downfall, usually through a flaw in character, is a",
+    "options": {
+      "A": "tragedy",
+      "B": "comedy",
+      "C": "farce",
+      "D": "melodrama"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Tragedy traces the fall of a hero, often caused by a tragic flaw.",
+    "explanationsWrong": {
+      "B": "Comedy usually ends happily.",
+      "C": "Farce uses exaggerated, absurd humour.",
+      "D": "Melodrama exaggerates emotions with clear heroes and villains."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Literary devices and terms",
+    "stem": "In tragedy, the hero's tragic flaw is called",
+    "options": {
+      "A": "catharsis",
+      "B": "hubris",
+      "C": "anagnorisis",
+      "D": "hamartia"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Hamartia is the error or flaw that leads to the hero's downfall.",
+    "explanationsWrong": {
+      "A": "Catharsis is the audience's emotional release.",
+      "B": "Hubris is excessive pride — a common type of hamartia, but not the general term.",
+      "C": "Anagnorisis is the hero's moment of recognition."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Literary devices and terms",
+    "stem": "When the audience knows something that a character on stage does not, the device is",
+    "options": {
+      "A": "verbal irony",
+      "B": "situational irony",
+      "C": "dramatic irony",
+      "D": "sarcasm"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Dramatic irony is the gap between what the audience knows and what a character knows.",
+    "explanationsWrong": {
+      "A": "Verbal irony is saying the opposite of what one means.",
+      "B": "Situational irony is when the outcome is the opposite of what's expected.",
+      "D": "Sarcasm is mocking verbal irony."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Drama",
+    "stem": "A speech in which a character, alone on stage, speaks their thoughts aloud is a",
+    "options": {
+      "A": "monologue",
+      "B": "soliloquy",
+      "C": "dialogue",
+      "D": "aside"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "A soliloquy reveals a character's inner thoughts while alone on stage.",
+    "explanationsWrong": {
+      "A": "A monologue is a long speech, usually to other characters.",
+      "C": "Dialogue is conversation between characters.",
+      "D": "An aside is a brief remark to the audience that other characters don't hear."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Prose",
+    "stem": "A story told by a narrator who uses 'I' and takes part in the events is told from the",
+    "options": {
+      "A": "first-person point of view",
+      "B": "second-person point of view",
+      "C": "third-person omniscient point of view",
+      "D": "objective point of view"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "A first-person narrator is a character in the story, using 'I' or 'we'.",
+    "explanationsWrong": {
+      "B": "Second person addresses the reader as 'you'.",
+      "C": "Third-person omniscient uses 'he/she' and knows all characters' thoughts.",
+      "D": "An objective narrator reports only what can be seen and heard."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "General literary principles",
+    "stem": "The sequence of events in a story is its",
+    "options": {
+      "A": "theme",
+      "B": "setting",
+      "C": "tone",
+      "D": "plot"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Plot is the arrangement of events in a narrative.",
+    "explanationsWrong": {
+      "A": "Theme is the central idea or message.",
+      "B": "Setting is the time and place.",
+      "C": "Tone is the author's attitude."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Poetry",
+    "stem": "How many lines does a sonnet have?",
+    "options": {
+      "A": "10",
+      "B": "12",
+      "C": "14",
+      "D": "16"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "A sonnet has 14 lines, usually in iambic pentameter.",
+    "explanationsWrong": {
+      "A": "Ten lines isn't a sonnet.",
+      "B": "Twelve lines isn't a sonnet.",
+      "D": "Sixteen lines isn't a sonnet."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Poetry",
+    "stem": "The rhyme scheme of a Shakespearean sonnet is",
+    "options": {
+      "A": "ABBA ABBA CDE CDE",
+      "B": "ABAB CDCD EFEF GG",
+      "C": "AABB CCDD EEFF GG",
+      "D": "ABAB BCBC CDCD EE"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Three quatrains (ABAB CDCD EFEF) and a closing couplet (GG).",
+    "explanationsWrong": {
+      "A": "That is the Petrarchan (Italian) sonnet.",
+      "C": "That is a sequence of rhyming couplets.",
+      "D": "That is the Spenserian sonnet."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Literary devices and terms",
+    "stem": "'Her face was like the full moon' is an example of",
+    "options": {
+      "A": "simile",
+      "B": "metaphor",
+      "C": "personification",
+      "D": "hyperbole"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "A simile compares two things using 'like' or 'as'.",
+    "explanationsWrong": {
+      "B": "A metaphor compares without 'like' or 'as' ('Her face was the full moon').",
+      "C": "Personification gives human qualities to non-human things.",
+      "D": "Hyperbole is deliberate exaggeration."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Literary devices and terms",
+    "stem": "'The wind whispered through the trees' is an example of",
+    "options": {
+      "A": "onomatopoeia",
+      "B": "simile",
+      "C": "oxymoron",
+      "D": "personification"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "The wind is given the human action of whispering.",
+    "explanationsWrong": {
+      "A": "Onomatopoeia is a word that imitates a sound (e.g. 'buzz').",
+      "B": "There is no 'like' or 'as'.",
+      "C": "An oxymoron puts contradictory words together."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Literary devices and terms",
+    "stem": "Which expression is an oxymoron?",
+    "options": {
+      "A": "As brave as a lion",
+      "B": "Buzzing bees",
+      "C": "Bitter sweet",
+      "D": "Peter Piper picked peppers"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "An oxymoron joins two contradictory terms: bitter and sweet.",
+    "explanationsWrong": {
+      "A": "That is a simile.",
+      "B": "That contains onomatopoeia.",
+      "D": "That is alliteration."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Literary devices and terms",
+    "stem": "'I've told you a million times!' is an example of",
+    "options": {
+      "A": "understatement",
+      "B": "hyperbole",
+      "C": "euphemism",
+      "D": "litotes"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Hyperbole is deliberate exaggeration for effect.",
+    "explanationsWrong": {
+      "A": "Understatement makes something seem less than it is.",
+      "C": "Euphemism replaces a harsh expression with a milder one.",
+      "D": "Litotes is understatement using a negative ('not bad')."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Poetry",
+    "stem": "A poem that mourns the dead is called",
+    "options": {
+      "A": "an elegy",
+      "B": "an ode",
+      "C": "a ballad",
+      "D": "a lyric"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "An elegy is a mournful poem, usually a lament for the dead.",
+    "explanationsWrong": {
+      "B": "An ode praises a person or thing.",
+      "C": "A ballad tells a story, often in short stanzas.",
+      "D": "A lyric expresses personal emotion generally."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "General literary principles",
+    "stem": "A work that uses humour and ridicule to expose and correct human folly is a",
+    "options": {
+      "A": "tragedy",
+      "B": "elegy",
+      "C": "epic",
+      "D": "satire"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Satire mocks vices or foolishness in order to correct them.",
+    "explanationsWrong": {
+      "A": "Tragedy depicts a hero's downfall.",
+      "B": "An elegy mourns the dead.",
+      "C": "An epic celebrates heroic deeds."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Prose",
+    "stem": "A narrative technique that takes the reader back to events that happened earlier is",
+    "options": {
+      "A": "foreshadowing",
+      "B": "suspense",
+      "C": "flashback",
+      "D": "climax"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "A flashback interrupts the present action to show earlier events.",
+    "explanationsWrong": {
+      "A": "Foreshadowing hints at events to come.",
+      "B": "Suspense is tension about what will happen.",
+      "D": "The climax is the turning point of the plot."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Poetry",
+    "stem": "A long narrative poem about the deeds of a hero is",
+    "options": {
+      "A": "a sonnet",
+      "B": "an epic",
+      "C": "a limerick",
+      "D": "a haiku"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "An epic is a long narrative poem celebrating heroic deeds, such as the Iliad or Sundiata.",
+    "explanationsWrong": {
+      "A": "A sonnet is a 14-line poem.",
+      "C": "A limerick is a humorous five-line poem.",
+      "D": "A haiku is a short three-line Japanese form."
+    },
+    "difficulty": 1
+  }
+]

@@ -16,7 +16,8 @@
     "db:seed": "tsx prisma/seed.ts",
     "postinstall": "prisma generate",
     "db:seed:demo": "tsx prisma/seed-demo.ts",
-    "admin:promote": "tsx scripts/promote-admin.ts"
+    "admin:promote": "tsx scripts/promote-admin.ts",
+    "db:seed:content": "tsx prisma/seed-content.ts"
   },
   "dependencies": {
     "@nestjs/common": "11.2.7",

@@ -1,0 +1,362 @@
+[
+  {
+    "topicName": "Basic concepts of government",
+    "stem": "Sovereignty means",
+    "options": {
+      "A": "the supreme power of the state to make and enforce laws",
+      "B": "the right to vote",
+      "C": "the independence of the judiciary",
+      "D": "the rule of the majority"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Sovereignty is the supreme, final legal authority of the state within its territory.",
+    "explanationsWrong": {
+      "B": "The right to vote is franchise (suffrage).",
+      "C": "That's judicial independence, one principle of democracy.",
+      "D": "Majority rule is a feature of democracy, not sovereignty."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Forms of government",
+    "stem": "The word 'democracy' comes from Greek words meaning",
+    "options": {
+      "A": "rule by the rich",
+      "B": "rule by the few",
+      "C": "rule by God",
+      "D": "rule by the people"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Demos (people) + kratos (rule/power) = rule by the people.",
+    "explanationsWrong": {
+      "A": "Rule by the rich is plutocracy.",
+      "B": "Rule by the few is oligarchy.",
+      "C": "Rule by God (or religious leaders) is theocracy."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Principles of democratic government",
+    "stem": "The theory of separation of powers is most associated with",
+    "options": {
+      "A": "A. V. Dicey",
+      "B": "Karl Marx",
+      "C": "Baron de Montesquieu",
+      "D": "Thomas Hobbes"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Montesquieu, in The Spirit of the Laws (1748), argued that legislative, executive and judicial powers should be separate.",
+    "explanationsWrong": {
+      "A": "Dicey is associated with the rule of law.",
+      "B": "Marx is associated with communism and class struggle.",
+      "D": "Hobbes is associated with social contract theory and absolute sovereignty."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Principles of democratic government",
+    "stem": "The concept of the rule of law was popularised by",
+    "options": {
+      "A": "Montesquieu",
+      "B": "A. V. Dicey",
+      "C": "John Locke",
+      "D": "Jean-Jacques Rousseau"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "A. V. Dicey set out the rule of law: supremacy of law, equality before the law, and rights protected by courts.",
+    "explanationsWrong": {
+      "A": "Montesquieu is known for separation of powers.",
+      "C": "Locke wrote on natural rights and limited government.",
+      "D": "Rousseau wrote on the general will."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Structures of governance",
+    "stem": "In a federal system of government, powers are",
+    "options": {
+      "A": "shared between the central and component units by the constitution",
+      "B": "concentrated in the central government",
+      "C": "held by the component units, which can leave at will",
+      "D": "exercised only by the military"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Federalism divides powers between central and regional/state governments, guaranteed by a written constitution.",
+    "explanationsWrong": {
+      "B": "That describes a unitary system.",
+      "C": "That describes a confederation.",
+      "D": "Military rule isn't a structure of federalism."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Systems of governance",
+    "stem": "In a parliamentary system, the head of government is the",
+    "options": {
+      "A": "president",
+      "B": "chief justice",
+      "C": "speaker",
+      "D": "prime minister"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "The prime minister leads the government; the head of state is often a monarch or ceremonial president.",
+    "explanationsWrong": {
+      "A": "In a presidential system the president is head of both state and government.",
+      "B": "The chief justice heads the judiciary.",
+      "C": "The speaker presides over the legislature."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Constitution and constitutionalism",
+    "stem": "A rigid constitution is one that",
+    "options": {
+      "A": "is unwritten",
+      "B": "can be amended by a simple majority",
+      "C": "requires a special procedure to amend",
+      "D": "has no bill of rights"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Rigid constitutions need special procedures (e.g. two-thirds majority, state approval) to change.",
+    "explanationsWrong": {
+      "A": "Rigidity is about amendment, not whether it's written.",
+      "B": "Amendment by simple majority describes a flexible constitution.",
+      "D": "A bill of rights has nothing to do with rigidity."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Pressure groups and public opinion",
+    "stem": "Pressure groups differ from political parties mainly because pressure groups",
+    "options": {
+      "A": "do not have members",
+      "B": "seek to influence policy, not to form government",
+      "C": "contest elections",
+      "D": "are banned in democracies"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Pressure groups influence government decisions but don't seek to control government through elections.",
+    "explanationsWrong": {
+      "A": "Pressure groups have members.",
+      "C": "Contesting elections is what parties do.",
+      "D": "Pressure groups are legal and common in democracies."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Electoral process",
+    "stem": "Franchise refers to",
+    "options": {
+      "A": "the right to vote",
+      "B": "a business licence",
+      "C": "the number of political parties",
+      "D": "the voters' register"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Franchise (suffrage) is the right to vote in elections.",
+    "explanationsWrong": {
+      "B": "That's the commercial meaning, not the political one.",
+      "C": "The number of parties describes the party system.",
+      "D": "The register lists eligible voters."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Civil service",
+    "stem": "Which of these is a feature of the civil service?",
+    "options": {
+      "A": "Partisanship",
+      "B": "Election of officers",
+      "C": "Short tenure",
+      "D": "Anonymity"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Civil servants are anonymous, neutral and permanent; ministers take public responsibility.",
+    "explanationsWrong": {
+      "A": "Civil servants are expected to be politically neutral.",
+      "B": "Civil servants are appointed, not elected.",
+      "C": "The civil service is permanent."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Pre-colonial political systems",
+    "stem": "In the pre-colonial Oyo empire, the body that checked the powers of the Alaafin was the",
+    "options": {
+      "A": "Ogboni",
+      "B": "Are-Ona-Kakanfo",
+      "C": "Oyomesi",
+      "D": "Emirs"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "The Oyomesi (council of seven, led by the Bashorun) could check the Alaafin and even ask him to commit suicide.",
+    "explanationsWrong": {
+      "A": "The Ogboni was a secret society that checked the Oyomesi.",
+      "B": "The Are-Ona-Kakanfo was the military commander.",
+      "D": "Emirs ruled in the Hausa-Fulani system."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Pre-colonial political systems",
+    "stem": "The traditional Igbo political system is best described as",
+    "options": {
+      "A": "centralised",
+      "B": "acephalous (segmentary)",
+      "C": "a monarchy",
+      "D": "a theocracy"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Most Igbo communities had no single ruler; authority was shared among elders, age grades and assemblies.",
+    "explanationsWrong": {
+      "A": "Centralised systems describe Hausa-Fulani and Oyo.",
+      "C": "Most Igbo communities had no king.",
+      "D": "Religion played a part, but it wasn't rule by priests."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Colonial administration",
+    "stem": "Indirect rule in Nigeria is most associated with",
+    "options": {
+      "A": "Lord Frederick Lugard",
+      "B": "Sir Hugh Clifford",
+      "C": "Sir Arthur Richards",
+      "D": "Sir John Macpherson"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Lugard used traditional rulers to govern on behalf of the British, first in Northern Nigeria.",
+    "explanationsWrong": {
+      "B": "Clifford is associated with the 1922 constitution.",
+      "C": "Richards is associated with the 1946 constitution.",
+      "D": "Macpherson is associated with the 1951 constitution."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Nationalism",
+    "stem": "The first political party in Nigeria, the NNDP (1923), was founded by",
+    "options": {
+      "A": "Nnamdi Azikiwe",
+      "B": "Obafemi Awolowo",
+      "C": "Ahmadu Bello",
+      "D": "Herbert Macaulay"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Herbert Macaulay founded the Nigerian National Democratic Party in 1923.",
+    "explanationsWrong": {
+      "A": "Azikiwe later co-founded the NCNC (1944).",
+      "B": "Awolowo founded the Action Group (1951).",
+      "C": "Ahmadu Bello led the NPC."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Constitutional development in Nigeria",
+    "stem": "Which constitution introduced the elective principle in Nigeria?",
+    "options": {
+      "A": "Richards Constitution, 1946",
+      "B": "Lyttleton Constitution, 1954",
+      "C": "Clifford Constitution, 1922",
+      "D": "Independence Constitution, 1960"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "The 1922 Clifford Constitution allowed elected members from Lagos and Calabar to the Legislative Council.",
+    "explanationsWrong": {
+      "A": "Richards (1946) introduced regionalism.",
+      "B": "Lyttleton (1954) introduced federalism.",
+      "D": "Elections existed long before independence."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Constitutional development in Nigeria",
+    "stem": "Nigeria became a republic in",
+    "options": {
+      "A": "1960",
+      "B": "1963",
+      "C": "1966",
+      "D": "1979"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Nigeria became a republic on 1 October 1963, replacing the British monarch with a Nigerian president as head of state.",
+    "explanationsWrong": {
+      "A": "1960 was independence, but the Queen remained head of state.",
+      "C": "1966 was the first military coup.",
+      "D": "1979 began the Second Republic."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Military rule in Nigeria",
+    "stem": "Nigeria's first military coup took place on",
+    "options": {
+      "A": "15 January 1966",
+      "B": "1 October 1960",
+      "C": "29 July 1975",
+      "D": "31 December 1983"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "The first coup was on 15 January 1966, ending the First Republic.",
+    "explanationsWrong": {
+      "B": "That was Independence Day.",
+      "C": "29 July 1975 was the coup that removed Gowon.",
+      "D": "31 December 1983 ended the Second Republic."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "International organisations",
+    "stem": "ECOWAS was established in",
+    "options": {
+      "A": "1963",
+      "B": "1999",
+      "C": "2002",
+      "D": "1975"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "ECOWAS was set up by the Treaty of Lagos on 28 May 1975.",
+    "explanationsWrong": {
+      "A": "1963 was when the OAU was founded.",
+      "B": "1999 is when Nigeria returned to civil rule.",
+      "C": "2002 is when the African Union replaced the OAU."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "International organisations",
+    "stem": "The Organisation of African Unity (OAU) was replaced by the African Union in",
+    "options": {
+      "A": "1963",
+      "B": "1990",
+      "C": "2002",
+      "D": "2010"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "The African Union was launched in 2002 in Durban, South Africa.",
+    "explanationsWrong": {
+      "A": "1963 is when the OAU itself was founded.",
+      "B": "The OAU still existed in 1990.",
+      "D": "The AU had already existed for eight years by 2010."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Nigeria's foreign policy",
+    "stem": "The centrepiece of Nigeria's foreign policy has traditionally been",
+    "options": {
+      "A": "Europe",
+      "B": "Africa",
+      "C": "Asia",
+      "D": "the Americas"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Since independence, Africa has been described as the centrepiece of Nigeria's foreign policy (decolonisation, ECOWAS, peacekeeping).",
+    "explanationsWrong": {
+      "A": "Europe is a major partner but not the centrepiece.",
+      "C": "Asia is a growing partner but not the stated focus.",
+      "D": "The Americas aren't the centrepiece either."
+    },
+    "difficulty": 1
+  }
+]

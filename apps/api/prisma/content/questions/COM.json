@@ -1,0 +1,326 @@
+[
+  {
+    "topicName": "Commerce: meaning and scope",
+    "stem": "Commerce consists of",
+    "options": {
+      "A": "trade and aids to trade",
+      "B": "industry and agriculture",
+      "C": "production and consumption",
+      "D": "banking and insurance only"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Commerce covers trade (buying and selling) and the aids to trade that make it possible (banking, insurance, transport, communication, warehousing, advertising).",
+    "explanationsWrong": {
+      "B": "Industry and agriculture are branches of production, not commerce.",
+      "C": "That describes the whole economic process.",
+      "D": "Banking and insurance are only two of the aids to trade."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Production",
+    "stem": "Which of these is an example of primary production?",
+    "options": {
+      "A": "Banking",
+      "B": "Bread making",
+      "C": "Teaching",
+      "D": "Fishing"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Primary production extracts resources from nature: farming, fishing, mining, lumbering.",
+    "explanationsWrong": {
+      "A": "Banking is a commercial (tertiary) service.",
+      "B": "Bread making is secondary (manufacturing).",
+      "C": "Teaching is a direct service (tertiary)."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Trade: home trade",
+    "stem": "Retailers serve as a link between",
+    "options": {
+      "A": "manufacturers and wholesalers",
+      "B": "importers and exporters",
+      "C": "wholesalers and consumers",
+      "D": "banks and customers"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Retailers buy in bulk from wholesalers and sell in small quantities to final consumers.",
+    "explanationsWrong": {
+      "A": "Wholesalers link manufacturers and retailers.",
+      "B": "That's the role of foreign trade intermediaries.",
+      "D": "Banks deal with customers directly."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Purchase and sale of goods",
+    "stem": "A document issued by a seller to correct an overcharge or acknowledge returned goods is a",
+    "options": {
+      "A": "debit note",
+      "B": "credit note",
+      "C": "pro-forma invoice",
+      "D": "receipt"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "A credit note reduces the amount the buyer owes.",
+    "explanationsWrong": {
+      "A": "A debit note increases the amount owed (undercharge).",
+      "C": "A pro-forma invoice is sent before goods are delivered, e.g. for a quote.",
+      "D": "A receipt acknowledges payment."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Purchase and sale of goods",
+    "stem": "The abbreviation C.I.F. means",
+    "options": {
+      "A": "Cost, insurance and freight",
+      "B": "Cash in full",
+      "C": "Carriage inwards free",
+      "D": "Credit in force"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "C.I.F. price covers the goods, insurance and freight to the destination port.",
+    "explanationsWrong": {
+      "B": "Not a recognised trade term.",
+      "C": "Not a recognised trade term.",
+      "D": "Not a recognised trade term."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Banking",
+    "stem": "A bank account operated mainly with cheques is a",
+    "options": {
+      "A": "savings account",
+      "B": "fixed deposit account",
+      "C": "domiciliary account",
+      "D": "current account"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Current accounts allow withdrawals by cheque and are used for day-to-day business.",
+    "explanationsWrong": {
+      "A": "Savings accounts earn interest but traditionally don't use cheques.",
+      "B": "Fixed deposits are locked for a period.",
+      "C": "Domiciliary accounts hold foreign currency."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Insurance",
+    "stem": "The principle of insurance that requires the insured to disclose all material facts is",
+    "options": {
+      "A": "indemnity",
+      "B": "subrogation",
+      "C": "utmost good faith (uberrimae fidei)",
+      "D": "contribution"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Both parties must disclose every fact that could affect the policy.",
+    "explanationsWrong": {
+      "A": "Indemnity restores the insured to their position before the loss.",
+      "B": "Subrogation lets the insurer take over the insured's rights after payment.",
+      "D": "Contribution shares the loss among several insurers."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Insurance",
+    "stem": "The principle of indemnity does NOT apply to",
+    "options": {
+      "A": "fire insurance",
+      "B": "life assurance",
+      "C": "motor insurance",
+      "D": "marine insurance"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "A human life can't be valued in money, so life assurance pays an agreed sum, not an indemnity.",
+    "explanationsWrong": {
+      "A": "Fire insurance restores the value of property lost.",
+      "C": "Motor insurance restores the value of damage.",
+      "D": "Marine insurance restores the value of cargo or vessels lost."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Transportation",
+    "stem": "Which means of transport is best for moving crude oil and gas over long distances?",
+    "options": {
+      "A": "Pipeline",
+      "B": "Air",
+      "C": "Road",
+      "D": "Rail"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Pipelines move liquids and gas continuously and cheaply over long distances.",
+    "explanationsWrong": {
+      "B": "Air is too expensive for bulky goods.",
+      "C": "Road tankers are costlier and riskier over long distances.",
+      "D": "Rail can carry oil but pipelines are cheaper and continuous."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Warehousing",
+    "stem": "A warehouse where imported goods are stored until customs duty is paid is a",
+    "options": {
+      "A": "retail warehouse",
+      "B": "cold room",
+      "C": "public warehouse",
+      "D": "bonded warehouse"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Bonded warehouses hold dutiable imports until duty is paid.",
+    "explanationsWrong": {
+      "A": "Retail warehouses sell to the public.",
+      "B": "Cold rooms store perishable goods.",
+      "C": "Public warehouses hire storage to anyone; duty status isn't the point."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Advertising",
+    "stem": "Advertising that tries to make consumers buy a particular brand rather than another is",
+    "options": {
+      "A": "informative advertising",
+      "B": "generic advertising",
+      "C": "persuasive (competitive) advertising",
+      "D": "institutional advertising"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Persuasive advertising tries to win customers from competing brands.",
+    "explanationsWrong": {
+      "A": "Informative advertising gives facts about a product.",
+      "B": "Generic advertising promotes a product type, not a brand.",
+      "D": "Institutional advertising builds a company's image."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Business units",
+    "stem": "A major disadvantage of a sole proprietorship is",
+    "options": {
+      "A": "quick decision making",
+      "B": "unlimited liability",
+      "C": "personal contact with customers",
+      "D": "the owner keeps all profit"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "The owner's personal assets can be used to pay business debts.",
+    "explanationsWrong": {
+      "A": "Quick decisions are an advantage.",
+      "C": "Personal contact is an advantage.",
+      "D": "Keeping all profit is an advantage."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Business units",
+    "stem": "The document that sets out a company's external relations, such as its name and objects, is the",
+    "options": {
+      "A": "Memorandum of Association",
+      "B": "Articles of Association",
+      "C": "Prospectus",
+      "D": "Certificate of Trading"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "The Memorandum governs the company's relationship with outsiders (name, objects, capital).",
+    "explanationsWrong": {
+      "B": "The Articles govern internal affairs.",
+      "C": "A prospectus invites the public to buy shares.",
+      "D": "The certificate allows a public company to start business."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Stock exchange",
+    "stem": "A speculator who buys shares expecting prices to rise is a",
+    "options": {
+      "A": "bear",
+      "B": "stag",
+      "C": "lame duck",
+      "D": "bull"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "A bull buys now hoping to sell at a higher price.",
+    "explanationsWrong": {
+      "A": "A bear sells expecting prices to fall.",
+      "B": "A stag buys new issues hoping to sell quickly at a premium.",
+      "C": "A lame duck can't meet their obligations."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Elements of marketing",
+    "stem": "The 'four Ps' of the marketing mix are",
+    "options": {
+      "A": "plan, produce, package, profit",
+      "B": "people, process, profit, place",
+      "C": "product, price, place, promotion",
+      "D": "price, profit, promotion, production"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Product, price, place (distribution) and promotion.",
+    "explanationsWrong": {
+      "A": "Not the marketing mix.",
+      "B": "People and process are extensions in services marketing; profit isn't a P.",
+      "D": "Profit and production aren't part of the mix."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Legal aspects of business",
+    "stem": "Which of these is an essential element of a valid contract?",
+    "options": {
+      "A": "A witness",
+      "B": "Consideration",
+      "C": "A lawyer",
+      "D": "A receipt"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "A valid contract needs offer, acceptance, consideration, intention, capacity and legality.",
+    "explanationsWrong": {
+      "A": "Witnesses aren't required for most contracts.",
+      "C": "A lawyer isn't required.",
+      "D": "A receipt is evidence of payment, not an element of a contract."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Foreign trade",
+    "stem": "The difference between the value of visible exports and visible imports is the",
+    "options": {
+      "A": "balance of trade",
+      "B": "balance of payments",
+      "C": "terms of trade",
+      "D": "exchange rate"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Balance of trade covers visible (goods) trade only.",
+    "explanationsWrong": {
+      "B": "Balance of payments includes visible and invisible items and capital flows.",
+      "C": "Terms of trade compare export and import prices.",
+      "D": "The exchange rate is the price of one currency in another."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Information and communication technology",
+    "stem": "Buying and selling goods over the internet is called",
+    "options": {
+      "A": "telemarketing",
+      "B": "barter",
+      "C": "hire purchase",
+      "D": "e-commerce"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "E-commerce is trade conducted electronically, mainly over the internet.",
+    "explanationsWrong": {
+      "A": "Telemarketing sells by telephone.",
+      "B": "Barter exchanges goods for goods.",
+      "C": "Hire purchase is paying in instalments."
+    },
+    "difficulty": 1
+  }
+]

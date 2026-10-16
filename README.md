@@ -51,6 +51,9 @@ The e2e tests default to `postgresql://postgres:postgres@localhost:5432/scorecoa
 `createdb scorecoach_test` and run `DATABASE_URL=… pnpm --filter @scorecoach/api db:deploy` against it. Tests
 truncate every table in that database.
 
+Content workflow (syllabus, writing/reviewing questions, past questions): [`docs/content-guide.md`](docs/content-guide.md).
+Deploying to Vercel + Neon: [`docs/deploy-vercel.md`](docs/deploy-vercel.md).
+
 ## Production configuration (API)
 
 | Variable                                                    | Notes                                                                              |

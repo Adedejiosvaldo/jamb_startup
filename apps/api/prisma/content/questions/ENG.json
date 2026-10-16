@@ -1,0 +1,362 @@
+[
+  {
+    "topicName": "Synonyms",
+    "stem": "Choose the option nearest in meaning to the word in capitals: The manager was ADAMANT about the new rule.",
+    "options": {
+      "A": "firm",
+      "B": "confused",
+      "C": "happy",
+      "D": "careless"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Adamant means refusing to change one's mind — firm, unyielding.",
+    "explanationsWrong": {
+      "B": "Confused means unsure, the opposite of adamant.",
+      "C": "Happy describes mood, not determination.",
+      "D": "Careless means not paying attention."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Synonyms",
+    "stem": "Choose the option nearest in meaning to the word in capitals: Her CANDID reply surprised everyone.",
+    "options": {
+      "A": "rude",
+      "B": "delayed",
+      "C": "clever",
+      "D": "frank"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Candid means honest and direct — frank.",
+    "explanationsWrong": {
+      "A": "A candid reply may be blunt, but candid doesn't mean rude.",
+      "B": "Delayed relates to time, not honesty.",
+      "C": "Clever means intelligent."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Antonyms",
+    "stem": "Choose the option opposite in meaning to the word in capitals: The villagers were HOSTILE to the strangers.",
+    "options": {
+      "A": "unfriendly",
+      "B": "indifferent",
+      "C": "friendly",
+      "D": "suspicious"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Hostile means unfriendly or aggressive; its opposite is friendly.",
+    "explanationsWrong": {
+      "A": "Unfriendly is a synonym, not an antonym.",
+      "B": "Indifferent means not caring — not the opposite of hostile.",
+      "D": "Suspicious is closer to hostile than opposite."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Antonyms",
+    "stem": "Choose the option opposite in meaning to the word in capitals: She gave a LUCID explanation of the problem.",
+    "options": {
+      "A": "clear",
+      "B": "confusing",
+      "C": "brief",
+      "D": "detailed"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Lucid means clear and easy to understand; the opposite is confusing (obscure).",
+    "explanationsWrong": {
+      "A": "Clear is a synonym of lucid.",
+      "C": "Brief is about length, not clarity.",
+      "D": "Detailed is about amount of information."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Concord",
+    "stem": "Choose the option that best completes the sentence: Neither the teacher nor the students ______ present.",
+    "options": {
+      "A": "were",
+      "B": "was",
+      "C": "is",
+      "D": "has been"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "With neither…nor, the verb agrees with the nearer subject. 'Students' is plural, so 'were'.",
+    "explanationsWrong": {
+      "B": "'Was' would agree with 'teacher', but the nearer subject is 'students'.",
+      "C": "'Is' is singular and present tense.",
+      "D": "'Has been' is singular."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Concord",
+    "stem": "Choose the option that best completes the sentence: Each of the boys ______ a new book.",
+    "options": {
+      "A": "have",
+      "B": "are having",
+      "C": "were having",
+      "D": "has"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "'Each' is singular, so the verb is singular: 'has'.",
+    "explanationsWrong": {
+      "A": "'Have' agrees with 'boys', but the subject is 'each'.",
+      "B": "Plural verb — 'each' needs a singular verb.",
+      "C": "Plural verb and the wrong tense."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Tense, mood and aspect",
+    "stem": "Choose the option that best completes the sentence: By this time next year, she ______ her degree.",
+    "options": {
+      "A": "completes",
+      "B": "will complete",
+      "C": "will have completed",
+      "D": "has completed"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "An action finished before a point in the future takes the future perfect: will have completed.",
+    "explanationsWrong": {
+      "A": "Simple present doesn't express completion by a future time.",
+      "B": "Simple future doesn't show the action finished before that time.",
+      "D": "Present perfect refers to the past up to now."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Question tags",
+    "stem": "Choose the correct question tag: You aren't coming with us, ______?",
+    "options": {
+      "A": "aren't you",
+      "B": "are you",
+      "C": "isn't it",
+      "D": "do you"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "A negative statement takes a positive tag with the same auxiliary: 'are you?'",
+    "explanationsWrong": {
+      "A": "A negative statement needs a positive tag.",
+      "C": "The subject is 'you', not 'it'.",
+      "D": "The auxiliary is 'are', not 'do'."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Question tags",
+    "stem": "Choose the correct question tag: Let's go to the library, ______?",
+    "options": {
+      "A": "shall we",
+      "B": "will we",
+      "C": "don't we",
+      "D": "won't you"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Sentences beginning with 'Let's' take the tag 'shall we?'",
+    "explanationsWrong": {
+      "B": "'Will we' isn't the standard tag for 'Let's'.",
+      "C": "'Don't we' doesn't match 'let us'.",
+      "D": "'Let's' includes the speaker, so the tag uses 'we'."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Word classes: pronouns, prepositions, articles",
+    "stem": "Choose the option that best completes the sentence: Amaka is very good ______ mathematics.",
+    "options": {
+      "A": "in",
+      "B": "with",
+      "C": "on",
+      "D": "at"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "The standard preposition after 'good' for skill is 'at': good at mathematics.",
+    "explanationsWrong": {
+      "A": "'Good in' is common in speech but not standard.",
+      "B": "'Good with' is used for people or tools (good with children).",
+      "C": "'Good on' isn't used for skills."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Idioms and figurative expressions",
+    "stem": "Choose the option that best explains the expression in capitals: After years of quarrelling, the two families decided to BURY THE HATCHET.",
+    "options": {
+      "A": "hide their weapons",
+      "B": "go to court",
+      "C": "make peace",
+      "D": "stop farming"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "'Bury the hatchet' means to end a quarrel and make peace.",
+    "explanationsWrong": {
+      "A": "That's the literal meaning, not the idiomatic one.",
+      "B": "Going to court would continue the quarrel.",
+      "D": "The idiom has nothing to do with farming."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Idioms and figurative expressions",
+    "stem": "Choose the option that best explains the expression in capitals: Don't invite Musa; he is such A WET BLANKET.",
+    "options": {
+      "A": "someone who is always cold",
+      "B": "someone who spoils other people's fun",
+      "C": "a generous person",
+      "D": "a heavy sleeper"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "A wet blanket is a person who dampens other people's enjoyment.",
+    "explanationsWrong": {
+      "A": "That's a literal reading of the words.",
+      "C": "Generosity isn't implied.",
+      "D": "The idiom isn't about sleep."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Sentence interpretation",
+    "stem": "Choose the option that best explains the sentence: Tunde took the rumour with a pinch of salt.",
+    "options": {
+      "A": "He did not fully believe it.",
+      "B": "He believed it completely.",
+      "C": "He spread it quickly.",
+      "D": "He was angry about it."
+    },
+    "correctOption": "A",
+    "explanationCorrect": "To take something with a pinch of salt means to doubt it or not believe it entirely.",
+    "explanationsWrong": {
+      "B": "It means the opposite — doubting, not believing.",
+      "C": "Nothing suggests he spread it.",
+      "D": "Anger isn't implied."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Spelling and punctuation",
+    "stem": "Choose the correctly spelt word.",
+    "options": {
+      "A": "Accomodation",
+      "B": "Acommodation",
+      "C": "Accommodatoin",
+      "D": "Accommodation"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "'Accommodation' has double c and double m.",
+    "explanationsWrong": {
+      "A": "Missing the second m.",
+      "B": "Missing the second c.",
+      "C": "The ending is -tion, not -toin."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Vowels",
+    "stem": "Choose the word that has the same vowel sound as the one in 'fool'.",
+    "options": {
+      "A": "wool",
+      "B": "blood",
+      "C": "rule",
+      "D": "foot"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "'Fool' and 'rule' both have the long vowel /uː/.",
+    "explanationsWrong": {
+      "A": "'Wool' has the short /ʊ/.",
+      "B": "'Blood' has /ʌ/.",
+      "D": "'Foot' has the short /ʊ/."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Consonants and consonant clusters",
+    "stem": "Choose the word that begins with the same consonant sound as 'phone'.",
+    "options": {
+      "A": "pencil",
+      "B": "fish",
+      "C": "vision",
+      "D": "thin"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "'Ph' in 'phone' is pronounced /f/, the same as the f in 'fish'.",
+    "explanationsWrong": {
+      "A": "'Pencil' begins with /p/.",
+      "C": "'Vision' begins with /v/.",
+      "D": "'Thin' begins with /θ/."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Rhymes",
+    "stem": "Choose the word that rhymes with 'said'.",
+    "options": {
+      "A": "bed",
+      "B": "paid",
+      "C": "bead",
+      "D": "side"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "'Said' is pronounced /sed/, rhyming with 'bed'.",
+    "explanationsWrong": {
+      "B": "'Paid' has /eɪ/ — spelling misleads here.",
+      "C": "'Bead' has /iː/.",
+      "D": "'Side' has /aɪ/."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Word stress",
+    "stem": "Choose the option with the correct stress (capitals show the stressed syllable): photograph",
+    "options": {
+      "A": "phoTOgraph",
+      "B": "photoGRAPH",
+      "C": "PHOTOgraph",
+      "D": "PHOtograph"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "'Photograph' is stressed on the first syllable: PHO-to-graph. (Compare pho-TO-gra-pher.)",
+    "explanationsWrong": {
+      "A": "Second-syllable stress belongs to 'photographer'.",
+      "B": "The last syllable is unstressed.",
+      "C": "Only one syllable carries primary stress."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Word stress",
+    "stem": "In 'Please keep a RECORD of the meeting', the word 'record' is a noun. Which syllable is stressed?",
+    "options": {
+      "A": "The second: reCORD",
+      "B": "Both equally",
+      "C": "The first: REcord",
+      "D": "Neither"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Many two-syllable words are stressed on the first syllable as nouns (REcord) and the second as verbs (reCORD).",
+    "explanationsWrong": {
+      "A": "Second-syllable stress is for the verb 'to record'.",
+      "B": "English words have one primary stress.",
+      "D": "Every English word of two syllables has one stressed syllable."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Emphatic stress",
+    "stem": "In the sentence 'JOHN bought the car', the emphatic stress is on 'John'. Which question does it answer?",
+    "options": {
+      "A": "What did John buy?",
+      "B": "Who bought the car?",
+      "C": "Did John sell the car?",
+      "D": "Did John buy a house?"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Stressing 'John' highlights who did the action.",
+    "explanationsWrong": {
+      "A": "That would stress 'car'.",
+      "C": "That would stress 'bought'.",
+      "D": "That would stress 'car' (versus house)."
+    },
+    "difficulty": 1
+  }
+]

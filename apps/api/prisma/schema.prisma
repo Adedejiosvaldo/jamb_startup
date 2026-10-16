@@ -4,12 +4,16 @@
 // `pnpm --filter @scorecoach/api db:migrate --name <change>`; never hand-edit prod.
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  // rhel-openssl-3.0.x = Vercel's Node runtime (Amazon Linux 2023).
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url       = env("DATABASE_URL")
+  /// Unpooled connection for migrations (Neon/PgBouncer). Same as DATABASE_URL locally.
+  directUrl = env("DIRECT_URL")
 }
 
 // ───────────────────────────── Enums ─────────────────────────────

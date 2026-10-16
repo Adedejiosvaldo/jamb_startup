@@ -1,0 +1,434 @@
+[
+  {
+    "topicName": "Number bases",
+    "stem": "Convert 1011 (base two) to base ten.",
+    "options": {
+      "A": "11",
+      "B": "9",
+      "C": "13",
+      "D": "10"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "1011₂ = 1×2³ + 0×2² + 1×2¹ + 1×2⁰ = 8 + 0 + 2 + 1 = 11.",
+    "explanationsWrong": {
+      "B": "9 is 1001₂ — you may have dropped the 2¹ place.",
+      "C": "13 is 1101₂ — the digits were read in the wrong order.",
+      "D": "10 is 1010₂ — the last 1 (2⁰ = 1) was left out."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Number bases",
+    "stem": "Evaluate 213 (base four) + 123 (base four), giving your answer in base four.",
+    "options": {
+      "A": "336",
+      "B": "1012",
+      "C": "1100",
+      "D": "1002"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "213₄ = 39 and 123₄ = 27, so the sum is 66. 66 = 1×64 + 0×16 + 0×4 + 2, which is 1002₄.",
+    "explanationsWrong": {
+      "A": "336 adds the digits as if in base ten; 6 is not even a valid base-four digit.",
+      "B": "1012₄ = 70; check the carry in the 4s column.",
+      "C": "1100₄ = 80; the units digit should be 2."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Indices, logarithms and surds",
+    "stem": "Simplify 8^(2/3) × 27^(−1/3).",
+    "options": {
+      "A": "3/4",
+      "B": "12",
+      "C": "4/3",
+      "D": "2/3"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "8^(2/3) = (∛8)² = 2² = 4. 27^(−1/3) = 1/∛27 = 1/3. So 4 × 1/3 = 4/3.",
+    "explanationsWrong": {
+      "A": "This inverts the answer — the negative index applies only to 27.",
+      "B": "12 ignores the negative sign on the index of 27 (4 × 3).",
+      "D": "2/3 uses ∛8 = 2 but forgets to square it."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Indices, logarithms and surds",
+    "stem": "Evaluate log₂8 + log₃9.",
+    "options": {
+      "A": "6",
+      "B": "5",
+      "C": "17",
+      "D": "72"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "log₂8 = 3 because 2³ = 8, and log₃9 = 2 because 3² = 9. 3 + 2 = 5.",
+    "explanationsWrong": {
+      "A": "6 multiplies 3 × 2 instead of adding.",
+      "C": "17 adds 8 + 9; a logarithm is the power, not the number.",
+      "D": "72 multiplies 8 × 9."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Indices, logarithms and surds",
+    "stem": "Simplify √50 − √18.",
+    "options": {
+      "A": "2√2",
+      "B": "√32",
+      "C": "8√2",
+      "D": "4"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "√50 = √(25×2) = 5√2 and √18 = √(9×2) = 3√2. 5√2 − 3√2 = 2√2.",
+    "explanationsWrong": {
+      "B": "Surds cannot be subtracted under one root: √50 − √18 ≠ √(50 − 18).",
+      "C": "8√2 adds the surds instead of subtracting.",
+      "D": "4 would need √50 − √18 = √16; that's not how surds combine."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Sets",
+    "stem": "If n(A) = 20, n(B) = 15 and n(A ∪ B) = 28, find n(A ∩ B).",
+    "options": {
+      "A": "5",
+      "B": "13",
+      "C": "35",
+      "D": "7"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "n(A ∪ B) = n(A) + n(B) − n(A ∩ B), so 28 = 20 + 15 − n(A ∩ B), giving n(A ∩ B) = 7.",
+    "explanationsWrong": {
+      "A": "5 is 20 − 15; the union must be used.",
+      "B": "13 is 28 − 15; that's n(A only) plus nothing — recheck the formula.",
+      "C": "35 is n(A) + n(B) without subtracting the overlap."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Variation",
+    "stem": "y varies inversely as x. If y = 6 when x = 4, find y when x = 8.",
+    "options": {
+      "A": "12",
+      "B": "2",
+      "C": "3",
+      "D": "48"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "y = k/x, so k = 6 × 4 = 24. When x = 8, y = 24/8 = 3.",
+    "explanationsWrong": {
+      "A": "12 treats it as direct variation (doubling x doubles y).",
+      "B": "2 uses k = 16; k is y × x = 24.",
+      "D": "48 multiplies k by 2 instead of dividing by x."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Progressions",
+    "stem": "Find the 5th term of the arithmetic progression 3, 7, 11, …",
+    "options": {
+      "A": "15",
+      "B": "19",
+      "C": "23",
+      "D": "20"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "a = 3, d = 4. Tₙ = a + (n − 1)d, so T₅ = 3 + 4×4 = 19.",
+    "explanationsWrong": {
+      "A": "15 is the 4th term.",
+      "C": "23 is the 6th term — n − 1, not n, multiplies d.",
+      "D": "20 is 5 × d; the first term must be added."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Progressions",
+    "stem": "Find the sum to infinity of the geometric progression 12, 6, 3, …",
+    "options": {
+      "A": "24",
+      "B": "18",
+      "C": "21",
+      "D": "36"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "a = 12, r = 1/2. S∞ = a/(1 − r) = 12/(1/2) = 24.",
+    "explanationsWrong": {
+      "B": "18 is only the first two terms added.",
+      "C": "21 is the first three terms; infinitely many terms keep adding.",
+      "D": "36 uses a/(1 − r) with r = 2/3."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Polynomials",
+    "stem": "Find the roots of x² − 5x + 6 = 0.",
+    "options": {
+      "A": "−2 and −3",
+      "B": "1 and 6",
+      "C": "−1 and 6",
+      "D": "2 and 3"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "x² − 5x + 6 = (x − 2)(x − 3) = 0, so x = 2 or x = 3.",
+    "explanationsWrong": {
+      "A": "These are the roots of x² + 5x + 6 = 0 — check the signs.",
+      "B": "1 × 6 = 6 but 1 + 6 = 7, not 5.",
+      "C": "−1 × 6 = −6, not +6."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Matrices and determinants",
+    "stem": "Find the determinant of the matrix (3 2 / 1 4), i.e. first row 3, 2 and second row 1, 4.",
+    "options": {
+      "A": "14",
+      "B": "−10",
+      "C": "10",
+      "D": "12"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "For (a b / c d), det = ad − bc = 3×4 − 2×1 = 12 − 2 = 10.",
+    "explanationsWrong": {
+      "A": "14 adds ad + bc instead of subtracting.",
+      "B": "−10 computes bc − ad.",
+      "D": "12 is only ad."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Binary operations",
+    "stem": "A binary operation * is defined on real numbers by a * b = a + b − ab. Find 2 * 3.",
+    "options": {
+      "A": "11",
+      "B": "−1",
+      "C": "1",
+      "D": "5"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "2 * 3 = 2 + 3 − (2)(3) = 5 − 6 = −1.",
+    "explanationsWrong": {
+      "A": "11 adds ab instead of subtracting.",
+      "C": "1 comes from 6 − 5; the order is a + b − ab.",
+      "D": "5 forgets the −ab part."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Inequalities",
+    "stem": "Solve the inequality 2x − 3 > 7.",
+    "options": {
+      "A": "x > 5",
+      "B": "x > 2",
+      "C": "x < 5",
+      "D": "x > 10"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "2x − 3 > 7 ⇒ 2x > 10 ⇒ x > 5.",
+    "explanationsWrong": {
+      "B": "x > 2 subtracts 3 from 7 instead of adding.",
+      "C": "The sign only flips when dividing by a negative number.",
+      "D": "x > 10 forgets to divide by 2."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Euclidean geometry",
+    "stem": "What is the sum of the interior angles of a hexagon?",
+    "options": {
+      "A": "540°",
+      "B": "1080°",
+      "C": "360°",
+      "D": "720°"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Sum = (n − 2) × 180° = (6 − 2) × 180° = 720°.",
+    "explanationsWrong": {
+      "A": "540° is a pentagon (5 sides).",
+      "B": "1080° is an octagon (8 sides).",
+      "C": "360° is the sum of exterior angles of any polygon."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Mensuration",
+    "stem": "Find the area of a circle of radius 7 cm. (Take π = 22/7.)",
+    "options": {
+      "A": "44 cm²",
+      "B": "308 cm²",
+      "C": "154 cm²",
+      "D": "22 cm²"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Area = πr² = 22/7 × 7 × 7 = 154 cm².",
+    "explanationsWrong": {
+      "A": "44 cm is the circumference (2πr), not the area.",
+      "B": "308 uses 2πr² — the area formula has no 2.",
+      "D": "22 is π × 7, only part of the calculation."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Coordinate geometry",
+    "stem": "Find the gradient of the line through the points (1, 2) and (4, 8).",
+    "options": {
+      "A": "1/2",
+      "B": "2",
+      "C": "6",
+      "D": "3"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Gradient = (y₂ − y₁)/(x₂ − x₁) = (8 − 2)/(4 − 1) = 6/3 = 2.",
+    "explanationsWrong": {
+      "A": "1/2 inverts the formula (change in x over change in y).",
+      "C": "6 is only the change in y.",
+      "D": "3 is only the change in x."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Trigonometry",
+    "stem": "If sin θ = 3/5 and θ is acute, find cos θ.",
+    "options": {
+      "A": "4/5",
+      "B": "5/4",
+      "C": "3/4",
+      "D": "5/3"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Draw a right triangle with opposite 3 and hypotenuse 5; the adjacent side is √(25 − 9) = 4. cos θ = adjacent/hypotenuse = 4/5.",
+    "explanationsWrong": {
+      "B": "5/4 is sec θ (hypotenuse/adjacent).",
+      "C": "3/4 is tan θ (opposite/adjacent).",
+      "D": "5/3 is cosec θ."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Differentiation",
+    "stem": "Differentiate y = 3x² − 4x + 7 with respect to x.",
+    "options": {
+      "A": "6x − 4 + 7",
+      "B": "3x − 4",
+      "C": "6x + 3",
+      "D": "6x − 4"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "d/dx(3x²) = 6x, d/dx(−4x) = −4 and the derivative of a constant (7) is 0. So dy/dx = 6x − 4.",
+    "explanationsWrong": {
+      "A": "The derivative of a constant is 0, so the 7 disappears.",
+      "B": "Multiply by the power and reduce it: 3x² becomes 6x.",
+      "C": "−4x differentiates to −4, not +3."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Application of differentiation",
+    "stem": "Find the minimum value of y = x² − 4x + 7.",
+    "options": {
+      "A": "2",
+      "B": "7",
+      "C": "3",
+      "D": "−3"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "dy/dx = 2x − 4 = 0 at x = 2. Then y = 4 − 8 + 7 = 3. Since d²y/dx² = 2 > 0, this is a minimum.",
+    "explanationsWrong": {
+      "A": "2 is the x-value where the minimum occurs, not the minimum value of y.",
+      "B": "7 is y when x = 0.",
+      "D": "Recheck: y(2) = 4 − 8 + 7 = +3."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Integration",
+    "stem": "Find ∫(2x + 3) dx.",
+    "options": {
+      "A": "2x² + 3x + c",
+      "B": "x² + 3x + c",
+      "C": "x² + 3 + c",
+      "D": "2 + c"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "∫2x dx = x² and ∫3 dx = 3x, so the integral is x² + 3x + c.",
+    "explanationsWrong": {
+      "A": "Raise the power and divide by the new power: 2x → 2x²/2 = x².",
+      "C": "The constant 3 integrates to 3x.",
+      "D": "2 is the derivative of 2x + 3, not its integral."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Measures of location",
+    "stem": "Find the median of 3, 7, 1, 9, 5.",
+    "options": {
+      "A": "5",
+      "B": "7",
+      "C": "25",
+      "D": "9"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Arrange in order: 1, 3, 5, 7, 9. The middle value is 5.",
+    "explanationsWrong": {
+      "B": "7 is the middle value of the unsorted list — sort first.",
+      "C": "25 is the sum of the numbers.",
+      "D": "9 is the largest value."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Measures of dispersion",
+    "stem": "Find the range of 4, 9, 2, 15, 7.",
+    "options": {
+      "A": "11",
+      "B": "7.4",
+      "C": "15",
+      "D": "13"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Range = highest − lowest = 15 − 2 = 13.",
+    "explanationsWrong": {
+      "A": "11 is 15 − 4; 2 is the lowest value.",
+      "B": "7.4 is the mean.",
+      "C": "15 is the highest value, not the range."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Permutation and combination",
+    "stem": "In how many ways can the letters of the word WORD be arranged?",
+    "options": {
+      "A": "4",
+      "B": "16",
+      "C": "24",
+      "D": "12"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "4 different letters can be arranged in 4! = 4 × 3 × 2 × 1 = 24 ways.",
+    "explanationsWrong": {
+      "A": "4 counts the letters, not the arrangements.",
+      "B": "16 is 4², which allows repeated letters.",
+      "D": "12 is 4!/2, used only when two letters repeat."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Probability",
+    "stem": "Two fair coins are tossed once. What is the probability of getting exactly one head?",
+    "options": {
+      "A": "1/4",
+      "B": "1/2",
+      "C": "3/4",
+      "D": "1/3"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Outcomes: HH, HT, TH, TT. Exactly one head: HT or TH, so 2/4 = 1/2.",
+    "explanationsWrong": {
+      "A": "1/4 is the chance of one particular outcome, e.g. HT only.",
+      "C": "3/4 is the chance of at least one head.",
+      "D": "There are 4 equally likely outcomes, not 3."
+    },
+    "difficulty": 1
+  }
+]

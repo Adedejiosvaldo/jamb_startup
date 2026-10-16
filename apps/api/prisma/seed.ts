@@ -5,6 +5,7 @@
  * exam_config so a JAMB rule change is a data edit, not a code change.
  */
 import { PrismaClient } from '@prisma/client';
+import { SYLLABUS } from './content/syllabus';
 
 const prisma = new PrismaClient();
 
@@ -48,8 +49,29 @@ async function main(): Promise<void> {
       create: { year: 2027, key, value: value as object },
     });
   }
+  // Syllabus topics (spec §8.1). Create-only: never overwrite weights an admin has tuned.
+  let created = 0;
+  for (const [code, topics] of Object.entries(SYLLABUS)) {
+    const subject = await prisma.subject.findUnique({ where: { code } });
+    if (!subject) continue;
+    for (const t of topics) {
+      const existing = await prisma.topic.findFirst({
+        where: { subjectId: subject.id, OR: [{ syllabusRef: t.ref }, { name: t.name }] },
+      });
+      if (existing) continue;
+      await prisma.topic.create({
+        data: {
+          subjectId: subject.id,
+          name: t.name,
+          syllabusRef: t.ref,
+          weight: 1 / topics.length,
+        },
+      });
+      created += 1;
+    }
+  }
   console.log(
-    `Seeded ${SUBJECTS.length} subjects and ${Object.keys(EXAM_CONFIG_2027).length} exam_config keys.`,
+    `Seeded ${SUBJECTS.length} subjects, ${Object.keys(EXAM_CONFIG_2027).length} exam_config keys, ${created} new syllabus topics.`,
   );
 }
 

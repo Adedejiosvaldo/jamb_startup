@@ -1,0 +1,326 @@
+[
+  {
+    "topicName": "Principles of double entry",
+    "stem": "The double-entry principle states that",
+    "options": {
+      "A": "every debit entry has a corresponding credit entry",
+      "B": "every transaction is recorded twice in the same account",
+      "C": "assets must equal capital",
+      "D": "only cash transactions are recorded"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Each transaction affects two accounts: one debited and one credited with the same amount.",
+    "explanationsWrong": {
+      "B": "The two entries go into two different accounts.",
+      "C": "Assets equal capital plus liabilities.",
+      "D": "Credit transactions are recorded too."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Principles of double entry",
+    "stem": "A business has assets of ₦50,000 and liabilities of ₦20,000. What is its capital?",
+    "options": {
+      "A": "₦70,000",
+      "B": "₦20,000",
+      "C": "₦2.5",
+      "D": "₦30,000"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Assets = Capital + Liabilities, so Capital = 50,000 − 20,000 = ₦30,000.",
+    "explanationsWrong": {
+      "A": "₦70,000 adds liabilities to assets.",
+      "B": "₦20,000 is the liabilities.",
+      "C": "Capital is found by subtraction, not division."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Source documents and books of original entry",
+    "stem": "Goods bought on credit from Ade are recorded by",
+    "options": {
+      "A": "debiting Ade, crediting purchases",
+      "B": "debiting cash, crediting purchases",
+      "C": "debiting purchases, crediting Ade",
+      "D": "debiting purchases, crediting cash"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Purchases (the goods coming in) is debited; Ade (the creditor giving value) is credited.",
+    "explanationsWrong": {
+      "A": "That reverses the entry.",
+      "B": "No cash is involved in a credit purchase.",
+      "D": "Crediting cash would mean paying immediately."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "The ledger and trial balance",
+    "stem": "The main purpose of a trial balance is to",
+    "options": {
+      "A": "calculate profit",
+      "B": "check the arithmetical accuracy of the ledger",
+      "C": "show the financial position",
+      "D": "record cash transactions"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "If total debits equal total credits, the double entry is arithmetically correct (though some errors stay hidden).",
+    "explanationsWrong": {
+      "A": "Profit is calculated in the trading and profit and loss account.",
+      "C": "The balance sheet shows financial position.",
+      "D": "The cash book records cash."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Correction of errors and suspense account",
+    "stem": "Which error is NOT revealed by a trial balance?",
+    "options": {
+      "A": "Error of omission",
+      "B": "Single-entry error",
+      "C": "Wrong addition of one side of an account",
+      "D": "Entering a debit as ₦500 and the credit as ₦50"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "If a transaction is left out completely, both debit and credit are missing, so the trial balance still agrees.",
+    "explanationsWrong": {
+      "B": "A single entry makes the totals unequal.",
+      "C": "A casting error on one side makes the totals unequal.",
+      "D": "Unequal amounts make the totals disagree."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Bank reconciliation statement",
+    "stem": "Cheques issued by a business but not yet presented to the bank are called",
+    "options": {
+      "A": "dishonoured cheques",
+      "B": "uncredited cheques",
+      "C": "crossed cheques",
+      "D": "unpresented cheques"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "They are in the cash book but not yet on the bank statement, so they appear in the reconciliation.",
+    "explanationsWrong": {
+      "A": "Dishonoured cheques are refused by the bank.",
+      "B": "Uncredited cheques (lodgements) are deposits not yet on the statement.",
+      "C": "Crossing is a way of making cheques safer."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Petty cash book",
+    "stem": "Under the imprest system of petty cash, the petty cashier is",
+    "options": {
+      "A": "given a new amount each day",
+      "B": "allowed to keep unspent cash",
+      "C": "given a fixed float and reimbursed for what is spent",
+      "D": "not required to keep vouchers"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "The float is restored to the same amount at the end of each period by reimbursing actual spending.",
+    "explanationsWrong": {
+      "A": "The float is fixed, not a new amount daily.",
+      "B": "Unspent cash stays as part of the float.",
+      "D": "Vouchers support every payment."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Final accounts of a sole trader",
+    "stem": "Opening stock ₦5,000; purchases ₦20,000; closing stock ₦3,000; sales ₦30,000. What is the gross profit?",
+    "options": {
+      "A": "₦10,000",
+      "B": "₦8,000",
+      "C": "₦2,000",
+      "D": "₦22,000"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Cost of sales = 5,000 + 20,000 − 3,000 = ₦22,000. Gross profit = 30,000 − 22,000 = ₦8,000.",
+    "explanationsWrong": {
+      "A": "₦10,000 ignores stock (30,000 − 20,000).",
+      "C": "₦2,000 takes both stock figures off sales; closing stock reduces cost of sales instead.",
+      "D": "₦22,000 is the cost of sales."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Depreciation",
+    "stem": "A machine costs ₦10,000, has a residual value of ₦2,000 and a useful life of 4 years. Annual straight-line depreciation is",
+    "options": {
+      "A": "₦2,000",
+      "B": "₦2,500",
+      "C": "₦3,000",
+      "D": "₦8,000"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "(Cost − residual value) ÷ life = (10,000 − 2,000) ÷ 4 = ₦2,000.",
+    "explanationsWrong": {
+      "B": "₦2,500 ignores the residual value.",
+      "C": "₦3,000 adds the residual value.",
+      "D": "₦8,000 is the total depreciable amount."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Depreciation",
+    "stem": "An asset costing ₦10,000 is depreciated at 10% per year on the reducing balance method. What is the depreciation in year 2?",
+    "options": {
+      "A": "₦1,000",
+      "B": "₦810",
+      "C": "₦2,000",
+      "D": "₦900"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Year 1: 10% × 10,000 = 1,000, leaving 9,000. Year 2: 10% × 9,000 = ₦900.",
+    "explanationsWrong": {
+      "A": "₦1,000 is year 1 (or straight-line).",
+      "B": "₦810 is year 3.",
+      "C": "₦2,000 is two years at the year-1 amount."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Stock valuation",
+    "stem": "Under FIFO stock valuation, closing stock is valued at",
+    "options": {
+      "A": "the earliest purchase prices",
+      "B": "the average price",
+      "C": "the most recent purchase prices",
+      "D": "the selling price"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "First in, first out: the oldest stock is sold first, so what remains is valued at the latest prices.",
+    "explanationsWrong": {
+      "A": "Earliest prices are assigned to goods sold under FIFO.",
+      "B": "That is the weighted average method.",
+      "D": "Stock is valued at cost (or net realisable value), not selling price."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Control accounts",
+    "stem": "The sales ledger control account is used to check the accuracy of",
+    "options": {
+      "A": "creditors' accounts",
+      "B": "debtors' accounts",
+      "C": "the cash book",
+      "D": "the fixed assets register"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "It summarises all debtors' (customers') accounts so totals can be checked.",
+    "explanationsWrong": {
+      "A": "Creditors are checked by the purchases ledger control account.",
+      "C": "The cash book is checked by a bank reconciliation.",
+      "D": "Fixed assets aren't checked by a control account."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Incomplete records",
+    "stem": "Where proper books are not kept, capital at a date is found by preparing a",
+    "options": {
+      "A": "statement of affairs",
+      "B": "trial balance",
+      "C": "cash flow statement",
+      "D": "bank reconciliation"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "A statement of affairs lists assets and liabilities; capital = assets − liabilities.",
+    "explanationsWrong": {
+      "B": "A trial balance needs complete double-entry records.",
+      "C": "A cash flow statement shows cash movements.",
+      "D": "A bank reconciliation matches the cash book to the bank statement."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Manufacturing accounts",
+    "stem": "Prime cost is the total of",
+    "options": {
+      "A": "factory overheads and direct labour",
+      "B": "all production costs",
+      "C": "selling and distribution costs",
+      "D": "direct materials, direct labour and direct expenses"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Prime cost = direct materials + direct labour + direct expenses.",
+    "explanationsWrong": {
+      "A": "Factory overheads are added after prime cost.",
+      "B": "All production costs = prime cost + factory overheads (production cost).",
+      "C": "Selling costs aren't manufacturing costs."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Accounts of not-for-profit organisations",
+    "stem": "In a club's income and expenditure account, an excess of income over expenditure is called a",
+    "options": {
+      "A": "profit",
+      "B": "gain",
+      "C": "surplus",
+      "D": "balance"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Non-profit organisations call it a surplus (and a deficit if expenditure is higher).",
+    "explanationsWrong": {
+      "A": "'Profit' is used for trading businesses.",
+      "B": "'Gain' isn't the standard term.",
+      "D": "'Balance' is used in the receipts and payments account."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Partnership accounts",
+    "stem": "In the absence of a partnership agreement, profits are shared",
+    "options": {
+      "A": "in the ratio of capital",
+      "B": "equally",
+      "C": "according to hours worked",
+      "D": "by the senior partner's decision"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Under the Partnership Act 1890, profits and losses are shared equally when there's no agreement.",
+    "explanationsWrong": {
+      "A": "Capital ratio applies only if agreed.",
+      "C": "Hours worked isn't the legal default.",
+      "D": "No partner decides alone by law."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Interpretation of accounts (ratios)",
+    "stem": "Current assets are ₦40,000 and current liabilities are ₦20,000. The current ratio is",
+    "options": {
+      "A": "2 : 1",
+      "B": "0.5 : 1",
+      "C": "20,000",
+      "D": "60,000"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Current ratio = current assets ÷ current liabilities = 40,000 ÷ 20,000 = 2 : 1.",
+    "explanationsWrong": {
+      "B": "0.5 : 1 divides the wrong way.",
+      "C": "₦20,000 is working capital (CA − CL), not the ratio.",
+      "D": "₦60,000 adds them."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Public sector accounting",
+    "stem": "In Nigeria, the main fund into which most federal government revenue is paid is the",
+    "options": {
+      "A": "Contingencies Fund",
+      "B": "Development Fund",
+      "C": "Pension Fund",
+      "D": "Consolidated Revenue Fund"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "The Constitution requires federal revenues to be paid into the Consolidated Revenue Fund.",
+    "explanationsWrong": {
+      "A": "The Contingencies Fund is for urgent unforeseen spending.",
+      "B": "Development funds hold capital expenditure, not most revenue.",
+      "C": "Pension funds hold retirement contributions."
+    },
+    "difficulty": 2
+  }
+]
