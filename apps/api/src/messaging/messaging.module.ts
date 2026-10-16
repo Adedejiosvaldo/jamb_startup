@@ -1,6 +1,7 @@
 import { Global, Module } from '@nestjs/common';
 import { ENV, Env } from '../config/env';
 import { ConsoleSmsSender } from './console-sms.sender';
+import { OutboxService } from './outbox.service';
 import { SMS_SENDER } from './sms';
 import { TermiiSmsSender } from './termii-sms.sender';
 
@@ -19,7 +20,8 @@ import { TermiiSmsSender } from './termii-sms.sender';
             })
           : new ConsoleSmsSender(),
     },
+    OutboxService,
   ],
-  exports: [SMS_SENDER],
+  exports: [SMS_SENDER, OutboxService],
 })
 export class MessagingModule {}

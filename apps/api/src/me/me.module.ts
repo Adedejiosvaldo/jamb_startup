@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
-import { AuthModule } from '../auth/auth.module';
+import { CommerceModule } from '../commerce/commerce.module';
+import { ProfileService } from '../profile/profile.service';
 import { MeController } from './me.controller';
 
-@Module({ imports: [AuthModule], controllers: [MeController] })
+@Module({ imports: [CommerceModule], controllers: [MeController], providers: [ProfileService] })
 export class MeModule {}

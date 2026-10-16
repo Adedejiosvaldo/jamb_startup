@@ -21,6 +21,12 @@ describe('loadEnv', () => {
     expect(() => loadEnv({ ...base, NODE_ENV: 'production' })).toThrow(/console/);
   });
 
+  it('refuses the fake payment provider in production', () => {
+    expect(() =>
+      loadEnv({ ...base, NODE_ENV: 'production', SMS_PROVIDER: 'termii', TERMII_API_KEY: 'k' }),
+    ).toThrow(/PAYMENT_PROVIDER=fake/);
+  });
+
   it('requires a Termii key when Termii is selected', () => {
     expect(() => loadEnv({ ...base, SMS_PROVIDER: 'termii' })).toThrow(/TERMII_API_KEY/);
   });

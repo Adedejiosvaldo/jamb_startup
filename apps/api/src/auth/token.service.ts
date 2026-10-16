@@ -8,6 +8,7 @@ import { PrismaService } from '../prisma/prisma.service';
 import {
   ACCESS_TOKEN_TTL_SECONDS,
   DEVICE_LIMIT_TOKEN_TTL_SECONDS,
+  MFA_WINDOW_MS,
   REFRESH_TOKEN_TTL_MS,
 } from './auth.constants';
 import { ApiError } from './auth.errors';
@@ -16,6 +17,8 @@ export interface AccessClaims {
   userId: string;
   role: UserRole;
   deviceId: string;
+  /** Staff only: device passed TOTP within MFA_WINDOW_MS. */
+  mfa: boolean;
 }
 
 export interface DeviceLimitClaims {
@@ -51,15 +54,21 @@ export class TokenService {
     familyId: string = randomUUID(),
   ): Promise<TokenPair> {
     const refreshToken = await this.createRefreshToken(userId, deviceId, familyId);
+    const device = await this.prisma.device.findUnique({
+      where: { id: deviceId },
+      select: { mfaVerifiedAt: true },
+    });
+    const mfa =
+      !!device?.mfaVerifiedAt && Date.now() - device.mfaVerifiedAt.getTime() < MFA_WINDOW_MS;
     return {
-      accessToken: await this.signAccess({ userId, role, deviceId }),
+      accessToken: await this.signAccess({ userId, role, deviceId, mfa }),
       accessTokenExpiresIn: ACCESS_TOKEN_TTL_SECONDS,
       refreshToken,
     };
   }
 
   async signAccess(claims: AccessClaims): Promise<string> {
-    return new SignJWT({ role: claims.role, did: claims.deviceId, typ: 'access' })
+    return new SignJWT({ role: claims.role, did: claims.deviceId, mfa: claims.mfa, typ: 'access' })
       .setProtectedHeader({ alg: 'HS256' })
       .setSubject(claims.userId)
       .setIssuer(ISSUER)
@@ -76,7 +85,12 @@ export class TokenService {
       });
       if (payload.typ !== 'access' || !payload.sub || typeof payload.did !== 'string')
         throw new Error('bad claims');
-      return { userId: payload.sub, role: payload.role as UserRole, deviceId: payload.did };
+      return {
+        userId: payload.sub,
+        role: payload.role as UserRole,
+        deviceId: payload.did,
+        mfa: payload.mfa === true,
+      };
     } catch {
       throw new ApiError(HttpStatus.UNAUTHORIZED, 'TOKEN_INVALID', 'Please sign in again.');
     }

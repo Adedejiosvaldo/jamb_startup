@@ -6,7 +6,8 @@ import { ENV, Env } from './config/env';
 import { configureApp } from './configure-app';
 
 async function bootstrap(): Promise<void> {
-  const app = await NestFactory.create(AppModule);
+  // rawBody: Paystack webhook signatures are computed over the exact bytes.
+  const app = await NestFactory.create(AppModule, { rawBody: true });
   configureApp(app);
   const env = app.get<Env>(ENV);
   await app.listen(env.PORT);

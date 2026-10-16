@@ -13,3 +13,6 @@ export const MAX_ACTIVE_DEVICES = 2;
 
 /** Don't write last_active_at on every request. */
 export const ACTIVITY_WRITE_INTERVAL_MS = 5 * 60 * 1000;
+
+/** Staff (admin/reviewer) must re-enter a TOTP code this often per device. */
+export const MFA_WINDOW_MS = 12 * 60 * 60 * 1000;
