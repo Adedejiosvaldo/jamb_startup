@@ -2,4 +2,5 @@ pnpm-lock.yaml
 docs/build-spec.md
 **/migrations/**
 .next
+apps/web/public/sw.js
 dist

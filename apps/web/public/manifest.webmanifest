@@ -2,9 +2,11 @@
   "name": "ScoreCoach",
   "short_name": "ScoreCoach",
   "description": "Get the score your course needs.",
-  "start_url": "/",
+  "start_url": "/home",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0f766e",
-  "icons": []
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "icons": [
+    { "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
 }

@@ -35,7 +35,7 @@ export async function createTestApp(): Promise<{
     .overrideProvider(SMS_SENDER)
     .useValue(sms)
     .compile();
-  const app = moduleRef.createNestApplication();
+  const app = moduleRef.createNestApplication({ rawBody: true });
   configureApp(app);
   await app.init();
   return { app, sms, prisma: app.get(PrismaService) };
