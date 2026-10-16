@@ -116,7 +116,7 @@ export function QuestionForm({
               <input
                 type="radio"
                 name="correct"
-                className="mt-1 size-4 accent-teal-700"
+                className="mt-1 size-4 accent-emerald-400"
                 checked={q.correctOption === l}
                 onChange={() => set('correctOption', l)}
               />
@@ -134,7 +134,7 @@ export function QuestionForm({
               {q.correctOption !== l && (
                 <Field
                   label={`Why ${l} is wrong`}
-                  className="[&_label]:text-xs [&_label]:font-normal [&_label]:text-slate-600"
+                  className="[&_label]:text-xs [&_label]:font-normal [&_label]:text-muted"
                   value={q.explanationsWrong?.[l] ?? ''}
                   onChange={(e) =>
                     set('explanationsWrong', { ...q.explanationsWrong, [l]: e.target.value })

@@ -1,25 +1,28 @@
 import Link from 'next/link';
+import { LogoMark } from './logo';
 
 export function Footer() {
   return (
-    <footer className="mx-auto max-w-2xl px-4 py-8 text-sm text-slate-600">
-      <nav aria-label="Footer" className="flex flex-wrap gap-x-4 gap-y-2">
-        <Link className="underline-offset-4 hover:underline" href="/help">
-          Help
-        </Link>
-        <Link className="underline-offset-4 hover:underline" href="/privacy">
-          Privacy
-        </Link>
-        <Link className="underline-offset-4 hover:underline" href="/terms">
-          Terms and refunds
-        </Link>
-        <Link className="underline-offset-4 hover:underline" href="/teachers">
-          For lesson teachers
-        </Link>
-      </nav>
-      <p className="mt-4">
-        ScoreCoach is an independent study service and is not affiliated with JAMB.
-      </p>
+    <footer className="border-t border-line">
+      <div className="mx-auto flex max-w-5xl flex-col gap-6 px-4 py-10 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-2">
+          <LogoMark className="size-5" />
+          <span>Not affiliated with JAMB.</span>
+        </div>
+        <nav aria-label="Footer" className="flex flex-wrap gap-x-5 gap-y-2">
+          {[
+            ['/checker', 'Subject checker'],
+            ['/help', 'Help'],
+            ['/teachers', 'Teachers'],
+            ['/privacy', 'Privacy'],
+            ['/terms', 'Terms'],
+          ].map(([href, label]) => (
+            <Link key={href} href={href!} className="hover:text-fg">
+              {label}
+            </Link>
+          ))}
+        </nav>
+      </div>
     </footer>
   );
 }

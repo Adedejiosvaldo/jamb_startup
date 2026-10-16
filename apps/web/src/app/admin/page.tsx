@@ -52,28 +52,28 @@ export default function AdminDashboard() {
       <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {stats.map((s) => (
           <Card key={s.label}>
-            <p className="text-sm text-slate-600">{s.label}</p>
+            <p className="text-sm text-muted">{s.label}</p>
             <p className="mt-1 text-2xl font-bold tabular-nums">{s.value}</p>
-            {s.sub && <p className="text-sm text-slate-600">{s.sub}</p>}
+            {s.sub && <p className="text-sm text-muted">{s.sub}</p>}
           </Card>
         ))}
       </div>
       <div className="grid gap-3 sm:grid-cols-2">
         <Link
           href="/admin/tickets"
-          className="rounded-xl focus-visible:outline-2 focus-visible:outline-teal-700"
+          className="rounded-xl focus-visible:outline-2 focus-visible:outline-accent"
         >
-          <Card className={data.openTickets ? 'border-amber-300' : ''}>
-            <p className="text-sm text-slate-600">Open support tickets</p>
+          <Card className={data.openTickets ? 'border-amber-500/40' : ''}>
+            <p className="text-sm text-muted">Open support tickets</p>
             <p className="mt-1 text-2xl font-bold tabular-nums">{data.openTickets}</p>
           </Card>
         </Link>
         <Link
           href="/admin/reports"
-          className="rounded-xl focus-visible:outline-2 focus-visible:outline-teal-700"
+          className="rounded-xl focus-visible:outline-2 focus-visible:outline-accent"
         >
-          <Card className={data.openQuestionReports ? 'border-amber-300' : ''}>
-            <p className="text-sm text-slate-600">Open question reports</p>
+          <Card className={data.openQuestionReports ? 'border-amber-500/40' : ''}>
+            <p className="text-sm text-muted">Open question reports</p>
             <p className="mt-1 text-2xl font-bold tabular-nums">{data.openQuestionReports}</p>
           </Card>
         </Link>
@@ -86,9 +86,9 @@ export default function AdminDashboard() {
             return (
               <li key={k} className="grid grid-cols-[10rem_1fr_4rem] items-center gap-3 text-sm">
                 <span>{label}</span>
-                <span aria-hidden="true" className="h-3 rounded-sm bg-slate-100">
+                <span aria-hidden="true" className="h-3 rounded-sm bg-surface-2">
                   <span
-                    className="block h-3 rounded-sm bg-teal-700"
+                    className="block h-3 rounded-sm bg-accent"
                     style={{ width: `${(v / max) * 100}%` }}
                   />
                 </span>

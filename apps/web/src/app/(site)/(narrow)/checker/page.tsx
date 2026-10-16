@@ -108,7 +108,7 @@ export default function CheckerPage() {
       {req.data && (
         <Card className="mt-6 space-y-5">
           <div>
-            <p className="text-sm text-slate-600">{req.data.university.name}</p>
+            <p className="text-sm text-muted">{req.data.university.name}</p>
             <h2 className="text-xl font-bold text-balance">{req.data.course.name}</h2>
           </div>
 
@@ -117,14 +117,14 @@ export default function CheckerPage() {
             <ul className="mt-2 space-y-2">
               {req.data.utmeSubjects.required.map((s) => (
                 <li key={s.code} className="flex items-center gap-2">
-                  <CheckCircle2 aria-hidden="true" className="size-4 text-teal-700" />
+                  <CheckCircle2 aria-hidden="true" className="size-4 text-accent" />
                   {s.name}
-                  {s.code !== 'ENG' && <span className="text-sm text-slate-600">(compulsory)</span>}
+                  {s.code !== 'ENG' && <span className="text-sm text-muted">(compulsory)</span>}
                 </li>
               ))}
               {req.data.utmeSubjects.choose.map((g, i) => (
                 <li key={i} className="flex items-start gap-2">
-                  <CheckCircle2 aria-hidden="true" className="mt-1 size-4 text-teal-700" />
+                  <CheckCircle2 aria-hidden="true" className="mt-1 size-4 text-accent" />
                   <span>
                     Any {g.count} of: {g.from.map((s) => s.name).join(', ')}
                   </span>
@@ -136,14 +136,14 @@ export default function CheckerPage() {
           {req.data.olevelRequirements && (
             <div>
               <h3 className="font-semibold">O&apos;Level</h3>
-              <p className="mt-1 text-pretty text-slate-700">{req.data.olevelRequirements}</p>
+              <p className="mt-1 text-pretty text-fg-2">{req.data.olevelRequirements}</p>
             </div>
           )}
           {req.data.notes && <Alert tone="warning">{req.data.notes}</Alert>}
           {req.data.cutoffScore && (
             <div>
               <h3 className="font-semibold">Competitiveness</h3>
-              <p className="mt-1 text-slate-700">
+              <p className="mt-1 text-fg-2">
                 Last known cut-off:{' '}
                 <span className="font-semibold tabular-nums">{req.data.cutoffScore}</span>. Past
                 cut-offs are a guide only, not a guarantee of admission.
@@ -151,7 +151,7 @@ export default function CheckerPage() {
             </div>
           )}
 
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-muted">
             Source: {req.data.source}. Last checked {shortDate(req.data.checkedAt)}.{' '}
             {report && (
               <a
@@ -165,11 +165,11 @@ export default function CheckerPage() {
             )}
           </p>
 
-          <div className="rounded-lg bg-teal-50 p-4">
+          <div className="rounded-lg bg-accent-soft p-4">
             <p className="font-semibold text-balance">
               Is your score good enough for {req.data.course.name}?
             </p>
-            <p className="mt-1 text-sm text-pretty text-slate-700">
+            <p className="mt-1 text-sm text-pretty text-fg-2">
               Take the free diagnostic to see your likely score and the gap to this course.
             </p>
             <ButtonLink href="/start" className="mt-3">

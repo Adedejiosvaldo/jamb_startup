@@ -44,7 +44,7 @@ export default function HelpPage() {
       <h1 className="text-3xl font-bold text-balance">Help centre</h1>
       <h2>Common questions</h2>
       {FAQ.map(([q, a]) => (
-        <details key={q} className="rounded-lg border border-slate-200 p-3">
+        <details key={q} className="rounded-lg border border-line p-3">
           <summary className="min-h-8 cursor-pointer font-semibold">{q}</summary>
           <p className="mt-2">{a}</p>
         </details>

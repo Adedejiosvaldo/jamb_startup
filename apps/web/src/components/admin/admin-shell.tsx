@@ -84,7 +84,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
               aria-current={active ? 'page' : undefined}
               className={cn(
                 'flex min-h-10 items-center rounded-lg px-3 text-sm font-medium',
-                active ? 'bg-teal-50 text-teal-800' : 'text-slate-700 hover:bg-slate-100',
+                active ? 'bg-accent-soft text-accent' : 'text-fg-2 hover:bg-surface-2',
               )}
             >
               {n.label}
@@ -96,17 +96,17 @@ export function AdminShell({ children }: { children: ReactNode }) {
   );
 
   return (
-    <div className="min-h-dvh bg-slate-50 print:bg-white">
-      <header className="sticky top-0 z-10 border-b border-slate-200 bg-white print:hidden">
+    <div className="min-h-dvh bg-canvas print:bg-white">
+      <header className="sticky top-0 z-10 border-b border-line bg-surface print:hidden">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4">
           <div className="flex items-center gap-2">
             <Logo href="/admin" />
-            <span className="rounded bg-slate-900 px-1.5 py-0.5 text-xs font-semibold text-white">
+            <span className="rounded-full border border-line-strong bg-white/[0.06] px-2 py-0.5 text-xs font-medium text-fg-2">
               Staff
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="hidden text-sm text-slate-600 sm:inline">
+            <span className="hidden text-sm text-muted sm:inline">
               {session.me?.name ?? session.me?.phone}
             </span>
             <Button
@@ -129,11 +129,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
           </div>
         </div>
         {menuOpen && (
-          <nav
-            id="admin-nav"
-            aria-label="Admin"
-            className="border-t border-slate-200 p-2 lg:hidden"
-          >
+          <nav id="admin-nav" aria-label="Admin" className="border-t border-line p-2 lg:hidden">
             {links}
           </nav>
         )}
@@ -174,7 +170,7 @@ function MfaGate({ enabled, onDone }: { enabled: boolean; onDone: () => void }) 
       <h1 className="text-2xl font-bold text-balance">Two-step verification</h1>
       {!enabled && !setup ? (
         <>
-          <p className="text-pretty text-slate-700">
+          <p className="text-pretty text-fg-2">
             Staff accounts must use an authenticator app (Google Authenticator, Authy or Microsoft
             Authenticator). Set it up once on this account.
           </p>
@@ -204,12 +200,12 @@ function MfaGate({ enabled, onDone }: { enabled: boolean; onDone: () => void }) 
           }}
         >
           {setup && (
-            <div className="space-y-2 rounded-lg border border-slate-200 bg-white p-3 text-sm">
+            <div className="space-y-2 rounded-lg border border-line bg-surface p-3 text-sm">
               <p>In your authenticator app, add an account with this key:</p>
               <p className="font-mono text-base break-all select-all">
                 {setup.secret.replace(/(.{4})/g, '$1 ').trim()}
               </p>
-              <a href={setup.otpauthUrl} className="font-semibold text-teal-700 underline">
+              <a href={setup.otpauthUrl} className="font-semibold text-accent underline">
                 Or open in authenticator app (on this phone)
               </a>
             </div>

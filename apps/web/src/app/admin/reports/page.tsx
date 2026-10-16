@@ -57,7 +57,7 @@ export default function ReportsPage() {
             cell: (r) => (
               <Link
                 href={`/admin/questions/${r.question.id}`}
-                className="line-clamp-2 text-teal-800 underline-offset-4 hover:underline"
+                className="line-clamp-2 text-fg underline-offset-4 hover:text-accent hover:underline"
               >
                 {r.question.subject.code}: {r.question.stem}
               </Link>
@@ -68,7 +68,7 @@ export default function ReportsPage() {
             cell: (r) => (
               <div>
                 <Badge tone="warning">{r.reason.replace('_', ' ')}</Badge>
-                {r.note && <p className="mt-1 text-slate-700">{r.note}</p>}
+                {r.note && <p className="mt-1 text-fg-2">{r.note}</p>}
               </div>
             ),
           },
@@ -95,7 +95,7 @@ export default function ReportsPage() {
                   </Button>
                 </div>
               ) : (
-                <span className="text-slate-600">Admin decides</span>
+                <span className="text-muted">Admin decides</span>
               ),
           },
         ]}

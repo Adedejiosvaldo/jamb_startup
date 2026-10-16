@@ -39,20 +39,20 @@ export function Navigator({
               aria-label={`Question ${n}, ${state}`}
               aria-current={i === current ? 'step' : undefined}
               className={cn(
-                'relative grid min-h-10 w-full place-items-center rounded-md border text-sm font-semibold tabular-nums focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-teal-700',
+                'relative grid min-h-10 w-full place-items-center rounded-md border text-sm font-semibold tabular-nums focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent',
                 it.correct === false
-                  ? 'border-red-700 bg-red-50 text-red-800'
+                  ? 'border-red-400 bg-red-500/10 text-red-300'
                   : it.answered
-                    ? 'border-teal-700 bg-teal-700 text-white'
-                    : 'border-slate-300 bg-white text-slate-700',
-                i === current && 'ring-2 ring-slate-900 ring-offset-1',
+                    ? 'border-accent bg-accent text-on-accent'
+                    : 'border-line-strong bg-surface text-fg-2',
+                i === current && 'ring-2 ring-fg ring-offset-1',
               )}
             >
               {n}
               {it.flagged && (
                 <Flag
                   aria-hidden="true"
-                  className="absolute -top-1 -right-1 size-3.5 fill-amber-500 text-amber-700"
+                  className="absolute -top-1 -right-1 size-3.5 fill-amber-400 text-amber-400"
                 />
               )}
             </button>
@@ -65,16 +65,19 @@ export function Navigator({
 
 export function NavigatorLegend() {
   return (
-    <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-600">
+    <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted">
       <li className="flex items-center gap-1.5">
-        <span aria-hidden="true" className="size-3 rounded-sm bg-teal-700" /> Answered
+        <span aria-hidden="true" className="size-3 rounded-sm bg-accent" /> Answered
       </li>
       <li className="flex items-center gap-1.5">
-        <span aria-hidden="true" className="size-3 rounded-sm border border-slate-300 bg-white" />{' '}
+        <span
+          aria-hidden="true"
+          className="size-3 rounded-sm border border-line-strong bg-surface"
+        />{' '}
         Not answered
       </li>
       <li className="flex items-center gap-1.5">
-        <Flag aria-hidden="true" className="size-3 fill-amber-500 text-amber-700" /> Flagged
+        <Flag aria-hidden="true" className="size-3 fill-amber-400 text-amber-400" /> Flagged
       </li>
     </ul>
   );

@@ -45,7 +45,7 @@ export default function PayLinkPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-balance">Pay for {child}’s JAMB study plan</h1>
-        <p className="mt-2 text-pretty text-slate-700">
+        <p className="mt-2 text-pretty text-fg-2">
           {child} asked you to pay for the ScoreCoach Season Pass: a daily study plan, practice with
           explanations, weekly mocks, and a short weekly progress report sent to you on WhatsApp.
         </p>
@@ -90,8 +90,8 @@ export default function PayLinkPage() {
           Pay {naira(data.amountKobo)}
         </Button>
       </form>
-      <p className="flex gap-2 text-sm text-pretty text-slate-600">
-        <ShieldCheck aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-teal-700" />
+      <p className="flex gap-2 text-sm text-pretty text-muted">
+        <ShieldCheck aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-accent" />
         Card, bank transfer or USSD, processed securely by Paystack. We never see your card details.
         Refund terms: scorecoach.ng/terms. Not affiliated with JAMB.
       </p>

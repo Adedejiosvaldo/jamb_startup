@@ -54,17 +54,17 @@ export default function TicketsPage() {
       {stats.data && (
         <div className="grid grid-cols-3 gap-3">
           <Card>
-            <p className="text-sm text-slate-600">Tickets (30 days)</p>
+            <p className="text-sm text-muted">Tickets (30 days)</p>
             <p className="text-2xl font-bold tabular-nums">{stats.data.tickets}</p>
           </Card>
           <Card>
-            <p className="text-sm text-slate-600">Median first reply</p>
+            <p className="text-sm text-muted">Median first reply</p>
             <p className="text-2xl font-bold tabular-nums">
               {stats.data.medianFirstResponseMinutes ?? '—'} min
             </p>
           </Card>
           <Card>
-            <p className="text-sm text-slate-600">Within 12 h</p>
+            <p className="text-sm text-muted">Within 12 h</p>
             <p className="text-2xl font-bold tabular-nums">{stats.data.withinSlaPct ?? '—'}%</p>
           </Card>
         </div>
@@ -86,7 +86,7 @@ export default function TicketsPage() {
       <ul className="space-y-3">
         {list.data?.map((t) => (
           <li key={t.id}>
-            <Card className={t.slaBreached ? 'border-red-300' : ''}>
+            <Card className={t.slaBreached ? 'border-red-500/40' : ''}>
               <div className="flex flex-wrap items-center gap-2 text-sm">
                 <Badge
                   tone={t.category === 'payment' || t.category === 'refund' ? 'danger' : 'neutral'}
@@ -95,9 +95,9 @@ export default function TicketsPage() {
                 </Badge>
                 <Badge tone={STATUS_TONE[t.status]}>{t.status}</Badge>
                 {t.slaBreached && <Badge tone="danger">SLA missed — owe 30 days</Badge>}
-                <span className="text-slate-600">{dateTime(t.createdAt)}</span>
+                <span className="text-muted">{dateTime(t.createdAt)}</span>
                 {t.user ? (
-                  <Link className="text-teal-800 underline" href={`/admin/users/${t.user.id}`}>
+                  <Link className="text-accent underline" href={`/admin/users/${t.user.id}`}>
                     {t.user.name ?? t.user.phone}
                   </Link>
                 ) : (
@@ -105,7 +105,7 @@ export default function TicketsPage() {
                 )}
               </div>
               <p className="mt-2 text-pretty whitespace-pre-line">{t.body}</p>
-              <details className="mt-2 text-xs text-slate-600">
+              <details className="mt-2 text-xs text-muted">
                 <summary className="cursor-pointer">Context</summary>
                 <pre className="mt-1 overflow-x-auto">{JSON.stringify(t.context, null, 2)}</pre>
               </details>
@@ -113,7 +113,7 @@ export default function TicketsPage() {
                 <div className="mt-3 flex flex-wrap gap-2">
                   {(t.phone ?? t.user?.phone) && (
                     <a
-                      className="inline-flex min-h-9 items-center rounded-lg border border-slate-300 px-3 text-sm font-semibold"
+                      className="inline-flex min-h-9 items-center rounded-lg border border-line-strong px-3 text-sm font-semibold"
                       href={`https://wa.me/${(t.phone ?? t.user!.phone).replace('+', '')}`}
                       target="_blank"
                       rel="noreferrer"
@@ -143,7 +143,7 @@ export default function TicketsPage() {
             </Card>
           </li>
         ))}
-        {list.data?.length === 0 && <p className="text-slate-600">No tickets.</p>}
+        {list.data?.length === 0 && <p className="text-muted">No tickets.</p>}
       </ul>
     </div>
   );

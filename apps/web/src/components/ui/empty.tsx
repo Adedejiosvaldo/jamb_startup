@@ -11,9 +11,9 @@ export function Empty({
   action: ReactNode;
 }) {
   return (
-    <div className="rounded-xl border border-dashed border-slate-300 p-6 text-center">
+    <div className="rounded-2xl border border-dashed border-line-strong p-8 text-center">
       <p className="font-semibold text-balance">{title}</p>
-      {children && <p className="mt-1 text-sm text-pretty text-slate-600">{children}</p>}
+      {children && <p className="mt-1 text-sm text-pretty text-muted">{children}</p>}
       <div className="mt-4 flex justify-center">{action}</div>
     </div>
   );

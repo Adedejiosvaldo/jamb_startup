@@ -17,7 +17,7 @@ export default function DevCheckout() {
       <Alert tone="warning" title="Development payment page">
         This replaces Paystack locally. No money moves.
       </Alert>
-      <p className="font-mono text-sm break-all text-slate-600">{reference}</p>
+      <p className="font-mono text-sm break-all text-muted">{reference}</p>
       <Button
         block
         loading={busy}

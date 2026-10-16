@@ -104,7 +104,7 @@ export default function SupportPage() {
           href={help}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex min-h-11 items-center gap-2 font-semibold text-teal-700"
+          className="inline-flex min-h-11 items-center gap-2 font-semibold text-accent"
         >
           <MessageCircle aria-hidden="true" className="size-4" /> Or chat with us on WhatsApp
         </a>

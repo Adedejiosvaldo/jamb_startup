@@ -1,3 +1,5 @@
+import { GeistMono } from 'geist/font/mono';
+import { GeistSans } from 'geist/font/sans';
 import type { Metadata, Viewport } from 'next';
 import { ServiceWorkerRegister } from '@/components/sw-register';
 import { SessionProvider } from '@/lib/session';
@@ -12,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#0f766e',
+  themeColor: '#09090b',
   width: 'device-width',
   initialScale: 1,
   viewportFit: 'cover',
@@ -20,11 +22,11 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en-NG">
-      <body className="min-h-dvh bg-white text-slate-900 antialiased">
+    <html lang="en-NG" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className="min-h-dvh bg-canvas font-sans text-fg antialiased">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-40 focus:rounded-lg focus:bg-white focus:p-2"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-40 focus:rounded-lg focus:bg-surface focus:p-2"
         >
           Skip to content
         </a>

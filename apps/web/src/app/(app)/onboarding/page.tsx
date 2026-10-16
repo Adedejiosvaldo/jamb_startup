@@ -11,7 +11,7 @@ import { useSession } from '@/lib/session';
 import type { Requirement, Subject } from '@/lib/types';
 import { useApi } from '@/lib/use-api';
 
-const STEPS = ['About you', 'Your target', 'Your subjects', 'Study time', 'Parent'] as const;
+const STEPS = ['About you', 'Your goal', 'Your subjects', 'Your routine', 'Add a parent'] as const;
 const thisYear = new Date().getFullYear();
 // UTME runs around April–May; after June you're preparing for next year's.
 const defaultExamYear = new Date().getMonth() >= 5 ? thisYear + 1 : thisYear;
@@ -128,14 +128,14 @@ export default function OnboardingPage() {
       }}
     >
       <Field
-        label="Your first and last name"
+        label="Full name"
         autoComplete="name"
         value={name}
         onChange={(e) => setName(e.target.value)}
         required
       />
       <SelectField
-        label="When are you writing JAMB?"
+        label="Exam year"
         value={examYear}
         onChange={(e) => setExamYear(Number(e.target.value))}
       >
@@ -145,18 +145,18 @@ export default function OnboardingPage() {
           </option>
         ))}
       </SelectField>
-      <ChoiceGroup legend="Have you written JAMB before?">
+      <ChoiceGroup columns={2} legend="Written JAMB before?">
         <Choice
           name="track"
           checked={track === 'first_timer'}
           onChange={() => setTrack('first_timer')}
-          title="No, this is my first time"
+          title="First time"
         />
         <Choice
           name="track"
           checked={track === 'retaker'}
           onChange={() => setTrack('retaker')}
-          title="Yes, I'm writing it again"
+          title="Retaking"
         />
       </ChoiceGroup>
       {track === 'retaker' && (
@@ -165,7 +165,6 @@ export default function OnboardingPage() {
           inputMode="numeric"
           value={lastScore}
           onChange={(e) => setLastScore(e.target.value.replace(/\D/g, '').slice(0, 3))}
-          hint="Helps us plan from where you really are."
         />
       )}
       <Button type="submit" block loading={busy} disabled={!name.trim()}>
@@ -189,7 +188,7 @@ export default function OnboardingPage() {
       }}
     >
       <SelectField
-        label="University you want"
+        label="University"
         value={universityId}
         onChange={(e) => {
           setUniversityId(e.target.value);
@@ -204,11 +203,7 @@ export default function OnboardingPage() {
         ))}
       </SelectField>
       {universityId && (
-        <SelectField
-          label="Course you want"
-          value={courseId}
-          onChange={(e) => setCourseId(e.target.value)}
-        >
+        <SelectField label="Course" value={courseId} onChange={(e) => setCourseId(e.target.value)}>
           <option value="">Not sure yet</option>
           {courses.data?.map((c) => (
             <option key={c.id} value={c.id}>
@@ -246,8 +241,9 @@ export default function OnboardingPage() {
       }}
     >
       <ChoiceGroup
-        legend="Pick your 3 subjects besides English"
-        hint={`${subjects.length} of 3 chosen. Use of English is always included.`}
+        columns={2}
+        legend="Pick 3 — English is included"
+        hint={`${subjects.length} of 3 chosen`}
       >
         {allSubjects.data
           ?.filter((s) => s.code !== 'ENG')
@@ -308,22 +304,19 @@ export default function OnboardingPage() {
         });
       }}
     >
-      <ChoiceGroup
-        legend="How much time can you study each day?"
-        hint="Be honest — a plan you keep beats a plan you abandon."
-      >
+      <ChoiceGroup columns={2} legend="Daily study time" hint="Pick what you’ll actually keep up.">
         {[20, 40, 60, 90].map((m) => (
           <Choice
             key={m}
             name="minutes"
             checked={minutes === m}
             onChange={() => setMinutes(m)}
-            title={`${m} minutes`}
-            description={m === 40 ? 'Most students start here' : undefined}
+            title={`${m} min`}
+            description={m === 40 ? 'Popular' : undefined}
           />
         ))}
       </ChoiceGroup>
-      <ChoiceGroup legend="What will you mostly study on?">
+      <ChoiceGroup legend="Mostly studying on">
         <Choice
           name="device"
           checked={device === 'phone'}
@@ -350,9 +343,8 @@ export default function OnboardingPage() {
 
     // 5. Parent
     <div key="parent" className="space-y-5">
-      <p className="text-pretty text-slate-700">
-        Add a parent or guardian and they can get a short weekly WhatsApp report on your progress —
-        only after they agree. Optional.
+      <p className="text-pretty text-fg-2">
+        Optional. They get one WhatsApp update each Sunday — only if they agree.
       </p>
       {shareUrl ? (
         <Alert tone="success" title="Almost done">
@@ -407,18 +399,18 @@ export default function OnboardingPage() {
 
   return (
     <div>
-      <p className="text-sm font-medium text-slate-600 tabular-nums">
+      <p className="text-sm font-medium text-muted tabular-nums">
         Step {step + 1} of {STEPS.length}
       </p>
       <div className="mt-2 flex gap-1" aria-hidden="true">
         {STEPS.map((s, i) => (
           <span
             key={s}
-            className={`h-1.5 flex-1 rounded-full ${i <= step ? 'bg-teal-700' : 'bg-slate-200'}`}
+            className={`h-1 flex-1 rounded-full ${i <= step ? 'bg-accent' : 'bg-white/10'}`}
           />
         ))}
       </div>
-      <h1 className="mt-4 mb-6 text-2xl font-bold text-balance">{STEPS[step]}</h1>
+      <h1 className="mt-6 mb-8 text-3xl font-semibold text-balance">{STEPS[step]}</h1>
       {steps[step]}
       {error && (
         <Alert tone="danger" className="mt-4">

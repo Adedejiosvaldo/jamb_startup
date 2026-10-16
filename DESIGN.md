@@ -1,79 +1,63 @@
-# ScoreCoach design language
+# ScoreCoach design language — "premium modern"
 
-Product UI rules for every surface (student app, parent pages, admin). Agents: read this file and
-`.claude/skills/baseline-ui` + `.claude/skills/fixing-accessibility` before UI work.
+Rules for every surface (student app, parent pages, teacher, staff console). Agents: read this and
+`.claude/skills/baseline-ui` + `.claude/skills/fixing-accessibility` before UI work. The founder explicitly asked
+for gradients and a premium dark look, so single-hue emerald gradients are allowed (never purple, never multicolour,
+never as the only affordance).
 
-## Who we design for
+## Feel
 
-- Students 16–21 on ₦60k Android phones (360×740, 2–3 GB RAM), slow or metered data, often outdoors.
-- Parents who are not tech-savvy and arrive from a WhatsApp link.
-- School-lab PCs with mouse and keyboard (CBT practice must feel like the real exam).
+Dark, calm, expensive. Big numbers, few words. One accent (emerald). Glassy cards with hairline borders. Decorative
+glow only behind hero areas. Everything still works on a ₦60k Android with weak data.
 
-## Principles
+## Tokens (`apps/web/src/app/globals.css` → `@theme`)
 
-1. **Calm and honest.** An exam is stressful. No confetti, no hype, no fake urgency. Bad news (a low
-   predicted score) is stated plainly, followed by the next action.
-2. **One next action per screen.** Every view has one primary button. Empty states say what to do.
-3. **Light by default.** System fonts, no remote fonts, no images on core flows, icons as inline SVG
-   (lucide). First load < 500 KB, app shell < 300 KB gzipped.
-4. **Readable at arm's length in sunlight.** Body 16 px minimum, strong contrast, no light-grey text
-   for anything important.
+Use semantic utilities, never raw palette colours for surfaces/text:
 
-## Tokens (Tailwind defaults only)
+| Token                                             | Use                                              |
+| ------------------------------------------------- | ------------------------------------------------ |
+| `bg-canvas`                                       | page background (#09090b)                        |
+| `bg-surface` / `-2` / `-3`                        | raised surfaces, dialogs, inputs                 |
+| `glass` utility + `border-line`                   | cards (translucent gradient + top highlight)     |
+| `border-line` / `-strong`                         | hairlines (white 8% / 14%)                       |
+| `text-fg` / `fg-2` / `muted` / `faint`            | text hierarchy (never below `muted` for content) |
+| `text-accent`, `bg-accent-soft`, `text-on-accent` | the one accent                                   |
+| `bg-glow`, `bg-grid`, `text-gradient`             | hero decoration only                             |
 
-| Role                  | Value                                                              |
-| --------------------- | ------------------------------------------------------------------ |
-| Accent (one per view) | `teal-700` (hover `teal-800`, tint `teal-50`)                      |
-| Text                  | `slate-900`; secondary `slate-600`; never lighter than `slate-500` |
-| Surfaces              | `white`; muted `slate-50`; borders `slate-200`                     |
-| Danger                | `red-700` on `red-50`                                              |
-| Warning               | `amber-800` on `amber-50`                                          |
-| Success               | `green-700` on `green-50`                                          |
-| Radius                | `rounded-lg` controls, `rounded-xl` cards                          |
-| Shadow                | none on cards (borders instead); `shadow-lg` only on overlays      |
-| Z-index scale         | `z-10` sticky bars, `z-20` popovers, `z-30` dialogs, `z-40` toasts |
+Status: emerald (good), amber (attention), red (error) at `/10` backgrounds with `-300` text. Always pair colour with
+words or icons. Printing (school reports) flips the tokens to light automatically.
 
-Mastery and score status always pair colour with a text label ("Weak", "Getting there", "Strong") so
-meaning never relies on colour alone.
+## Type
 
-## Typography
+Geist Sans + Geist Mono (self-hosted via `next/font`, no runtime font requests). Page titles `text-3xl font-semibold`,
+hero `text-5xl/6xl` with `text-gradient`. Headings `text-balance`, body `text-pretty`, all numbers `tabular-nums`.
+Short copy: one sentence where there were three.
 
-- System UI stack. Sizes: `text-sm` meta, `text-base` body, `text-lg` lead, `text-2xl` page title,
-  `text-4xl` hero numbers (predicted score).
-- Headings `text-balance`; paragraphs `text-pretty`; all numbers, timers and scores `tabular-nums`.
-- Do not change letter-spacing.
+## Shape & layout
 
-## Layout
+- Radius: `rounded-xl` controls, `rounded-2xl` rows/tiles, `rounded-3xl` hero cards.
+- Student app: single column `max-w-2xl`, glass sticky header, floating tab bar (safe-area aware).
+- Marketing: `max-w-5xl`, bento grids. Staff: sidebar + `max-w-7xl`.
+- Tap targets ≥ 44px. `min-h-dvh`, never `h-screen`. Fixed z-scale: 10 bars, 20 popovers, 30 dialogs, 40 toasts.
 
-- Mobile first, single column, `max-w-2xl` content width (`max-w-6xl` admin).
-- Page gutter `px-4`. Vertical rhythm in steps of 4 (`gap-4`, `space-y-6`, `py-8`).
-- Use `min-h-dvh`, never `h-screen`. Fixed bars respect `env(safe-area-inset-bottom)`.
-- Tap targets ≥ 44 px (`min-h-11`).
+## Components (`apps/web/src/components`)
 
-## Components
-
-Shared primitives live in `apps/web/src/components/ui`. Use them before writing new markup.
-
-- `Button` — variants `primary` (accent, one per view), `secondary` (bordered), `ghost`, `danger`.
-- `Field` — label, input, hint and error wired with `aria-describedby` / `aria-invalid`.
-- `Card` — bordered white surface, `rounded-xl p-4`.
-- `Alert` — inline message next to the action that caused it (`role="alert"` for errors).
-- `Dialog` / `AlertDialog` — Base UI (`@base-ui/react`). AlertDialog for anything destructive.
-- `Skeleton` — structural loading placeholders, not spinners, for page loads.
+- `Button` — `primary` (emerald gradient, one per view), `secondary` (glass outline), `ghost`, `danger`.
+- `Field` / `SelectField` / `TextareaField` — labelled, `aria-describedby` hint/error, focus ring.
+- `Card`, `Alert`, `Badge` (pill), `Choice` (big radio/checkbox cards), `Dialog`/`ConfirmDialog` (Base UI; bottom sheet
+  on phones), `Skeleton`, `Empty` (always one next action).
+- `ScoreRing` — the signature gauge: predicted score, likely range band, target tick.
 
 ## Motion
 
-None by default. Interaction feedback ≤ 200 ms, `transform`/`opacity` only, and disabled under
-`prefers-reduced-motion`. No gradients, glows, or blur surfaces.
+Only colour/opacity transitions ≤ 150ms on hover/press. No entrance animations. Respect reduced motion.
 
 ## CBT screen
 
-Mirrors the real JAMB layout: subject tabs on top, question + options in the centre, numbered
-navigator grid, countdown timer always visible (`tabular-nums`), Previous / Next / Submit. Keyboard:
-A–D choose, N next, P previous, S submit (confirm dialog). Answered, unanswered and flagged states in
-the grid use shape/label as well as colour.
+Mirrors the JAMB layout: subject tabs, question, A–D options, navigator grid, countdown, Previous/Flag/Next. Keys:
+A–D, N, P, S. State uses fill + icon, not colour alone.
 
 ## Copy
 
-Plain, warm, short. Second person. Nigerian English. Never "guaranteed score". Always "not affiliated
-with JAMB" in the footer.
+Plain, warm, short, second person, Nigerian English. Never "guaranteed score". "Not affiliated with JAMB" in the
+footer.

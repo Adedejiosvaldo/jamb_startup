@@ -360,13 +360,13 @@ export default function TestRunner() {
   const title = test.mode === 'review' ? 'Mistake review' : (TEST_LABELS[test.type] ?? 'Test');
 
   return (
-    <div className="min-h-dvh bg-slate-50 pb-[calc(5rem+env(safe-area-inset-bottom))]">
+    <div className="min-h-dvh bg-canvas pb-[calc(5rem+env(safe-area-inset-bottom))]">
       {/* Top bar */}
-      <header className="sticky top-0 z-10 border-b border-slate-200 bg-white">
+      <header className="sticky top-0 z-10 border-b border-line bg-surface">
         <div className="mx-auto flex max-w-5xl items-center gap-3 px-4 py-2">
           <div className="min-w-0 flex-1">
             <p className="truncate text-sm font-semibold">{title}</p>
-            <p className="flex items-center gap-1 text-xs text-slate-600" aria-live="polite">
+            <p className="flex items-center gap-1 text-xs text-muted" aria-live="polite">
               {save === 'saving' && (
                 <>
                   <Loader2 aria-hidden="true" className="size-3 motion-safe:animate-spin" /> Saving…
@@ -393,7 +393,7 @@ export default function TestRunner() {
             }
             className={cn(
               'rounded-lg px-3 py-1.5 font-mono text-lg font-semibold tabular-nums',
-              lowTime ? 'bg-red-50 text-red-800' : 'bg-slate-100 text-slate-900',
+              lowTime ? 'bg-red-500/10 text-red-300' : 'bg-surface-2 text-fg',
             )}
           >
             {clock(remaining ?? elapsed)}
@@ -418,9 +418,7 @@ export default function TestRunner() {
                       aria-current={active ? 'true' : undefined}
                       className={cn(
                         'min-h-11 border-b-2 px-3 text-sm font-medium whitespace-nowrap',
-                        active
-                          ? 'border-teal-700 text-teal-800'
-                          : 'border-transparent text-slate-600',
+                        active ? 'border-accent text-accent' : 'border-transparent text-muted',
                       )}
                     >
                       {s.name}{' '}
@@ -438,11 +436,11 @@ export default function TestRunner() {
 
       <div className="mx-auto grid max-w-5xl gap-6 px-4 py-6 lg:grid-cols-[1fr_16rem]">
         <main id="main" className="min-w-0">
-          <p className="text-sm font-medium text-slate-600 tabular-nums">
+          <p className="text-sm font-medium text-muted tabular-nums">
             Question {index + 1} of {items.length}
             {subject && test.subjects.length > 1 ? ` · ${subject.name}` : ''}
           </p>
-          <h1 className="mt-2 text-lg leading-relaxed text-pretty whitespace-pre-line text-slate-900">
+          <h1 className="mt-2 text-lg leading-relaxed text-pretty whitespace-pre-line text-fg">
             {current.stem}
           </h1>
 
@@ -471,15 +469,17 @@ export default function TestRunner() {
             ))}
           </fieldset>
 
-          {isPractice && checking && <p className="mt-3 text-sm text-slate-600">Checking…</p>}
+          {isPractice && checking && <p className="mt-3 text-sm text-muted">Checking…</p>}
           {isPractice && ans?.chosenOption && !fb && !checking && (
-            <p className="mt-3 text-sm text-slate-600">
+            <p className="mt-3 text-sm text-muted">
               Saved. You’ll see if it’s right when you’re back online.
             </p>
           )}
           {fb && (
             <div className="mt-4 space-y-3" aria-live="polite">
-              <p className={cn('font-semibold', fb.isCorrect ? 'text-green-800' : 'text-red-800')}>
+              <p
+                className={cn('font-semibold', fb.isCorrect ? 'text-emerald-300' : 'text-red-300')}
+              >
                 {fb.isCorrect ? 'Correct!' : `Not quite. The answer is ${fb.correctOption}.`}
               </p>
               <Explanation
@@ -510,14 +510,14 @@ export default function TestRunner() {
               <Maximize aria-hidden="true" className="size-4" /> Full screen
             </Button>
           </div>
-          <p className="mt-6 hidden text-xs text-slate-600 lg:block">
+          <p className="mt-6 hidden text-xs text-muted lg:block">
             Keyboard: A–D to answer · N next · P previous · S submit
           </p>
         </main>
 
         {/* Desktop navigator */}
         <aside aria-label="All questions" className="hidden lg:block">
-          <div className="sticky top-32 space-y-3 rounded-xl border border-slate-200 bg-white p-4">
+          <div className="sticky top-32 space-y-3 rounded-xl border border-line bg-surface p-4">
             <p className="text-sm font-semibold tabular-nums">
               {answeredCount} of {items.length} answered
             </p>
@@ -528,7 +528,7 @@ export default function TestRunner() {
       </div>
 
       {/* Bottom bar */}
-      <div className="fixed inset-x-0 bottom-0 z-10 border-t border-slate-200 bg-white pb-[env(safe-area-inset-bottom)]">
+      <div className="fixed inset-x-0 bottom-0 z-10 border-t border-line bg-surface pb-[env(safe-area-inset-bottom)]">
         <div className="mx-auto flex max-w-5xl items-center gap-2 px-4 py-2">
           <Button
             variant="secondary"
@@ -546,7 +546,7 @@ export default function TestRunner() {
           >
             <Flag
               aria-hidden="true"
-              className={cn('size-4', ans?.flagged && 'fill-amber-500 text-amber-700')}
+              className={cn('size-4', ans?.flagged && 'fill-amber-400 text-amber-400')}
             />
             <span className="hidden sm:inline">{ans?.flagged ? 'Flagged' : 'Flag'}</span>
             <span className="sr-only sm:hidden">

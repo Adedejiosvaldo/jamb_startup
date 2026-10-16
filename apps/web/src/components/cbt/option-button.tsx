@@ -21,14 +21,14 @@ export function OptionButton({
   return (
     <label
       className={cn(
-        'flex min-h-12 cursor-pointer items-start gap-3 rounded-lg border-2 p-3 text-base has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-teal-700',
+        'flex min-h-12 cursor-pointer items-start gap-3 rounded-lg border-2 p-3 text-base has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent',
         state === 'correct'
-          ? 'border-green-700 bg-green-50'
+          ? 'border-emerald-400 bg-emerald-500/10'
           : state === 'wrong'
-            ? 'border-red-700 bg-red-50'
+            ? 'border-red-400 bg-red-500/10'
             : selected
-              ? 'border-teal-700 bg-teal-50'
-              : 'border-slate-200 bg-white hover:border-slate-300',
+              ? 'border-accent bg-accent-soft'
+              : 'border-line bg-surface hover:border-line-strong',
         disabled && 'cursor-default',
       )}
     >
@@ -45,12 +45,12 @@ export function OptionButton({
         className={cn(
           'grid size-7 shrink-0 place-items-center rounded-full border text-sm font-bold',
           state === 'correct'
-            ? 'border-green-700 bg-green-700 text-white'
+            ? 'border-emerald-400 bg-emerald-500 text-fg'
             : state === 'wrong'
-              ? 'border-red-700 bg-red-700 text-white'
+              ? 'border-red-400 bg-red-500 text-fg'
               : selected
-                ? 'border-teal-700 bg-teal-700 text-white'
-                : 'border-slate-300 text-slate-700',
+                ? 'border-accent bg-accent text-on-accent'
+                : 'border-line-strong text-fg-2',
         )}
       >
         {state === 'correct' ? (

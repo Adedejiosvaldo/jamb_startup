@@ -18,8 +18,8 @@ export function Explanation({
 }) {
   if (locked) {
     return (
-      <div className="flex items-start gap-3 rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm">
-        <Lock aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-slate-500" />
+      <div className="flex items-start gap-3 rounded-lg border border-line bg-canvas p-3 text-sm">
+        <Lock aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-muted" />
         <div>
           <p className="text-pretty">
             The answer is <strong>{correctOption}</strong>. Step-by-step explanations come with the
@@ -36,7 +36,7 @@ export function Explanation({
     chosenOption && chosenOption !== correctOption ? explanationsWrong?.[chosenOption] : null;
   if (!explanationCorrect && !wrong) return null;
   return (
-    <div className="space-y-2 rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm">
+    <div className="space-y-2 rounded-lg border border-line bg-canvas p-3 text-sm">
       {wrong && (
         <p className="text-pretty">
           <strong>Why {chosenOption} is wrong:</strong> {wrong}

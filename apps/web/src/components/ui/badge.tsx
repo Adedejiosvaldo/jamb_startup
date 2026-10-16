@@ -4,11 +4,11 @@ import type { MasteryLabel } from '@/lib/types';
 
 type Tone = 'neutral' | 'accent' | 'success' | 'warning' | 'danger';
 const tones: Record<Tone, string> = {
-  neutral: 'bg-slate-100 text-slate-700',
-  accent: 'bg-teal-50 text-teal-800',
-  success: 'bg-green-50 text-green-800',
-  warning: 'bg-amber-50 text-amber-900',
-  danger: 'bg-red-50 text-red-800',
+  neutral: 'bg-white/[0.06] text-fg-2 ring-white/10',
+  accent: 'bg-accent-soft text-emerald-300 ring-emerald-400/20',
+  success: 'bg-emerald-500/10 text-emerald-300 ring-emerald-400/20',
+  warning: 'bg-amber-500/10 text-amber-300 ring-amber-400/20',
+  danger: 'bg-red-500/10 text-red-300 ring-red-400/20',
 };
 
 export function Badge({
@@ -23,7 +23,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        'inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs font-medium',
+        'inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset',
         tones[tone],
         className,
       )}

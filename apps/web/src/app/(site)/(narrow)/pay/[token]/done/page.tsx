@@ -37,16 +37,16 @@ export default function PayLinkDone() {
         <>
           <Loader2
             aria-hidden="true"
-            className="mx-auto size-10 text-teal-700 motion-safe:animate-spin"
+            className="mx-auto size-10 text-accent motion-safe:animate-spin"
           />
           <h1 className="text-2xl font-bold">Confirming payment…</h1>
         </>
       )}
       {status === 'paid' && (
         <>
-          <CheckCircle2 aria-hidden="true" className="mx-auto size-12 text-green-700" />
+          <CheckCircle2 aria-hidden="true" className="mx-auto size-12 text-emerald-300" />
           <h1 className="text-2xl font-bold text-balance">Thank you! The plan is now active.</h1>
-          <p className="text-pretty text-slate-700">
+          <p className="text-pretty text-fg-2">
             Your receipt is on its way by SMS. We’ll ask before sending you any weekly reports.
           </p>
         </>

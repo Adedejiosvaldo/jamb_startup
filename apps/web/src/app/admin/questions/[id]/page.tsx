@@ -110,24 +110,24 @@ export default function QuestionDetail() {
                 key={l}
                 className={
                   l === d.correctOption
-                    ? 'rounded-md bg-green-50 px-2 py-1 font-medium text-green-900'
+                    ? 'rounded-md bg-emerald-500/10 px-2 py-1 font-medium text-emerald-200'
                     : 'px-2 py-1'
                 }
               >
                 <span className="font-semibold">{l}.</span> {d.options[l]}
                 {d.explanationsWrong?.[l] && (
-                  <p className="text-sm font-normal text-slate-600">
+                  <p className="text-sm font-normal text-muted">
                     Why wrong: {d.explanationsWrong[l]}
                   </p>
                 )}
               </li>
             ))}
           </ul>
-          <div className="rounded-lg bg-slate-50 p-3 text-sm">
+          <div className="rounded-lg bg-canvas p-3 text-sm">
             <strong>Explanation:</strong>{' '}
-            {d.explanationCorrect ?? <em className="text-red-700">missing</em>}
+            {d.explanationCorrect ?? <em className="text-red-400">missing</em>}
           </div>
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-muted">
             Difficulty {['', 'easy', 'medium', 'hard'][d.difficulty]} · {d.source}
             {d.pastYear ? ` (${d.pastYear})` : ''}
           </p>
@@ -138,7 +138,7 @@ export default function QuestionDetail() {
         <Card className="space-y-3">
           <CardTitle>Review</CardTitle>
           {ownQuestion && (
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-muted">
               You wrote this question, so another reviewer must approve it.
             </p>
           )}
@@ -209,12 +209,12 @@ export default function QuestionDetail() {
       {d.reports.length > 0 && (
         <Card>
           <CardTitle>Student reports</CardTitle>
-          <ul className="mt-2 divide-y divide-slate-100 text-sm">
+          <ul className="mt-2 divide-y divide-line text-sm">
             {d.reports.map((r) => (
               <li key={r.id} className="py-2">
                 <Badge tone={r.status === 'open' ? 'warning' : 'neutral'}>{r.status}</Badge>{' '}
                 {r.reason.replace('_', ' ')} · {dateTime(r.createdAt)}
-                {r.note && <p className="mt-1 text-slate-700">{r.note}</p>}
+                {r.note && <p className="mt-1 text-fg-2">{r.note}</p>}
               </li>
             ))}
           </ul>
@@ -223,7 +223,7 @@ export default function QuestionDetail() {
 
       <Card>
         <CardTitle>History</CardTitle>
-        <ul className="mt-2 space-y-1 text-sm text-slate-700">
+        <ul className="mt-2 space-y-1 text-sm text-fg-2">
           {d.history.map((h) => (
             <li key={h.id}>
               {dateTime(h.ts)} · {h.action.replace('_', ' ')}

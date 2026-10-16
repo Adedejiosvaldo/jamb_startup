@@ -63,11 +63,11 @@ export default function AccountPage() {
         {me.plan.paid ? (
           <p>
             <Badge tone="success">Season Pass</Badge>{' '}
-            <span className="text-slate-700">active until {shortDate(me.plan.endsAt)}</span>
+            <span className="text-fg-2">active until {shortDate(me.plan.endsAt)}</span>
           </p>
         ) : (
           <>
-            <p className="text-slate-700">Free plan</p>
+            <p className="text-fg-2">Free plan</p>
             <ButtonLink href="/upgrade" size="sm">
               Get the Season Pass
             </ButtonLink>
@@ -80,24 +80,24 @@ export default function AccountPage() {
           <CardTitle>Study profile</CardTitle>
           <Link
             href="/onboarding"
-            className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-teal-700"
+            className="inline-flex min-h-11 items-center gap-1 text-sm font-semibold text-accent"
           >
             Edit <ChevronRight aria-hidden="true" className="size-4" />
           </Link>
         </div>
         <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-sm">
-          <dt className="text-slate-600">Exam</dt>
+          <dt className="text-muted">Exam</dt>
           <dd>UTME {me.examYear ?? '—'}</dd>
-          <dt className="text-slate-600">Target</dt>
+          <dt className="text-muted">Target</dt>
           <dd className="text-pretty">
             {me.profile?.targetCourse
               ? `${me.profile.targetCourse.name}, ${me.profile.targetUniversity?.shortName ?? me.profile.targetUniversity?.name}`
               : 'Not set'}
             {me.profile?.targetScore ? ` · ${me.profile.targetScore}+` : ''}
           </dd>
-          <dt className="text-slate-600">Subjects</dt>
+          <dt className="text-muted">Subjects</dt>
           <dd className="text-pretty">{me.subjects.map((s) => s.name).join(', ')}</dd>
-          <dt className="text-slate-600">Daily time</dt>
+          <dt className="text-muted">Daily time</dt>
           <dd>{me.profile?.dailyMinutes ?? '—'} minutes</dd>
         </dl>
       </Card>
@@ -105,7 +105,7 @@ export default function AccountPage() {
       <Card className="space-y-3">
         <CardTitle>Parent reports</CardTitle>
         {me.parent && !parentMsg ? (
-          <p className="text-sm text-slate-700">
+          <p className="text-sm text-fg-2">
             {me.parent.phone} ·{' '}
             {me.parent.optedIn ? (
               <Badge tone="success">Receiving weekly reports</Badge>
@@ -164,7 +164,7 @@ export default function AccountPage() {
 
       <Card className="space-y-3">
         <CardTitle>Lesson class</CardTitle>
-        <p className="text-sm text-slate-600">
+        <p className="text-sm text-muted">
           If your lesson teacher gave you a class code, enter it so they can follow your progress.
         </p>
         {classMsg ? (
@@ -206,8 +206,8 @@ export default function AccountPage() {
 
       <Card className="space-y-3">
         <CardTitle>Devices</CardTitle>
-        <p className="text-sm text-slate-600">You can be signed in on up to 2 devices.</p>
-        <ul className="divide-y divide-slate-100">
+        <p className="text-sm text-muted">You can be signed in on up to 2 devices.</p>
+        <ul className="divide-y divide-line">
           {devices.data?.devices.map((d) => (
             <li key={d.id} className="flex items-center justify-between gap-3 py-2">
               <div className="min-w-0">
@@ -215,7 +215,7 @@ export default function AccountPage() {
                   {d.label ?? 'Unknown device'}{' '}
                   {d.current && <Badge tone="accent">This device</Badge>}
                 </p>
-                <p className="text-sm text-slate-600">Last used {dateTime(d.lastActiveAt)}</p>
+                <p className="text-sm text-muted">Last used {dateTime(d.lastActiveAt)}</p>
               </div>
               {!d.current && (
                 <Button size="sm" variant="secondary" onClick={() => setRemoving(d)}>
@@ -235,7 +235,7 @@ export default function AccountPage() {
               href={help}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 font-semibold"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-line-strong px-4 font-semibold"
             >
               <MessageCircle aria-hidden="true" className="size-4" /> WhatsApp support
             </a>
@@ -261,7 +261,7 @@ export default function AccountPage() {
         ) : (
           <button
             type="button"
-            className="min-h-11 w-full text-sm text-red-700 underline"
+            className="min-h-11 w-full text-sm text-red-400 underline"
             onClick={() => setConfirmDelete(true)}
           >
             Delete my account and data

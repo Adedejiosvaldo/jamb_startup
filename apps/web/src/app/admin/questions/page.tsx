@@ -114,7 +114,7 @@ export default function QuestionsPage() {
       </form>
 
       {isAdmin && reviewed.length > 0 && (
-        <div className="flex flex-wrap items-center gap-3 rounded-lg bg-teal-50 p-3 text-sm">
+        <div className="flex flex-wrap items-center gap-3 rounded-lg bg-accent-soft p-3 text-sm">
           <span>
             {selected.size
               ? `${selected.size} selected`
@@ -156,7 +156,7 @@ export default function QuestionsPage() {
                 <input
                   type="checkbox"
                   aria-label="Select for publishing"
-                  className="size-4 accent-teal-700"
+                  className="size-4 accent-emerald-400"
                   checked={selected.has(r.id)}
                   onChange={() =>
                     setSelected((s) => {
@@ -174,7 +174,7 @@ export default function QuestionsPage() {
             cell: (r) => (
               <Link
                 href={`/admin/questions/${r.id}`}
-                className="line-clamp-2 font-medium text-teal-800 underline-offset-4 hover:underline"
+                className="line-clamp-2 font-medium text-fg underline-offset-4 hover:text-accent hover:underline"
               >
                 {r.stem}
               </Link>

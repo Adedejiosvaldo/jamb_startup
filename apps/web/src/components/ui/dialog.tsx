@@ -5,9 +5,9 @@ import { Dialog as BaseDialog } from '@base-ui/react/dialog';
 import type { ReactNode } from 'react';
 import { buttonClass } from './button';
 
-const backdrop = 'fixed inset-0 z-30 bg-slate-900/40';
+const backdrop = 'fixed inset-0 z-30 bg-black/70 backdrop-blur-sm';
 const popup =
-  'fixed top-1/2 left-1/2 z-30 w-[calc(100vw-2rem)] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-xl bg-white p-5 shadow-lg focus:outline-none';
+  'fixed bottom-0 left-1/2 z-30 max-h-[90dvh] w-full max-w-md -translate-x-1/2 overflow-y-auto rounded-t-3xl border border-line bg-surface-2 p-6 pb-[calc(1.5rem+env(safe-area-inset-bottom))] shadow-2xl focus:outline-none sm:top-1/2 sm:bottom-auto sm:w-[calc(100vw-2rem)] sm:-translate-y-1/2 sm:rounded-3xl sm:pb-6';
 
 /** Confirmation for destructive or irreversible actions (baseline-ui: MUST use AlertDialog). */
 export function ConfirmDialog({
@@ -40,7 +40,7 @@ export function ConfirmDialog({
             {title}
           </AlertDialog.Title>
           {description && (
-            <AlertDialog.Description className="mt-2 text-pretty text-slate-700">
+            <AlertDialog.Description className="mt-2 text-pretty text-fg-2">
               {description}
             </AlertDialog.Description>
           )}

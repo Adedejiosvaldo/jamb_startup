@@ -145,25 +145,25 @@ export default function UserDetail() {
         <Card className="space-y-2">
           <CardTitle>Score-gain guarantee</CardTitle>
           {!g.data?.applicable ? (
-            <p className="text-sm text-slate-600">{g.data?.reason ?? '…'}</p>
+            <p className="text-sm text-muted">{g.data?.reason ?? '…'}</p>
           ) : (
             <dl className="grid grid-cols-2 gap-1 text-sm">
-              <dt className="text-slate-600">Window</dt>
+              <dt className="text-muted">Window</dt>
               <dd>
                 {shortDate(g.data.window!.start)} – {shortDate(g.data.window!.end)}{' '}
                 {g.data.window!.complete ? '(complete)' : '(running)'}
               </dd>
-              <dt className="text-slate-600">Baseline → latest</dt>
+              <dt className="text-muted">Baseline → latest</dt>
               <dd className="tabular-nums">
                 {g.data.baseline?.mid ?? '—'} → {g.data.latest?.mid ?? '—'} ({g.data.gain ?? '—'})
               </dd>
-              <dt className="text-slate-600">Plan completion</dt>
+              <dt className="text-muted">Plan completion</dt>
               <dd className="tabular-nums">{g.data.planCompletionPct}% (need 80%)</dd>
-              <dt className="text-slate-600">Mini-mocks</dt>
+              <dt className="text-muted">Mini-mocks</dt>
               <dd className="tabular-nums">{g.data.miniMocks} (need 4)</dd>
-              <dt className="text-slate-600">Eligible</dt>
+              <dt className="text-muted">Eligible</dt>
               <dd>{g.data.eligible ? <Badge tone="success">Yes</Badge> : <Badge>No</Badge>}</dd>
-              <dt className="text-slate-600">Refund due</dt>
+              <dt className="text-muted">Refund due</dt>
               <dd>
                 {g.data.refundDue ? <Badge tone="danger">Yes — under 30 points</Badge> : 'No'}
               </dd>
@@ -239,7 +239,7 @@ export default function UserDetail() {
       <div className="grid gap-4 lg:grid-cols-2">
         <Card>
           <CardTitle>Devices</CardTitle>
-          <ul className="mt-2 divide-y divide-slate-100 text-sm">
+          <ul className="mt-2 divide-y divide-line text-sm">
             {d.devices.map((dev) => (
               <li key={dev.id} className="flex items-center justify-between gap-2 py-2">
                 <span>
@@ -273,7 +273,7 @@ export default function UserDetail() {
         </Card>
         <Card>
           <CardTitle>Entitlements</CardTitle>
-          <ul className="mt-2 divide-y divide-slate-100 text-sm">
+          <ul className="mt-2 divide-y divide-line text-sm">
             {d.entitlements.map((e) => (
               <li key={e.id} className="py-2">
                 {e.product.name}: {shortDate(e.startsAt)} – {shortDate(e.endsAt)}{' '}
@@ -281,12 +281,12 @@ export default function UserDetail() {
                 {!e.orderId && <Badge>goodwill</Badge>}
               </li>
             ))}
-            {!d.entitlements.length && <li className="py-2 text-slate-600">None</li>}
+            {!d.entitlements.length && <li className="py-2 text-muted">None</li>}
           </ul>
         </Card>
         <Card>
           <CardTitle>Recent tests</CardTitle>
-          <ul className="mt-2 divide-y divide-slate-100 text-sm">
+          <ul className="mt-2 divide-y divide-line text-sm">
             {d.tests.map((t) => (
               <li key={t.id} className="py-2">
                 {TEST_LABELS[t.type] ?? t.type} · {t._count.items} q · {dateTime(t.startedAt)}{' '}
@@ -297,7 +297,7 @@ export default function UserDetail() {
         </Card>
         <Card>
           <CardTitle>Parent links</CardTitle>
-          <ul className="mt-2 divide-y divide-slate-100 text-sm">
+          <ul className="mt-2 divide-y divide-line text-sm">
             {d.parentLinks.map((p) => (
               <li key={p.id} className="flex items-center justify-between gap-2 py-2">
                 <span>
@@ -330,7 +330,7 @@ export default function UserDetail() {
                 )}
               </li>
             ))}
-            {!d.parentLinks.length && <li className="py-2 text-slate-600">None</li>}
+            {!d.parentLinks.length && <li className="py-2 text-muted">None</li>}
           </ul>
         </Card>
       </div>

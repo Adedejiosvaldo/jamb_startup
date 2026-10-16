@@ -58,20 +58,20 @@ function Done() {
         <>
           <Loader2
             aria-hidden="true"
-            className="mx-auto size-10 text-teal-700 motion-safe:animate-spin"
+            className="mx-auto size-10 text-accent motion-safe:animate-spin"
           />
           <h1 className="text-2xl font-bold">Confirming your payment…</h1>
-          <p className="text-slate-600" role="status">
+          <p className="text-muted" role="status">
             This usually takes a few seconds. Don’t close this page.
           </p>
         </>
       )}
       {status === 'paid' && (
         <>
-          <CheckCircle2 aria-hidden="true" className="mx-auto size-12 text-green-700" />
+          <CheckCircle2 aria-hidden="true" className="mx-auto size-12 text-emerald-300" />
           <h1 className="text-2xl font-bold text-balance">Your Season Pass is active</h1>
           {endsAt && (
-            <p className="text-slate-600">
+            <p className="text-muted">
               Active until {shortDate(endsAt)}. A receipt is on its way by SMS.
             </p>
           )}
@@ -83,7 +83,7 @@ function Done() {
       {status === 'failed' && (
         <>
           <h1 className="text-2xl font-bold">Payment didn’t go through</h1>
-          <p className="text-slate-600">You haven’t been charged. You can try again.</p>
+          <p className="text-muted">You haven’t been charged. You can try again.</p>
           <ButtonLink href="/upgrade">Try again</ButtonLink>
         </>
       )}
@@ -99,7 +99,7 @@ function Done() {
           with reference <span className="font-mono">{reference.slice(-10)}</span>.
         </Alert>
       )}
-      {error && status !== 'paid' && <p className="text-sm text-slate-600">{error}</p>}
+      {error && status !== 'paid' && <p className="text-sm text-muted">{error}</p>}
     </div>
   );
 }

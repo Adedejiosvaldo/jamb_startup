@@ -1,169 +1,314 @@
-import { CalendarCheck, ClipboardCheck, MessageCircle, Target } from 'lucide-react';
-import { ButtonLink } from '@/components/ui/button';
+import {
+  ArrowRight,
+  CalendarCheck,
+  Check,
+  MessageCircle,
+  MonitorSmartphone,
+  ShieldCheck,
+  Target,
+  WifiOff,
+} from 'lucide-react';
+import { ScoreRing } from '@/components/score-ring';
 import { SeasonPrice } from '@/components/season-price';
 import { Track } from '@/components/track';
+import { ButtonLink } from '@/components/ui/button';
 
-// F-ACQ-04. Server-rendered: readable without JavaScript.
-// Copy rules (spec §21): no fake testimonials, no invented statistics, no score guarantees.
-const STEPS = [
-  {
-    Icon: ClipboardCheck,
-    title: 'Check your subjects',
-    body: 'Make sure your four subjects fit the course and university you want. Free, no sign-up.',
-  },
-  {
-    Icon: Target,
-    title: 'Take the free diagnostic',
-    body: 'A CBT-style test that shows your likely score range and the gap to your course.',
-  },
-  {
-    Icon: CalendarCheck,
-    title: 'Follow your daily plan',
-    body: 'Short practice on your weakest high-value topics, a weekly mock, and mistakes that come back until you get them right.',
-  },
-];
+// F-ACQ-04. Server-rendered; readable without JavaScript.
+// Copy rules (spec §21): no testimonials, no invented statistics, no guarantees.
 
 const FAQ = [
-  {
-    q: 'Is this JAMB?',
-    a: 'No. ScoreCoach is an independent study service. We are not affiliated with JAMB. Always confirm official dates and fees on jamb.gov.ng.',
-  },
-  {
-    q: 'How accurate is the predicted score?',
-    a: 'It is an estimate from your answers, shown as a range. The range is wide until you have answered enough questions in every subject, and it narrows as you practise. We never show a single exact number we cannot back up.',
-  },
-  {
-    q: 'Does it work on my phone with little data?',
-    a: 'Yes. ScoreCoach is text-first and light. Your answers are saved on your phone during a test, so a bad network will not lose your work.',
-  },
-  {
-    q: 'Can my parent pay?',
-    a: 'Yes. Tap “Ask my parent to pay” and send the link on WhatsApp. They can pay by card, bank transfer or USSD without creating an account.',
-  },
-  {
-    q: 'What if I change phones?',
-    a: 'Your plan is tied to your phone number, not your device. Sign in on the new phone and everything is still there. You can use up to two devices at a time.',
-  },
+  ['Is this JAMB?', 'No. ScoreCoach is an independent study service, not affiliated with JAMB.'],
+  [
+    'How accurate is the predicted score?',
+    'It’s a range from your own answers. It starts wide and narrows as you practise. Never a promise.',
+  ],
+  [
+    'Does it work with bad network?',
+    'Yes. Answers save on your phone and sync when you’re back online.',
+  ],
+  [
+    'Can my parent pay?',
+    'Yes — send them a link on WhatsApp. Card, transfer or USSD, no account needed.',
+  ],
+  [
+    'What if I change phones?',
+    'Your plan follows your phone number. Sign in on the new phone and carry on.',
+  ],
 ];
+
+function Section({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  return <section className={`mx-auto max-w-5xl px-4 ${className}`}>{children}</section>;
+}
 
 export default function Home() {
   return (
-    <div className="space-y-14">
+    <div className="overflow-hidden">
       <Track name="landing_viewed" />
-      <section>
-        <p className="text-sm font-semibold text-teal-700">JAMB UTME preparation</p>
-        <h1 className="mt-2 text-4xl font-bold text-balance">Get the score your course needs.</h1>
-        <p className="mt-4 text-lg text-pretty text-slate-700">
-          Find out your likely JAMB score today, see exactly which topics will close the gap to your
-          course, and study a little every day with a plan that adapts to you.
-        </p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <ButtonLink href="/start" size="lg">
-            Take the free diagnostic
-          </ButtonLink>
-          <ButtonLink href="/checker" size="lg" variant="secondary">
-            Check my subjects
-          </ButtonLink>
-        </div>
-        <p className="mt-3 text-sm text-slate-600">
-          Free to start. Sign in with your phone number — no password.
-        </p>
-      </section>
 
-      <section aria-labelledby="how">
-        <h2 id="how" className="text-2xl font-bold text-balance">
-          How it works
-        </h2>
-        <ol className="mt-6 space-y-5">
-          {STEPS.map(({ Icon, title, body }, i) => (
-            <li key={title} className="flex gap-4">
-              <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-teal-50 text-teal-700">
-                <Icon aria-hidden="true" className="size-5" />
-              </span>
-              <div>
-                <h3 className="font-semibold">
-                  <span className="sr-only">Step {i + 1}: </span>
-                  {title}
-                </h3>
-                <p className="mt-1 text-pretty text-slate-700">{body}</p>
+      {/* Hero */}
+      <div className="relative">
+        <div aria-hidden="true" className="bg-glow pointer-events-none absolute inset-0" />
+        <div aria-hidden="true" className="bg-grid pointer-events-none absolute inset-0" />
+        <Section className="relative grid items-center gap-12 pt-14 pb-20 sm:pt-20 lg:grid-cols-[1.1fr_1fr] lg:pb-28">
+          <div>
+            <p className="inline-flex items-center gap-2 rounded-full border border-line-strong bg-white/[0.04] px-3 py-1 text-xs font-medium text-fg-2">
+              <span className="size-1.5 rounded-full bg-accent" /> UTME 2027 · Free diagnostic
+            </p>
+            <h1 className="text-gradient mt-6 text-5xl font-semibold text-balance sm:text-6xl">
+              Get the score your course needs.
+            </h1>
+            <p className="mt-5 max-w-md text-lg text-pretty text-muted">
+              See your likely JAMB score today. Then study exactly what closes the gap.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <ButtonLink href="/start" size="lg">
+                Start free <ArrowRight aria-hidden="true" className="size-4" />
+              </ButtonLink>
+              <ButtonLink href="/checker" size="lg" variant="secondary">
+                Check my subjects
+              </ButtonLink>
+            </div>
+            <ul className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-muted">
+              {[
+                [MonitorSmartphone, 'Real CBT practice'],
+                [WifiOff, 'Works offline'],
+                [ShieldCheck, 'No password'],
+              ].map(([Icon, t]) => {
+                const I = Icon as typeof WifiOff;
+                return (
+                  <li key={t as string} className="flex items-center gap-1.5">
+                    <I aria-hidden="true" className="size-4 text-accent" />
+                    {t as string}
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
+          {/* Product preview (example data) */}
+          <div className="relative mx-auto w-full max-w-sm">
+            <div
+              aria-hidden="true"
+              className="absolute -inset-6 rounded-[2.5rem] bg-emerald-500/10 blur-2xl"
+            />
+            <figure className="glass relative rounded-[2rem] border border-line-strong p-6 shadow-2xl">
+              <figcaption className="flex items-center justify-between text-xs text-muted">
+                <span>Example</span>
+                <span className="rounded-full bg-white/[0.06] px-2 py-0.5">Medicine · UNILAG</span>
+              </figcaption>
+              <ScoreRing
+                low={198}
+                mid={214}
+                high={230}
+                target={260}
+                size={220}
+                className="mx-auto mt-2"
+              />
+              <div className="mt-2 grid grid-cols-2 gap-2 text-center">
+                <div className="rounded-xl bg-white/[0.04] p-3">
+                  <p className="text-xl font-semibold tabular-nums">+46</p>
+                  <p className="text-xs text-muted">to target</p>
+                </div>
+                <div className="rounded-xl bg-white/[0.04] p-3">
+                  <p className="text-xl font-semibold tabular-nums">35 min</p>
+                  <p className="text-xs text-muted">today’s plan</p>
+                </div>
               </div>
+              <ul className="mt-3 space-y-2 text-sm">
+                {['Physics · Motion', 'Maths · Algebra', 'Review 8 mistakes'].map((t, i) => (
+                  <li
+                    key={t}
+                    className="flex items-center gap-3 rounded-xl border border-line px-3 py-2.5"
+                  >
+                    <span
+                      className={`grid size-5 place-items-center rounded-full ${i === 0 ? 'bg-accent text-on-accent' : 'border border-line-strong'}`}
+                    >
+                      {i === 0 && <Check aria-hidden="true" className="size-3" />}
+                    </span>
+                    <span className={i === 0 ? 'text-muted line-through' : ''}>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </figure>
+          </div>
+        </Section>
+      </div>
+
+      {/* Bento */}
+      <Section className="pb-24">
+        <h2 className="text-3xl font-semibold text-balance sm:text-4xl">
+          Less guessing. More marks.
+        </h2>
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
+          <article className="glass rounded-3xl border border-line p-6 md:col-span-2">
+            <Target aria-hidden="true" className="size-6 text-accent" />
+            <h3 className="mt-4 text-lg font-semibold">Your gap, in marks</h3>
+            <p className="mt-1 text-muted">
+              Pick your course. We show how far you are, subject by subject.
+            </p>
+            <div className="mt-6 space-y-3">
+              {[
+                ['English', 62],
+                ['Physics', 48],
+                ['Chemistry', 55],
+                ['Biology', 71],
+              ].map(([s, v]) => (
+                <div
+                  key={s as string}
+                  className="grid grid-cols-[5.5rem_1fr_2.5rem] items-center gap-3 text-sm"
+                >
+                  <span className="text-fg-2">{s}</span>
+                  <span className="h-2 rounded-full bg-white/[0.06]">
+                    <span
+                      className="block h-2 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-300"
+                      style={{ width: `${v}%` }}
+                    />
+                  </span>
+                  <span className="text-right text-muted tabular-nums">{v}</span>
+                </div>
+              ))}
+            </div>
+          </article>
+          <article className="glass rounded-3xl border border-line p-6">
+            <CalendarCheck aria-hidden="true" className="size-6 text-accent" />
+            <h3 className="mt-4 text-lg font-semibold">A plan for today</h3>
+            <p className="mt-1 text-muted">20–90 minutes. Weakest high-value topics first.</p>
+            <p className="mt-6 text-5xl font-semibold tabular-nums">1·3·7·14</p>
+            <p className="text-sm text-muted">days — when mistakes come back</p>
+          </article>
+          <article className="glass rounded-3xl border border-line p-6">
+            <MonitorSmartphone aria-hidden="true" className="size-6 text-accent" />
+            <h3 className="mt-4 text-lg font-semibold">Feels like the real CBT</h3>
+            <p className="mt-1 text-muted">Timer, navigator, keyboard shortcuts.</p>
+            <ol aria-hidden="true" className="mt-6 grid grid-cols-6 gap-1.5">
+              {Array.from({ length: 18 }, (_, i) => (
+                <li
+                  key={i}
+                  className={`grid h-7 place-items-center rounded-md text-[11px] tabular-nums ${i < 11 ? 'bg-accent text-on-accent' : i === 11 ? 'ring-2 ring-fg' : 'border border-line-strong text-muted'}`}
+                >
+                  {i + 1}
+                </li>
+              ))}
+            </ol>
+          </article>
+          <article className="glass rounded-3xl border border-line p-6 md:col-span-2">
+            <MessageCircle aria-hidden="true" className="size-6 text-accent" />
+            <h3 className="mt-4 text-lg font-semibold">Parents stay in the loop</h3>
+            <p className="mt-1 text-muted">
+              One WhatsApp message every Sunday. Only if they agree.
+            </p>
+            <div className="mt-6 max-w-md rounded-2xl rounded-tl-sm bg-[#0b3d2e] p-4 text-sm text-emerald-50">
+              Tolu studied <b>5 of 7 days</b> (3h 40m). Predicted score <b>192 → 205</b>. Biggest
+              improvement: Physics – Motion.
+              <span className="mt-1 block text-right text-[11px] text-emerald-200/60">
+                Sun 6:00 pm
+              </span>
+            </div>
+          </article>
+        </div>
+      </Section>
+
+      {/* Steps */}
+      <Section className="pb-24">
+        <ol className="grid gap-4 sm:grid-cols-3">
+          {[
+            ['Check subjects', 'Make sure your four fit your course.'],
+            ['Take the diagnostic', 'CBT-style. Get your score range.'],
+            ['Follow the plan', 'A little every day. Weekly mock.'],
+          ].map(([t, d], i) => (
+            <li key={t} className="rounded-3xl border border-line p-6">
+              <span className="font-mono text-sm text-accent">0{i + 1}</span>
+              <h3 className="mt-3 font-semibold">{t}</h3>
+              <p className="mt-1 text-sm text-muted">{d}</p>
             </li>
           ))}
         </ol>
-      </section>
+      </Section>
 
-      <section
-        aria-labelledby="parents"
-        className="rounded-xl border border-slate-200 bg-slate-50 p-5"
-      >
-        <h2 id="parents" className="flex items-center gap-2 text-xl font-bold text-balance">
-          <MessageCircle aria-hidden="true" className="size-5 text-teal-700" />
-          Parents stay in the loop
-        </h2>
-        <p className="mt-2 text-pretty text-slate-700">
-          Every Sunday your parent gets a short WhatsApp report: days studied, minutes, how the
-          predicted score moved, and the topic that improved most. Only if they agree to receive it,
-          and they can stop any time.
-        </p>
-      </section>
-
-      <section aria-labelledby="pricing">
-        <h2 id="pricing" className="text-2xl font-bold text-balance">
-          Pricing
-        </h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          <div className="rounded-xl border border-slate-200 p-5">
+      {/* Pricing */}
+      <Section className="pb-24">
+        <h2 className="text-3xl font-semibold text-balance sm:text-4xl">Simple pricing</h2>
+        <div className="mt-10 grid gap-4 md:grid-cols-2">
+          <div className="rounded-3xl border border-line p-7">
             <h3 className="font-semibold">Free</h3>
-            <p className="mt-1 text-2xl font-bold tabular-nums">₦0</p>
-            <ul className="mt-4 space-y-2 text-sm text-slate-700">
-              <li>Subject checker</li>
-              <li>Full diagnostic and predicted score</li>
-              <li>20 practice questions a day (answers only)</li>
-              <li>1 mock a month</li>
+            <p className="mt-2 text-4xl font-semibold tabular-nums">₦0</p>
+            <ul className="mt-6 space-y-3 text-sm text-fg-2">
+              {[
+                'Subject checker',
+                'Diagnostic + predicted score',
+                '20 questions a day',
+                '1 mock a month',
+              ].map((f) => (
+                <li key={f} className="flex gap-2">
+                  <Check aria-hidden="true" className="size-4 text-muted" /> {f}
+                </li>
+              ))}
             </ul>
           </div>
-          <div className="rounded-xl border-2 border-teal-700 p-5">
-            <h3 className="font-semibold">Season Pass</h3>
-            <p className="mt-1 text-2xl font-bold">
-              <SeasonPrice />
+          <div className="glass relative rounded-3xl border border-emerald-400/30 p-7">
+            <div
+              aria-hidden="true"
+              className="absolute inset-x-10 -top-px h-px bg-gradient-to-r from-transparent via-emerald-300 to-transparent"
+            />
+            <div className="flex items-center justify-between">
+              <h3 className="font-semibold">Season Pass</h3>
+              <span className="rounded-full bg-accent-soft px-2.5 py-0.5 text-xs font-medium text-emerald-300">
+                Until your exam
+              </span>
+            </div>
+            <p className="mt-2 text-4xl font-semibold">
+              <SeasonPrice fallback="—" />
             </p>
-            <p className="text-sm text-slate-600">One payment, until a week after your UTME</p>
-            <ul className="mt-4 space-y-2 text-sm text-slate-700">
-              <li>Daily study plan built on your weak topics</li>
-              <li>Unlimited practice with full explanations</li>
-              <li>Mistake review that brings errors back until you master them</li>
-              <li>Weekly mini-mock and full CBT mocks</li>
-              <li>Weekly WhatsApp report for your parent</li>
+            <ul className="mt-6 space-y-3 text-sm text-fg-2">
+              {[
+                'Daily plan on your weak topics',
+                'Unlimited practice + explanations',
+                'Mistake review',
+                'Weekly + full CBT mocks',
+                'Weekly parent report',
+              ].map((f) => (
+                <li key={f} className="flex gap-2">
+                  <Check aria-hidden="true" className="size-4 text-accent" /> {f}
+                </li>
+              ))}
             </ul>
+            <ButtonLink href="/start" block className="mt-7">
+              Start free
+            </ButtonLink>
           </div>
         </div>
-      </section>
+      </Section>
 
-      <section aria-labelledby="faq">
-        <h2 id="faq" className="text-2xl font-bold text-balance">
-          Questions
-        </h2>
-        <div className="mt-4 divide-y divide-slate-200 border-y border-slate-200">
-          {FAQ.map((f) => (
-            <details key={f.q} className="group py-4">
-              <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 font-semibold">
-                {f.q}
-                <span aria-hidden="true" className="text-slate-500 group-open:rotate-45">
+      {/* FAQ */}
+      <Section className="pb-24">
+        <h2 className="text-3xl font-semibold text-balance">Questions</h2>
+        <div className="mt-8 divide-y divide-line border-y border-line">
+          {FAQ.map(([q, a]) => (
+            <details key={q} className="group py-5">
+              <summary className="flex min-h-8 cursor-pointer list-none items-center justify-between gap-4 font-medium">
+                {q}
+                <span aria-hidden="true" className="text-xl text-muted group-open:rotate-45">
                   +
                 </span>
               </summary>
-              <p className="mt-2 text-pretty text-slate-700">{f.a}</p>
+              <p className="mt-2 text-pretty text-muted">{a}</p>
             </details>
           ))}
         </div>
-      </section>
+      </Section>
 
-      <section className="text-center">
-        <h2 className="text-2xl font-bold text-balance">Find out where you stand today.</h2>
-        <ButtonLink href="/start" size="lg" className="mt-5">
-          Start free
-        </ButtonLink>
-      </section>
+      {/* CTA */}
+      <Section className="pb-24">
+        <div className="relative overflow-hidden rounded-3xl border border-line px-6 py-14 text-center">
+          <div aria-hidden="true" className="bg-glow absolute inset-0" />
+          <h2 className="text-gradient relative text-3xl font-semibold text-balance sm:text-4xl">
+            Find out where you stand.
+          </h2>
+          <ButtonLink href="/start" size="lg" className="relative mt-8">
+            Take the free diagnostic <ArrowRight aria-hidden="true" className="size-4" />
+          </ButtonLink>
+        </div>
+      </Section>
     </div>
   );
 }

@@ -161,7 +161,7 @@ export default function SettingsPage() {
             Publish
           </Button>
         </form>
-        <ul className="divide-y divide-slate-100 text-sm">
+        <ul className="divide-y divide-line text-sm">
           {news.data?.map((n) => (
             <li key={n.id} className="py-2">
               <p className="font-medium">
@@ -172,7 +172,7 @@ export default function SettingsPage() {
                   <Badge>draft</Badge>
                 )}
               </p>
-              <p className="text-slate-700">{n.body}</p>
+              <p className="text-fg-2">{n.body}</p>
             </li>
           ))}
         </ul>

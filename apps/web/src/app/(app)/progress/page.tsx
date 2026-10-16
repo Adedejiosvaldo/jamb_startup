@@ -41,7 +41,7 @@ export default function ProgressPage() {
       {history.data && history.data.length > 0 && (
         <Card>
           <CardTitle>Predicted score over time</CardTitle>
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-muted">
             Updates after each diagnostic and mock. The shaded band is the likely range.
           </p>
           <div className="mt-3">
@@ -57,10 +57,10 @@ export default function ProgressPage() {
             {p.prediction.perSubject.map((s) => (
               <li key={s.code} className="flex items-center justify-between gap-3 text-sm">
                 <span className="font-medium">{name(s.code)}</span>
-                <span className="text-slate-700 tabular-nums">
+                <span className="text-fg-2 tabular-nums">
                   {s.estimate !== null ? `~${s.estimate} / 100` : 'Need more answers'}
                   {s.status === 'early' && ' · early'}
-                  <span className="text-slate-500"> · {s.answered} answered</span>
+                  <span className="text-muted"> · {s.answered} answered</span>
                 </span>
               </li>
             ))}
@@ -79,7 +79,7 @@ export default function ProgressPage() {
         ].map((s) => (
           <Card key={s.label} className="p-3 text-center">
             <p className="text-xl font-bold tabular-nums">{s.value}</p>
-            <p className="text-xs text-slate-600">{s.label}</p>
+            <p className="text-xs text-muted">{s.label}</p>
           </Card>
         ))}
       </section>
@@ -91,7 +91,7 @@ export default function ProgressPage() {
         {p.masteryMap.map((m) => (
           <Card key={m.subjectCode}>
             <CardTitle>{name(m.subjectCode)}</CardTitle>
-            <ul className="mt-3 divide-y divide-slate-100">
+            <ul className="mt-3 divide-y divide-line">
               {m.topics.map((t) => (
                 <li
                   key={t.topicId}

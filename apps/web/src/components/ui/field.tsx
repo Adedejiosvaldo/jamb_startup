@@ -8,7 +8,7 @@ import {
 import { cn } from '@/lib/cn';
 
 export const inputClass =
-  'block w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-base text-slate-900 placeholder:text-slate-400 focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-700/20 aria-[invalid=true]:border-red-700 disabled:bg-slate-50';
+  'block min-h-12 w-full rounded-xl border border-line-strong bg-white/[0.03] px-4 py-3 text-base text-fg placeholder:text-faint transition-colors duration-150 focus:border-accent focus:bg-white/[0.05] focus:outline-none focus:ring-4 focus:ring-accent/15 aria-[invalid=true]:border-red-400 disabled:opacity-50';
 
 interface FieldShellProps {
   label: ReactNode;
@@ -27,10 +27,10 @@ export function FieldShell({ label, hint, error, required, children, className }
   const describedBy = [hintId, errorId].filter(Boolean).join(' ') || undefined;
   return (
     <div className={cn('space-y-1.5', className)}>
-      <label htmlFor={id} className="block text-sm font-medium text-slate-900">
+      <label htmlFor={id} className="block text-sm font-medium text-fg-2">
         {label}
         {required && (
-          <span aria-hidden="true" className="text-red-700">
+          <span aria-hidden="true" className="text-red-400">
             {' '}
             *
           </span>
@@ -38,12 +38,12 @@ export function FieldShell({ label, hint, error, required, children, className }
       </label>
       {children({ id, describedBy, invalid: !!error })}
       {hint && (
-        <p id={hintId} className="text-sm text-pretty text-slate-600">
+        <p id={hintId} className="text-[13px] text-pretty text-muted">
           {hint}
         </p>
       )}
       {error && (
-        <p id={errorId} className="text-sm text-red-700">
+        <p id={errorId} className="text-sm text-red-400">
           {error}
         </p>
       )}

@@ -34,11 +34,11 @@ export default function EntryReportPage() {
       <Button variant="secondary" size="sm" className="print:hidden" onClick={() => window.print()}>
         <Printer aria-hidden="true" className="size-4" /> Print / save as PDF
       </Button>
-      <article className="mx-auto max-w-2xl space-y-5 rounded-xl bg-white p-6">
+      <article className="mx-auto max-w-2xl space-y-5 rounded-xl bg-surface p-6">
         <header>
-          <p className="text-sm font-semibold text-teal-700">ScoreCoach mock report</p>
+          <p className="text-sm font-semibold text-accent">ScoreCoach mock report</p>
           <h1 className="text-2xl font-bold">{data.studentName}</h1>
-          <p className="text-slate-600">
+          <p className="text-muted">
             {data.className ? `${data.className} · ` : ''}
             {data.school} · {shortDate(data.date)}
           </p>
@@ -49,7 +49,7 @@ export default function EntryReportPage() {
             <p className="text-3xl font-bold tabular-nums">
               {r.predicted.low}–{r.predicted.high}
             </p>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-muted">
               From one short paper mock, so the range is wide. Practice narrows it.
             </p>
           </section>
@@ -57,7 +57,7 @@ export default function EntryReportPage() {
         <section>
           <h2 className="font-semibold">Scores</h2>
           <table className="mt-2 w-full text-sm">
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-line">
               {r.subjects.map((s) => (
                 <tr key={s.code}>
                   <th scope="row" className="py-1.5 text-left font-medium">
@@ -83,7 +83,7 @@ export default function EntryReportPage() {
             </ol>
           </section>
         )}
-        <section className="rounded-lg bg-teal-50 p-4">
+        <section className="rounded-lg bg-accent-soft p-4">
           <h2 className="font-semibold">Keep going for free</h2>
           <p className="text-sm text-pretty">
             Take the free diagnostic and get a daily plan at{' '}
@@ -97,7 +97,7 @@ export default function EntryReportPage() {
             .
           </p>
         </section>
-        <p className="text-xs text-slate-600">
+        <p className="text-xs text-muted">
           Estimates, not guarantees. ScoreCoach is not affiliated with JAMB.
         </p>
       </article>

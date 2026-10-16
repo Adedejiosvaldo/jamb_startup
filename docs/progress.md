@@ -11,7 +11,7 @@ Tracks spec §25. Update this file in the same PR as the work.
 - Schema: every table in §9 plus `refresh_tokens`, `school_event_entries`, staff TOTP, parent report tokens, pay-link tokens
 - Service worker: app shell, CBT and results open offline; content-hashed assets cached
 - Audit log on every staff write; staff routes require role **and** TOTP 2FA (§14)
-- Design system in `DESIGN.md`; UI skills `baseline-ui` + `fixing-accessibility` (ibelick/ui-skills) installed for agents
+- "Premium modern" dark design system (founder's choice): Geist type, emerald accent, glass cards, ScoreRing gauge, floating tab bar — `DESIGN.md`; UI skills `baseline-ui` + `fixing-accessibility` (ibelick/ui-skills) installed for agents
 
 **Student (web)**
 

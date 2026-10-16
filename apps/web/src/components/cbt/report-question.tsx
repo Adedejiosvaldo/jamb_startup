@@ -48,7 +48,7 @@ export function ReportQuestion({ questionId }: { questionId: string }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="inline-flex min-h-11 items-center gap-1.5 text-sm text-slate-600 underline-offset-4 hover:underline"
+        className="inline-flex min-h-11 items-center gap-1.5 text-sm text-muted underline-offset-4 hover:underline"
       >
         <Flag aria-hidden="true" className="size-3.5" />
         Report a problem with this question

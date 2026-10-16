@@ -22,10 +22,10 @@ export function Table<T>({
   empty?: ReactNode;
 }) {
   return (
-    <div className="overflow-x-auto rounded-xl border border-slate-200 bg-white">
+    <div className="overflow-x-auto rounded-xl border border-line bg-surface">
       <table className="w-full text-sm">
         <caption className="sr-only">{caption}</caption>
-        <thead className="bg-slate-50 text-left text-slate-600">
+        <thead className="bg-canvas text-left text-muted">
           <tr>
             {columns.map((c, i) => (
               <th
@@ -38,10 +38,10 @@ export function Table<T>({
             ))}
           </tr>
         </thead>
-        <tbody className="divide-y divide-slate-100">
+        <tbody className="divide-y divide-line">
           {rows.length === 0 ? (
             <tr>
-              <td colSpan={columns.length} className="p-6 text-center text-slate-600">
+              <td colSpan={columns.length} className="p-6 text-center text-muted">
                 {empty}
               </td>
             </tr>

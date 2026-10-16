@@ -1,6 +1,5 @@
-import { Info } from 'lucide-react';
 import type { Prediction } from '@/lib/types';
-import { Card } from './ui/card';
+import { ScoreRing } from './score-ring';
 
 /** F-DIAG-03: always a range; honest about early estimates. */
 export function ScoreCard({
@@ -14,69 +13,43 @@ export function ScoreCard({
   gap?: number | null;
   compact?: boolean;
 }) {
-  const pctOf = (v: number) => `${(v / 400) * 100}%`;
   return (
-    <Card className="space-y-4">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-sm font-medium text-slate-600">Predicted UTME score</p>
-          <p className="mt-1 text-4xl font-bold tabular-nums">
-            {prediction.low}–{prediction.high}
-          </p>
-          <p className="text-sm text-slate-600 tabular-nums">
-            Most likely around {prediction.mid} out of 400
-          </p>
-        </div>
-        {prediction.status === 'early' && (
-          <span className="rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-900">
-            Early estimate
-          </span>
-        )}
-      </div>
-
-      <div aria-hidden="true" className="relative h-3 rounded-full bg-slate-100">
-        <div
-          className="absolute inset-y-0 rounded-full bg-teal-700/30"
-          style={{ left: pctOf(prediction.low), width: pctOf(prediction.high - prediction.low) }}
+    <div className="glass relative overflow-hidden rounded-3xl border border-line p-5 sm:p-6">
+      <div
+        aria-hidden="true"
+        className="absolute -top-20 -right-20 size-56 rounded-full bg-emerald-500/15 blur-3xl"
+      />
+      <div className="relative flex flex-col items-center gap-5 sm:flex-row sm:items-center sm:gap-8">
+        <ScoreRing
+          low={prediction.low}
+          mid={prediction.mid}
+          high={prediction.high}
+          target={target}
+          size={188}
         />
-        <div
-          className="absolute inset-y-0 w-1 -translate-x-1/2 rounded-full bg-teal-700"
-          style={{ left: pctOf(prediction.mid) }}
-        />
-        {target ? (
-          <div
-            className="absolute -inset-y-1 w-0.5 -translate-x-1/2 bg-slate-900"
-            style={{ left: pctOf(target) }}
-          />
-        ) : null}
-      </div>
-
-      {target ? (
-        <p className="text-pretty">
-          {gap && gap > 0 ? (
-            <>
-              Your target is <span className="font-semibold tabular-nums">{target}</span>. You need
-              about <span className="font-semibold tabular-nums">{gap} more marks</span>.
-            </>
-          ) : (
-            <>
-              You’re at or above your target of{' '}
-              <span className="font-semibold tabular-nums">{target}</span>. Keep it steady.
-            </>
+        <dl className="grid w-full grid-cols-2 gap-2 sm:grid-cols-1">
+          <div className="rounded-2xl bg-white/[0.04] p-3.5">
+            <dt className="text-xs text-muted">Target</dt>
+            <dd className="text-2xl font-semibold tabular-nums">{target ?? '—'}</dd>
+          </div>
+          <div className="rounded-2xl bg-white/[0.04] p-3.5">
+            <dt className="text-xs text-muted">Gap</dt>
+            <dd
+              className={`text-2xl font-semibold tabular-nums ${gap ? 'text-amber-300' : 'text-emerald-300'}`}
+            >
+              {target ? (gap ? `+${gap}` : 'On track') : '—'}
+            </dd>
+          </div>
+          {!compact && (
+            <p className="col-span-2 text-xs text-pretty text-muted sm:col-span-1">
+              {prediction.status === 'early'
+                ? 'Early estimate — narrows as you practise.'
+                : 'Estimate from your answers. Not a guarantee.'}
+              {prediction.speedFactor < 1 && ' Slower than exam pace lowers it.'}
+            </p>
           )}
-        </p>
-      ) : null}
-
-      {!compact && (
-        <p className="flex gap-2 text-sm text-pretty text-slate-600">
-          <Info aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
-          {prediction.status === 'early'
-            ? 'Based on only a few questions per subject, so the range is wide. It narrows as you practise.'
-            : 'This is an estimate from your answers, not a guarantee. It updates after each mock.'}
-          {prediction.speedFactor < 1 &&
-            ' You are answering slower than exam pace, which lowers the estimate.'}
-        </p>
-      )}
-    </Card>
+        </dl>
+      </div>
+    </div>
   );
 }

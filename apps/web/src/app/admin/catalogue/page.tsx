@@ -101,7 +101,7 @@ export default function CataloguePage() {
             onClick={() => setTab(t)}
             className={cn(
               'min-h-10 rounded-lg px-3 text-sm font-medium',
-              tab === t ? 'bg-teal-700 text-white' : 'bg-white ring-1 ring-slate-200',
+              tab === t ? 'bg-accent text-on-accent' : 'bg-surface ring-1 ring-line',
             )}
           >
             {label}
@@ -356,7 +356,7 @@ export default function CataloguePage() {
                     aria-label={`Weight for ${t.name}`}
                     defaultValue={Number(t.weight)}
                     inputMode="decimal"
-                    className="w-20 rounded-md border border-slate-300 px-2 py-1 tabular-nums"
+                    className="w-20 rounded-md border border-line-strong px-2 py-1 tabular-nums"
                     onBlur={(e) => {
                       const v = Number(e.target.value);
                       if (v !== Number(t.weight) && v >= 0 && v <= 1)
@@ -380,7 +380,7 @@ export default function CataloguePage() {
                     aria-label={`Learnability for ${t.name}`}
                     defaultValue={Number(t.learnability)}
                     inputMode="decimal"
-                    className="w-20 rounded-md border border-slate-300 px-2 py-1 tabular-nums"
+                    className="w-20 rounded-md border border-line-strong px-2 py-1 tabular-nums"
                     onBlur={(e) => {
                       const v = Number(e.target.value);
                       if (v !== Number(t.learnability) && v >= 0.1 && v <= 3)

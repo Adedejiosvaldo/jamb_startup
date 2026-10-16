@@ -61,19 +61,19 @@ export default function ResultsPage() {
     <main id="main" className="mx-auto max-w-2xl space-y-6 px-4 py-6">
       <Link
         href="/home"
-        className="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-slate-700"
+        className="inline-flex min-h-11 items-center gap-1 text-sm font-medium text-fg-2"
       >
         <ArrowLeft aria-hidden="true" className="size-4" /> Back to today
       </Link>
 
       <header>
-        <p className="text-sm font-medium text-slate-600">
+        <p className="text-sm font-medium text-muted">
           {TEST_LABELS[data.test.type] ?? 'Test'} results
         </p>
         <h1 className="mt-1 text-3xl font-bold tabular-nums">
           {score.correct} / {score.total} correct
         </h1>
-        <p className="text-slate-600 tabular-nums">
+        <p className="text-muted tabular-nums">
           {pct(score.total ? score.correct / score.total : 0)}
           {data.test.durationSeconds ? ` · ${clock(data.test.durationSeconds)} taken` : ''}
         </p>
@@ -105,8 +105,8 @@ export default function ResultsPage() {
                     {s.correct}/{s.total} · {s.scaled}%
                   </span>
                 </div>
-                <div aria-hidden="true" className="mt-1 h-2 rounded-full bg-slate-100">
-                  <div className="h-2 rounded-full bg-teal-700" style={{ width: `${s.scaled}%` }} />
+                <div aria-hidden="true" className="mt-1 h-2 rounded-full bg-surface-2">
+                  <div className="h-2 rounded-full bg-accent" style={{ width: `${s.scaled}%` }} />
                 </div>
               </li>
             ))}
@@ -117,12 +117,12 @@ export default function ResultsPage() {
       {data.weakestTopics.length > 0 && (
         <Card>
           <CardTitle>Work on these next</CardTitle>
-          <ul className="mt-3 divide-y divide-slate-100">
+          <ul className="mt-3 divide-y divide-line">
             {data.weakestTopics.map((t) => (
               <li key={t.topicId} className="flex items-center justify-between gap-3 py-2">
                 <div className="min-w-0">
                   <p className="font-medium text-pretty">{t.name}</p>
-                  <p className="text-sm text-slate-600 tabular-nums">
+                  <p className="text-sm text-muted tabular-nums">
                     {t.subjectCode} · {t.correct}/{t.total} right
                   </p>
                 </div>
@@ -146,11 +146,10 @@ export default function ResultsPage() {
       )}
 
       {isDiagnostic && !paid && (
-        <Card className="space-y-2 border-2 border-teal-700">
-          <CardTitle>Close the gap with a daily plan</CardTitle>
-          <p className="text-sm text-pretty text-slate-700">
-            The Season Pass builds your plan around these weak topics, explains every mistake, and
-            brings errors back until you get them right.
+        <Card className="space-y-3 border-emerald-400/30">
+          <CardTitle>Close the gap faster</CardTitle>
+          <p className="text-sm text-pretty text-fg-2">
+            A daily plan on these exact topics, with every mistake explained.
           </p>
           <ButtonLink href="/upgrade">See the Season Pass</ButtonLink>
         </Card>
@@ -180,22 +179,22 @@ export default function ResultsPage() {
           ))}
         </div>
         {shown.length === 0 ? (
-          <p className="mt-4 text-slate-600">Nothing here. Nice work.</p>
+          <p className="mt-4 text-muted">Nothing here. Nice work.</p>
         ) : (
           <ol className="mt-4 space-y-4">
             {shown.slice(0, limit).map((it) => (
               <li key={it.position}>
                 <Card className="space-y-3">
                   <div className="flex items-start justify-between gap-3">
-                    <p className="text-sm text-slate-600 tabular-nums">
+                    <p className="text-sm text-muted tabular-nums">
                       Q{it.position} · {it.subjectCode} · {it.topicName}
                     </p>
                     {it.isCorrect ? (
-                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-green-800">
+                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-emerald-300">
                         <Check aria-hidden="true" className="size-4" /> Right
                       </span>
                     ) : (
-                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-red-800">
+                      <span className="inline-flex items-center gap-1 text-sm font-semibold text-red-300">
                         <X aria-hidden="true" className="size-4" />{' '}
                         {it.chosenOption ? 'Wrong' : 'Blank'}
                       </span>
@@ -209,10 +208,10 @@ export default function ResultsPage() {
                         className={cn(
                           'rounded-md px-2 py-1.5',
                           k === it.correctOption
-                            ? 'bg-green-50 font-medium text-green-900'
+                            ? 'bg-emerald-500/10 font-medium text-emerald-200'
                             : k === it.chosenOption
-                              ? 'bg-red-50 text-red-900'
-                              : 'text-slate-700',
+                              ? 'bg-red-500/10 text-red-300'
+                              : 'text-fg-2',
                         )}
                       >
                         <span className="font-semibold">{k}.</span> {it.options[k]}

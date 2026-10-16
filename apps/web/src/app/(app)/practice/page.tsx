@@ -51,58 +51,51 @@ export default function PracticePage() {
     {
       key: 'mini_mock',
       Icon: Gauge,
-      title: 'Weekly mini-mock',
-      body: '100 questions · 65 min',
+      title: 'Mini-mock',
+      body: '100 q · 65 min',
       onClick: () => start({ type: 'mini_mock' }, 'mini_mock'),
     },
     {
       key: 'full_mock',
       Icon: Timer,
-      title: 'Full CBT mock',
-      body: '180 questions · 2 hours',
+      title: 'Full mock',
+      body: '180 q · 2 hrs',
       onClick: () => start({ type: 'full_mock' }, 'full_mock'),
     },
     {
       key: 'speed_drill',
       Icon: Flame,
-      title: `Speed drill (${name(nonEng)})`,
-      body: '10 questions at exam pace',
+      title: 'Speed drill',
+      body: `${name(nonEng)} · exam pace`,
       onClick: () => start({ type: 'speed_drill', subjectCode: nonEng }, 'speed_drill'),
     },
   ];
 
   return (
     <div>
-      <PageHeader
-        title="Practice"
-        description={
-          paid
-            ? 'Pick a topic, or use a quick session below.'
-            : 'Free plan: 20 practice questions a day with answers.'
-        }
-      />
+      <PageHeader title="Practice" description={paid ? undefined : '20 free questions a day.'} />
 
       <section aria-labelledby="quick" className="mb-8">
         <h2 id="quick" className="sr-only">
           Quick sessions
         </h2>
-        <ul className="grid gap-3 sm:grid-cols-2">
+        <ul className="grid grid-cols-2 gap-2">
           {quick.map((q) => (
             <li key={q.key}>
               <button
                 type="button"
                 onClick={() => void q.onClick()}
                 disabled={q.disabled || starting !== null}
-                className="flex min-h-16 w-full items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 text-left hover:border-slate-300 focus-visible:outline-2 focus-visible:outline-teal-700 disabled:opacity-60"
+                className="flex h-full min-h-28 w-full flex-col items-start gap-3 rounded-2xl border border-line bg-white/[0.02] p-4 text-left transition-colors duration-150 hover:bg-white/[0.05] focus-visible:outline-2 focus-visible:outline-accent disabled:opacity-50"
               >
-                <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-teal-50 text-teal-700">
+                <span className="grid size-10 shrink-0 place-items-center rounded-lg bg-accent-soft text-accent">
                   <q.Icon aria-hidden="true" className="size-5" />
                 </span>
                 <span className="min-w-0">
                   <span className="block font-semibold">
                     {starting === q.key ? 'Starting…' : q.title}
                   </span>
-                  <span className="block text-sm text-slate-600">{q.body}</span>
+                  <span className="block text-sm text-muted">{q.body}</span>
                 </span>
               </button>
             </li>
@@ -134,8 +127,8 @@ export default function PracticePage() {
                   className={cn(
                     'min-h-11 rounded-lg px-3 text-sm font-medium whitespace-nowrap',
                     active === m.subjectCode
-                      ? 'bg-teal-700 text-white'
-                      : 'bg-white text-slate-700 ring-1 ring-slate-200',
+                      ? 'bg-accent text-on-accent'
+                      : 'bg-surface text-fg-2 ring-1 ring-line',
                   )}
                 >
                   {name(m.subjectCode)}
@@ -144,7 +137,7 @@ export default function PracticePage() {
             </div>
 
             <div className="mt-4 flex items-center gap-2 text-sm">
-              <span id="count-label" className="text-slate-600">
+              <span id="count-label" className="text-muted">
                 Questions per set:
               </span>
               <div role="group" aria-labelledby="count-label" className="flex gap-1">
@@ -156,7 +149,7 @@ export default function PracticePage() {
                     onClick={() => setCount(n)}
                     className={cn(
                       'min-h-9 min-w-11 rounded-md px-2 font-semibold tabular-nums',
-                      count === n ? 'bg-slate-900 text-white' : 'bg-white ring-1 ring-slate-200',
+                      count === n ? 'bg-fg text-canvas' : 'bg-surface ring-1 ring-line',
                     )}
                   >
                     {n}
@@ -174,10 +167,10 @@ export default function PracticePage() {
                       <div className="mt-1 flex flex-wrap items-center gap-2">
                         <MasteryBadge label={t.label} />
                         {t.weight >= 0.2 && (
-                          <span className="text-xs text-slate-600">Comes up often</span>
+                          <span className="text-xs text-muted">Comes up often</span>
                         )}
                         {t.attempts > 0 && (
-                          <span className="text-xs text-slate-600 tabular-nums">
+                          <span className="text-xs text-muted tabular-nums">
                             {t.attempts} answered
                           </span>
                         )}

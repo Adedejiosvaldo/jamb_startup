@@ -1,19 +1,28 @@
 import Link from 'next/link';
 import { Logo } from './logo';
 
-const link = 'min-h-11 content-center rounded-lg px-2 whitespace-nowrap sm:px-3';
-
 export function SiteHeader() {
   return (
-    <header className="border-b border-slate-200 bg-white">
-      <div className="mx-auto flex max-w-2xl items-center justify-between gap-2 px-4">
+    <header className="sticky top-0 z-10 border-b border-line bg-canvas/70 backdrop-blur-md">
+      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-2 px-4">
         <Logo />
         <nav aria-label="Site" className="flex items-center gap-1 text-sm font-medium">
-          <Link href="/checker" className={`${link} text-slate-700 hover:bg-slate-100`}>
-            <span className="sm:hidden">Checker</span>
-            <span className="hidden sm:inline">Subject checker</span>
+          <Link
+            href="/checker"
+            className="hidden min-h-10 content-center rounded-lg px-3 whitespace-nowrap text-muted hover:text-fg sm:block"
+          >
+            Subject checker
           </Link>
-          <Link href="/login" className={`${link} text-teal-700 hover:bg-teal-50`}>
+          <Link
+            href="/teachers"
+            className="hidden min-h-10 content-center rounded-lg px-3 whitespace-nowrap text-muted hover:text-fg md:block"
+          >
+            Teachers
+          </Link>
+          <Link
+            href="/login"
+            className="min-h-10 content-center rounded-xl border border-line-strong bg-white/[0.04] px-4 whitespace-nowrap text-fg hover:bg-white/[0.08]"
+          >
             Sign in
           </Link>
         </nav>

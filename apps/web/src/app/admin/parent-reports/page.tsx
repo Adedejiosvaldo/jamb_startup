@@ -30,25 +30,25 @@ export default function ParentReportsPage() {
         description="Opted-in parents who haven’t had a report in 6+ days. Send on Sunday evening."
       />
       {action.error && <Alert tone="danger">{action.error}</Alert>}
-      {list.loading && <p className="text-slate-600">Building reports…</p>}
+      {list.loading && <p className="text-muted">Building reports…</p>}
       {list.data?.length === 0 && (
         <Empty
           title="All parents are up to date"
-          action={<span className="text-sm text-slate-600">Check again next Sunday.</span>}
+          action={<span className="text-sm text-muted">Check again next Sunday.</span>}
         />
       )}
       <ul className="space-y-3">
         {list.data?.map((d) => (
           <li key={d.linkId}>
             <Card className="space-y-2">
-              <p className="text-sm text-slate-600">
+              <p className="text-sm text-muted">
                 {d.student.name ?? d.student.phone} → {d.parentPhone} · last sent{' '}
                 {d.lastReportSentAt ? shortDate(d.lastReportSentAt) : 'never'}
               </p>
-              <p className="rounded-lg bg-slate-50 p-3 text-sm text-pretty">{d.text}</p>
+              <p className="rounded-lg bg-canvas p-3 text-sm text-pretty">{d.text}</p>
               <div className="flex gap-2">
                 <a
-                  className="inline-flex min-h-9 items-center rounded-lg bg-teal-700 px-3 text-sm font-semibold text-white"
+                  className="inline-flex min-h-9 items-center rounded-lg bg-accent px-3 text-sm font-semibold text-on-accent"
                   href={d.whatsappUrl}
                   target="_blank"
                   rel="noreferrer"

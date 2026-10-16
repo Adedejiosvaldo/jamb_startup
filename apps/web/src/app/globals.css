@@ -1,12 +1,95 @@
 @import 'tailwindcss';
 
-/* Data saver by default (spec §13): system fonts only, no remote font loads. */
-:root {
-  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+/*
+ * ScoreCoach "premium modern" theme (DESIGN.md). Dark-first, one emerald accent.
+ * Components use these semantic tokens (bg-surface, text-muted, border-line, …),
+ * never raw palette colours, so the theme can change in one place.
+ */
+@theme {
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+
+  --color-canvas: #09090b;
+  --color-surface: #111114;
+  --color-surface-2: #1a1a1f;
+  --color-surface-3: #24242b;
+  --color-line: rgb(255 255 255 / 0.08);
+  --color-line-strong: rgb(255 255 255 / 0.14);
+
+  --color-fg: #fafafa;
+  --color-fg-2: #d4d4d8;
+  --color-muted: #a1a1aa;
+  --color-faint: #71717a;
+
+  --color-accent: #34d399;
+  --color-accent-strong: #10b981;
+  --color-accent-soft: rgb(52 211 153 / 0.12);
+  --color-on-accent: #04130d;
 }
 
-body {
-  font-family: var(--font-sans);
-  background: #fff;
-  color: #0f172a;
+@layer base {
+  html {
+    color-scheme: dark;
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background: var(--color-canvas);
+    color: var(--color-fg);
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  ::selection {
+    background: rgb(52 211 153 / 0.3);
+  }
+}
+
+@layer utilities {
+  /* Subtle brand glow used behind hero sections. Decorative only. */
+  .bg-glow {
+    background-image:
+      radial-gradient(60% 50% at 50% 0%, rgb(16 185 129 / 0.22), transparent 70%),
+      radial-gradient(40% 40% at 90% 10%, rgb(52 211 153 / 0.08), transparent 70%);
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%);
+  }
+  .text-gradient {
+    background-image: linear-gradient(180deg, #ffffff 30%, #a7f3d0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Glass card: translucent surface with a hairline top highlight. */
+  .glass {
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.045), rgb(255 255 255 / 0.015));
+    box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.06);
+  }
+}
+
+/* Printed reports (school mock day) come out light on paper. */
+@media print {
+  :root {
+    --color-canvas: #ffffff;
+    --color-surface: #ffffff;
+    --color-surface-2: #f4f4f5;
+    --color-surface-3: #e4e4e7;
+    --color-line: #e4e4e7;
+    --color-line-strong: #d4d4d8;
+    --color-fg: #09090b;
+    --color-fg-2: #27272a;
+    --color-muted: #52525b;
+    --color-faint: #71717a;
+    --color-accent: #047857;
+    --color-accent-soft: #ecfdf5;
+  }
+  html {
+    color-scheme: light;
+  }
+  .glass {
+    background: none;
+    box-shadow: none;
+  }
 }

@@ -110,7 +110,7 @@ export default function SchoolsPage() {
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <div>
                   <p className="font-semibold">{s.name}</p>
-                  <p className="text-sm text-slate-600">
+                  <p className="text-sm text-muted">
                     {[s.lga, s.state].filter(Boolean).join(', ')}{' '}
                     {s.contactName && `· ${s.contactName}`}{' '}
                     {s.contactPhone && `· ${s.contactPhone}`}
@@ -121,11 +121,11 @@ export default function SchoolsPage() {
                 </Button>
               </div>
               {s.events.length > 0 && (
-                <ul className="divide-y divide-slate-100 text-sm">
+                <ul className="divide-y divide-line text-sm">
                   {s.events.map((e) => (
                     <li key={e.id} className="flex justify-between py-2">
                       <Link
-                        className="text-teal-800 underline-offset-4 hover:underline"
+                        className="text-fg underline-offset-4 hover:text-accent hover:underline"
                         href={`/admin/schools/events/${e.id}`}
                       >
                         {e.name || 'Mock day'} · {shortDate(e.date)}
@@ -185,7 +185,7 @@ export default function SchoolsPage() {
                 <label key={s.code} className="flex min-h-9 items-center gap-2">
                   <input
                     type="checkbox"
-                    className="size-4 accent-teal-700"
+                    className="size-4 accent-emerald-400"
                     checked={ev.subjects.includes(s.code)}
                     disabled={!ev.subjects.includes(s.code) && ev.subjects.length >= 4}
                     onChange={() =>

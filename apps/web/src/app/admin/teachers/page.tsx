@@ -144,7 +144,7 @@ export default function TeachersAdmin() {
             );
           }}
         >
-          <p className="text-sm text-slate-700">
+          <p className="text-sm text-fg-2">
             Only verify after a call. Their code {verifying?.referralCode} becomes a student
             discount.
           </p>

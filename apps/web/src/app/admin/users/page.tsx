@@ -52,7 +52,7 @@ export default function UsersPage() {
             cell: (u) => (
               <Link
                 href={`/admin/users/${u.id}`}
-                className="font-medium text-teal-800 underline-offset-4 hover:underline"
+                className="font-medium text-fg underline-offset-4 hover:text-accent hover:underline"
               >
                 {u.name ?? 'No name'} · {u.phone}
               </Link>

@@ -34,9 +34,7 @@ export default function OutboxPage() {
         <Empty
           title="Nothing to send"
           action={
-            <span className="text-sm text-slate-600">
-              New parent opt-in requests will appear here.
-            </span>
+            <span className="text-sm text-muted">New parent opt-in requests will appear here.</span>
           }
         />
       )}
@@ -47,10 +45,10 @@ export default function OutboxPage() {
               <p className="text-sm">
                 <Badge>{m.template}</Badge> to {m.phone} · {dateTime(m.createdAt)}
               </p>
-              <p className="rounded-lg bg-slate-50 p-3 text-sm text-pretty">{m.payload.text}</p>
+              <p className="rounded-lg bg-canvas p-3 text-sm text-pretty">{m.payload.text}</p>
               <div className="flex gap-2">
                 <a
-                  className="inline-flex min-h-9 items-center rounded-lg bg-teal-700 px-3 text-sm font-semibold text-white"
+                  className="inline-flex min-h-9 items-center rounded-lg bg-accent px-3 text-sm font-semibold text-on-accent"
                   href={`https://wa.me/${m.phone.replace('+', '')}?text=${encodeURIComponent(m.payload.text ?? '')}`}
                   target="_blank"
                   rel="noreferrer"

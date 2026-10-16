@@ -109,7 +109,7 @@ export default function EventPage() {
             onClick={() => setTab(t)}
             className={cn(
               'min-h-10 rounded-lg px-3 text-sm font-medium',
-              tab === t ? 'bg-teal-700 text-white' : 'bg-white ring-1 ring-slate-200',
+              tab === t ? 'bg-accent text-on-accent' : 'bg-surface ring-1 ring-line',
             )}
           >
             {label}
@@ -121,7 +121,7 @@ export default function EventPage() {
         <div className="space-y-4">
           <Card>
             <CardTitle>Enter one answer sheet</CardTitle>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-muted">
               Type letters in question order, e.g. ABDCA… Use “-” for a blank. Press Enter to save
               and start the next sheet.
             </p>
@@ -161,7 +161,7 @@ export default function EventPage() {
                   Student name
                   <input
                     ref={nameRef}
-                    className="block w-full rounded-lg border border-slate-300 px-3 py-2.5 text-base"
+                    className="block w-full rounded-lg border border-line-strong px-3 py-2.5 text-base"
                     value={student.studentName}
                     onChange={(e) => setStudent({ ...student, studentName: e.target.value })}
                     required
@@ -251,7 +251,7 @@ export default function EventPage() {
               {
                 header: 'Report',
                 cell: (e) => (
-                  <Link className="text-teal-800 underline" href={`/admin/schools/entries/${e.id}`}>
+                  <Link className="text-accent underline" href={`/admin/schools/entries/${e.id}`}>
                     Print
                   </Link>
                 ),
@@ -262,7 +262,7 @@ export default function EventPage() {
       )}
 
       {tab === 'paper' && (
-        <article className="space-y-8 rounded-xl bg-white p-6 print:p-0">
+        <article className="space-y-8 rounded-xl bg-surface p-6 print:p-0">
           <header className="text-center">
             <h2 className="text-xl font-bold">{d.school.name}</h2>
             <p>
@@ -296,7 +296,7 @@ export default function EventPage() {
       )}
 
       {tab === 'key' && (
-        <article className="space-y-6 rounded-xl bg-white p-6">
+        <article className="space-y-6 rounded-xl bg-surface p-6">
           <Alert tone="warning" className="print:hidden">
             Keep the answer key separate from student papers.
           </Alert>
@@ -319,14 +319,14 @@ export default function EventPage() {
       )}
 
       {tab === 'report' && (
-        <article className="space-y-6 rounded-xl bg-white p-6">
+        <article className="space-y-6 rounded-xl bg-surface p-6">
           {!report.data ? (
             <PageSkeleton />
           ) : (
             <>
               <header>
                 <h2 className="text-xl font-bold">Class readiness report</h2>
-                <p className="text-slate-600">
+                <p className="text-muted">
                   {d.school.name} · {d.name || 'Mock day'} · {shortDate(d.date)} ·{' '}
                   {report.data.students} student{report.data.students === 1 ? '' : 's'}
                 </p>
@@ -345,9 +345,9 @@ export default function EventPage() {
                       className="grid grid-cols-[6rem_1fr_3rem] items-center gap-3 text-sm"
                     >
                       <span>{b.label}</span>
-                      <span aria-hidden="true" className="h-3 rounded-sm bg-slate-100">
+                      <span aria-hidden="true" className="h-3 rounded-sm bg-surface-2">
                         <span
-                          className="block h-3 rounded-sm bg-teal-700"
+                          className="block h-3 rounded-sm bg-accent"
                           style={{
                             width: `${(b.count / Math.max(1, report.data!.students)) * 100}%`,
                           }}
@@ -360,7 +360,7 @@ export default function EventPage() {
               </section>
               <section className="grid gap-4 sm:grid-cols-2">
                 {report.data.subjects.map((s) => (
-                  <div key={s.code} className="rounded-lg border border-slate-200 p-3">
+                  <div key={s.code} className="rounded-lg border border-line p-3">
                     <h3 className="font-semibold">{s.name}</h3>
                     <p className="text-sm tabular-nums">Average {s.averageScaled ?? '—'}%</p>
                     <p className="mt-2 text-sm font-medium">Weakest topics</p>
@@ -382,7 +382,7 @@ export default function EventPage() {
                   ))}
                 </ul>
               </section>
-              <p className="text-xs text-slate-600">{report.data.note}</p>
+              <p className="text-xs text-muted">{report.data.note}</p>
             </>
           )}
         </article>

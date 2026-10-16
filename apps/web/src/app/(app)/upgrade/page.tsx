@@ -22,13 +22,13 @@ interface Quote {
 }
 
 const FEATURES = [
-  'A daily plan built on your weakest high-value topics',
-  'Unlimited practice with step-by-step explanations',
-  'Mistake review: wrong answers come back at 1, 3, 7 and 14 days',
-  'Weekly mini-mock and full 2-hour CBT mocks',
-  'Speed drills to beat the clock in Maths',
-  'Weekly WhatsApp progress report for your parent',
-  'Support on WhatsApp, reply within 12 hours',
+  'Daily plan on your weakest topics',
+  'Unlimited practice + explanations',
+  'Mistake review (1·3·7·14 days)',
+  'Weekly mini-mock + full CBT mocks',
+  'Speed drills',
+  'Weekly parent report',
+  'WhatsApp support in 12 hours',
 ];
 
 function Upgrade() {
@@ -112,20 +112,25 @@ function Upgrade() {
   const q = quote.data;
   return (
     <div className="space-y-6">
-      <PageHeader
-        title="Season Pass"
-        description="One payment. Lasts until a week after your UTME."
-      />
+      <PageHeader title="Season Pass" description="One payment. Until a week after your UTME." />
       {reason && <Alert tone="info">{reason}</Alert>}
 
-      <Card className="space-y-4 border-2 border-teal-700">
+      <Card className="relative space-y-5 overflow-hidden border-emerald-400/30 p-6">
+        <div
+          aria-hidden="true"
+          className="absolute -top-24 -right-24 size-64 rounded-full bg-emerald-500/20 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-10 top-0 h-px bg-gradient-to-r from-transparent via-emerald-300 to-transparent"
+        />
         {quote.loading && !q ? (
           <Skeleton className="h-12 w-40" />
         ) : q ? (
           <div>
-            <p className="text-4xl font-bold tabular-nums">{naira(q.amountKobo)}</p>
+            <p className="relative text-5xl font-semibold tabular-nums">{naira(q.amountKobo)}</p>
             {q.discountKobo > 0 && (
-              <p className="text-sm text-slate-600">
+              <p className="text-sm text-muted">
                 <span className="line-through tabular-nums">{naira(q.product.priceKobo)}</span> ·
                 code {q.coupon?.code} saves{' '}
                 <span className="tabular-nums">{naira(q.discountKobo)}</span>
@@ -133,10 +138,10 @@ function Upgrade() {
             )}
           </div>
         ) : null}
-        <ul className="space-y-2">
+        <ul className="relative grid gap-2.5 text-sm text-fg-2 sm:grid-cols-2">
           {FEATURES.map((f) => (
             <li key={f} className="flex gap-2 text-pretty">
-              <Check aria-hidden="true" className="mt-1 size-4 shrink-0 text-teal-700" />
+              <Check aria-hidden="true" className="mt-1 size-4 shrink-0 text-accent" />
               {f}
             </li>
           ))}
@@ -169,15 +174,13 @@ function Upgrade() {
       {link ? (
         <Card className="space-y-3">
           <CardTitle>Send this to your parent</CardTitle>
-          <p className="rounded-lg bg-slate-50 p-3 text-sm text-pretty text-slate-700">
-            {link.message}
-          </p>
+          <p className="rounded-lg bg-canvas p-3 text-sm text-pretty text-fg-2">{link.message}</p>
           <div className="flex flex-col gap-2 sm:flex-row">
             <a
               href={link.whatsappUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-teal-700 px-4 font-semibold text-white hover:bg-teal-800"
+              className="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-lg bg-accent px-4 font-semibold text-on-accent hover:bg-accent-strong"
             >
               <MessageCircle aria-hidden="true" className="size-5" /> Share on WhatsApp
             </a>
@@ -190,7 +193,7 @@ function Upgrade() {
               <Copy aria-hidden="true" className="size-4" /> {copied ? 'Copied' : 'Copy link'}
             </Button>
           </div>
-          <p className="text-sm text-slate-600">
+          <p className="text-sm text-muted">
             Your plan unlocks automatically as soon as they pay. You’ll get an SMS.
           </p>
         </Card>
@@ -218,7 +221,7 @@ function Upgrade() {
         </div>
       )}
       {error && <Alert tone="danger">{error}</Alert>}
-      <p className="text-sm text-pretty text-slate-600">
+      <p className="text-sm text-pretty text-muted">
         Payments are processed securely by Paystack. We never see your card details. Plans are
         linked to your phone number, so you keep access if you change phones. See{' '}
         <a className="underline" href="/terms">

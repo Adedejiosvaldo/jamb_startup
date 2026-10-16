@@ -1,12 +1,20 @@
 'use client';
 
-import { CheckCircle2, Clock, Flame, Lock, PlayCircle } from 'lucide-react';
+import {
+  ArrowRight,
+  Check,
+  Clock,
+  Flame,
+  Lock,
+  Play,
+  RotateCcw,
+  Sparkles,
+  Zap,
+} from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { ScoreCard } from '@/components/score-card';
 import { Alert } from '@/components/ui/alert';
-import { Button, ButtonLink } from '@/components/ui/button';
-import { Card, CardTitle } from '@/components/ui/card';
 import { Dialog } from '@/components/ui/dialog';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/cn';
@@ -16,12 +24,25 @@ import { planItemToBody, useStartTest } from '@/lib/start-test';
 import { TEST_LABELS, type PlanItem, type Progress, type TodayPlan } from '@/lib/types';
 import { useApi } from '@/lib/use-api';
 
+const KIND_ICON = {
+  diagnostic: Zap,
+  practice: Play,
+  review: RotateCcw,
+  mini_mock: Clock,
+  full_mock: Clock,
+  speed_drill: Zap,
+} as const;
+
+function greeting() {
+  const h = new Date().getHours();
+  return h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+}
+
 export default function HomePage() {
   const { me } = useSession();
   const plan = useApi<TodayPlan>('/v1/plan/today');
   const progress = useApi<Progress>('/v1/progress');
-  const open =
-    useApi<{ id: string; type: string; startedAt: string; questions: number }[]>('/v1/tests/open');
+  const open = useApi<{ id: string; type: string; questions: number }[]>('/v1/tests/open');
   const news = useApi<
     {
       id: string;
@@ -36,8 +57,11 @@ export default function HomePage() {
 
   const first = me?.name?.split(' ')[0];
   const p = progress.data;
-  const done = plan.data?.items.filter((i) => i.completedAt).length ?? 0;
-  const total = plan.data?.items.filter((i) => !i.locked).length ?? 0;
+  const items = plan.data?.items ?? [];
+  const unlocked = items.filter((i) => !i.locked);
+  const done = unlocked.filter((i) => i.completedAt).length;
+  const pct = unlocked.length ? (done / unlocked.length) * 100 : 0;
+  const resume = open.data?.[0];
 
   function onItem(item: PlanItem) {
     if (item.kind === 'diagnostic') setDiagOpen(true);
@@ -46,228 +70,294 @@ export default function HomePage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-end justify-between gap-3">
+      <header className="flex items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-balance">{first ? `Hi ${first}` : 'Today'}</h1>
+          <p className="text-sm text-muted">{greeting()}</p>
+          <h1 className="text-3xl font-semibold text-balance">{first ?? 'Welcome'}</h1>
+        </div>
+        <div className="flex gap-2">
           {p?.exam.daysLeft != null && (
-            <p className="text-slate-600 tabular-nums">
-              {p.exam.daysLeft} days to UTME {p.exam.year}
-            </p>
+            <div className="rounded-2xl border border-line bg-white/[0.03] px-3 py-2 text-center">
+              <p className="text-lg leading-none font-semibold tabular-nums">{p.exam.daysLeft}</p>
+              <p className="mt-1 text-[10px] text-muted uppercase">days left</p>
+            </div>
+          )}
+          {p && (
+            <div
+              className="rounded-2xl border border-line bg-white/[0.03] px-3 py-2 text-center"
+              aria-label={`${p.streak} day streak`}
+            >
+              <p className="flex items-center justify-center gap-1 text-lg leading-none font-semibold tabular-nums">
+                <Flame
+                  aria-hidden="true"
+                  className={cn('size-4', p.streak ? 'text-amber-400' : 'text-faint')}
+                />
+                {p.streak}
+              </p>
+              <p className="mt-1 text-[10px] text-muted uppercase">streak</p>
+            </div>
           )}
         </div>
-        {p && (
-          <div
-            className="flex items-center gap-1 rounded-lg bg-white px-3 py-2 text-sm font-semibold tabular-nums ring-1 ring-slate-200"
-            aria-label={`${p.streak} day streak`}
-          >
-            <Flame
-              aria-hidden="true"
-              className={cn('size-4', p.streak ? 'text-amber-600' : 'text-slate-400')}
-            />
-            {p.streak}
-          </div>
-        )}
-      </div>
+      </header>
 
-      {open.data && open.data.length > 0 && (
-        <Card className="flex items-center justify-between gap-3">
-          <div className="min-w-0">
-            <p className="font-semibold">Continue where you stopped</p>
-            <p className="text-sm text-slate-600">
-              {TEST_LABELS[open.data[0]!.type] ?? 'Test'} · {open.data[0]!.questions} questions
-            </p>
-          </div>
-          <ButtonLink href={`/test/${open.data[0]!.id}`} size="sm">
-            Resume
-          </ButtonLink>
-        </Card>
+      {resume && (
+        <Link
+          href={`/test/${resume.id}`}
+          className="flex items-center gap-3 rounded-2xl border border-amber-400/25 bg-amber-500/10 p-4 hover:bg-amber-500/15 focus-visible:outline-2 focus-visible:outline-accent"
+        >
+          <Play aria-hidden="true" className="size-5 shrink-0 text-amber-300" />
+          <span className="min-w-0 flex-1">
+            <span className="block font-medium">
+              Resume {TEST_LABELS[resume.type]?.toLowerCase() ?? 'test'}
+            </span>
+            <span className="block text-sm text-amber-200/70">
+              {resume.questions} questions · answers saved
+            </span>
+          </span>
+          <ArrowRight aria-hidden="true" className="size-4 text-amber-300" />
+        </Link>
       )}
 
       {progress.loading ? (
-        <Skeleton className="h-44" />
+        <Skeleton className="h-64" />
       ) : p?.prediction ? (
         <Link
           href="/progress"
-          className="block rounded-xl focus-visible:outline-2 focus-visible:outline-teal-700"
+          className="block rounded-3xl focus-visible:outline-2 focus-visible:outline-accent"
         >
           <ScoreCard prediction={p.prediction} target={p.target} gap={p.gap} compact />
         </Link>
-      ) : null}
+      ) : (
+        <button
+          type="button"
+          onClick={() => setDiagOpen(true)}
+          className="glass group relative w-full overflow-hidden rounded-3xl border border-line p-6 text-left focus-visible:outline-2 focus-visible:outline-accent"
+        >
+          <div
+            aria-hidden="true"
+            className="absolute -top-16 -right-16 size-48 rounded-full bg-emerald-500/20 blur-3xl"
+          />
+          <div className="relative flex items-center gap-5">
+            <div
+              aria-hidden="true"
+              className="grid size-24 shrink-0 place-items-center rounded-full border-[6px] border-dashed border-white/10"
+            >
+              <span className="text-2xl font-semibold text-faint">?</span>
+            </div>
+            <div>
+              <p className="text-lg font-semibold text-balance">What would you score today?</p>
+              <p className="mt-1 inline-flex items-center gap-1 text-sm font-medium text-accent">
+                Find out in 20 minutes <ArrowRight aria-hidden="true" className="size-4" />
+              </p>
+            </div>
+          </div>
+        </button>
+      )}
 
-      <section aria-labelledby="today">
-        <div className="mb-3 flex items-baseline justify-between">
+      <section aria-labelledby="today" className="space-y-3">
+        <div className="flex items-end justify-between">
           <h2 id="today" className="text-lg font-semibold">
-            Today’s plan
+            Today
           </h2>
-          {plan.data && total > 0 && (
-            <p className="text-sm text-slate-600 tabular-nums">
-              {done} of {total} done · ~{minutesLabel(plan.data.minutesPlanned)}
+          {plan.data && unlocked.length > 0 && (
+            <p className="text-sm text-muted tabular-nums">
+              {done}/{unlocked.length} · {minutesLabel(plan.data.minutesPlanned)}
             </p>
           )}
         </div>
+        {unlocked.length > 0 && (
+          <div aria-hidden="true" className="h-1.5 rounded-full bg-white/[0.06]">
+            <div
+              className="h-1.5 rounded-full bg-gradient-to-r from-emerald-600 to-emerald-300"
+              style={{ width: `${Math.max(pct, 2)}%` }}
+            />
+          </div>
+        )}
         {plan.loading && <Skeleton className="h-40" />}
         {plan.error && <Alert tone="danger">{plan.error.message}</Alert>}
-        {plan.data?.completedAt && (
-          <Alert tone="success" title="Plan done for today" className="mb-3">
-            Well done. Rest, or do extra practice if you have time.
-          </Alert>
-        )}
-        <ul className="space-y-3">
-          {plan.data?.items.map((item) => (
-            <li key={item.id}>
-              <Card className={cn('flex items-center gap-3', item.completedAt && 'bg-slate-50')}>
-                <span aria-hidden="true" className="shrink-0">
-                  {item.completedAt ? (
-                    <CheckCircle2 className="size-6 text-green-700" />
-                  ) : item.locked ? (
-                    <Lock className="size-6 text-slate-400" />
-                  ) : (
-                    <PlayCircle className="size-6 text-teal-700" />
+        <ul className="space-y-2">
+          {items.map((item) => {
+            const Icon = item.completedAt ? Check : item.locked ? Lock : KIND_ICON[item.kind];
+            const body = (
+              <>
+                <span
+                  className={cn(
+                    'grid size-10 shrink-0 place-items-center rounded-xl',
+                    item.completedAt
+                      ? 'bg-emerald-500/15 text-emerald-300'
+                      : item.locked
+                        ? 'bg-white/[0.04] text-faint'
+                        : 'bg-accent-soft text-accent',
                   )}
+                >
+                  <Icon aria-hidden="true" className="size-5" />
                 </span>
-                <div className="min-w-0 flex-1">
-                  <p
+                <span className="min-w-0 flex-1">
+                  <span
                     className={cn(
-                      'font-medium text-pretty',
-                      item.completedAt && 'text-slate-600 line-through',
+                      'block truncate font-medium',
+                      item.completedAt && 'text-muted line-through',
                     )}
                   >
                     {item.title}
-                  </p>
-                  <p className="flex items-center gap-1 text-sm text-slate-600 tabular-nums">
-                    <Clock aria-hidden="true" className="size-3.5" />~
+                  </span>
+                  <span className="block text-sm text-muted tabular-nums">
                     {minutesLabel(item.estMinutes)}
                     {item.count ? ` · ${item.count} questions` : ''}
-                    {item.locked && ' · Season Pass'}
-                  </p>
-                </div>
+                  </span>
+                </span>
                 {item.locked ? (
-                  <ButtonLink href="/upgrade" variant="secondary" size="sm">
-                    Unlock
-                  </ButtonLink>
+                  <span className="rounded-full bg-accent-soft px-2.5 py-1 text-xs font-medium text-emerald-300">
+                    Pass
+                  </span>
+                ) : starting === item.id ? (
+                  <span className="text-sm text-muted">Starting…</span>
                 ) : (
-                  <Button
-                    size="sm"
-                    variant={item.completedAt ? 'secondary' : 'primary'}
-                    loading={starting === item.id}
-                    onClick={() => onItem(item)}
-                  >
-                    {item.completedAt ? 'Again' : 'Start'}
-                  </Button>
+                  <ArrowRight aria-hidden="true" className="size-4 text-muted" />
                 )}
-              </Card>
-            </li>
-          ))}
+              </>
+            );
+            const cls =
+              'flex w-full items-center gap-3 rounded-2xl border border-line bg-white/[0.02] p-3 text-left transition-colors duration-150 hover:bg-white/[0.05] focus-visible:outline-2 focus-visible:outline-accent';
+            return (
+              <li key={item.id}>
+                {item.locked ? (
+                  <Link
+                    href="/upgrade"
+                    className={cls}
+                    aria-label={`${item.title} — needs Season Pass`}
+                  >
+                    {body}
+                  </Link>
+                ) : (
+                  <button
+                    type="button"
+                    className={cls}
+                    onClick={() => onItem(item)}
+                    disabled={starting !== null}
+                  >
+                    {body}
+                  </button>
+                )}
+              </li>
+            );
+          })}
         </ul>
-        {error && (
-          <Alert tone="danger" className="mt-3">
-            {error}
-          </Alert>
-        )}
+        {plan.data?.completedAt && <Alert tone="success">Done for today. Nice work.</Alert>}
+        {error && <Alert tone="danger">{error}</Alert>}
       </section>
 
       {p && (
-        <section aria-labelledby="week" className="grid grid-cols-3 gap-3">
-          <h2 id="week" className="sr-only">
-            This week
-          </h2>
+        <section aria-label="This week" className="grid grid-cols-3 gap-2">
           {[
-            { label: 'Days this week', value: `${p.week.daysActive}/7` },
-            { label: 'Minutes this week', value: p.week.minutes },
-            { label: 'Questions this week', value: p.week.questions },
+            { label: 'Days', value: `${p.week.daysActive}/7` },
+            { label: 'Minutes', value: p.week.minutes },
+            { label: 'Questions', value: p.week.questions },
           ].map((s) => (
-            <Card key={s.label} className="p-3 text-center">
-              <p className="text-xl font-bold tabular-nums">{s.value}</p>
-              <p className="text-xs text-slate-600">{s.label}</p>
-            </Card>
+            <div key={s.label} className="rounded-2xl border border-line bg-white/[0.02] p-3">
+              <p className="text-xl font-semibold tabular-nums">{s.value}</p>
+              <p className="text-xs text-muted">{s.label} this week</p>
+            </div>
           ))}
         </section>
       )}
 
       {me && !me.plan.paid && (
-        <Card className="space-y-2 border-teal-700">
-          <CardTitle>Study with a full plan</CardTitle>
-          <p className="text-sm text-pretty text-slate-700">
-            Unlimited practice with explanations, mistake review, weekly mocks and a weekly report
-            for your parent.
+        <Link
+          href="/upgrade"
+          className="relative block overflow-hidden rounded-3xl border border-emerald-400/25 p-5 focus-visible:outline-2 focus-visible:outline-accent"
+        >
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 via-emerald-500/5 to-transparent"
+          />
+          <p className="relative flex items-center gap-2 font-semibold">
+            <Sparkles aria-hidden="true" className="size-4 text-accent" /> Season Pass
           </p>
-          <ButtonLink href="/upgrade" size="sm">
-            See the Season Pass
-          </ButtonLink>
-        </Card>
+          <p className="relative mt-1 text-sm text-fg-2">
+            Full plan, explanations, mistake review, weekly mocks.
+          </p>
+          <p className="relative mt-3 inline-flex items-center gap-1 text-sm font-medium text-accent">
+            See what’s included <ArrowRight aria-hidden="true" className="size-4" />
+          </p>
+        </Link>
       )}
 
       {news.data && news.data.length > 0 && (
-        <section aria-labelledby="news" className="space-y-3">
-          <h2 id="news" className="text-lg font-semibold">
+        <section aria-labelledby="news" className="space-y-2">
+          <h2 id="news" className="text-sm font-medium text-muted">
             Verified updates
           </h2>
           {news.data.slice(0, 2).map((n) => (
-            <Card key={n.id}>
-              <p className="font-medium text-balance">{n.title}</p>
-              <p className="mt-1 text-sm text-pretty text-slate-700">{n.body}</p>
-              <p className="mt-2 text-xs text-slate-600">
-                {shortDate(n.publishedAt)}
+            <details
+              key={n.id}
+              className="group rounded-2xl border border-line bg-white/[0.02] p-4"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
+                <span className="font-medium text-balance">{n.title}</span>
+                <span className="text-xs text-muted">{shortDate(n.publishedAt)}</span>
+              </summary>
+              <p className="mt-2 text-sm text-pretty text-muted">
+                {n.body}{' '}
                 {n.officialSourceUrl && (
-                  <>
-                    {' · '}
-                    <a
-                      className="underline"
-                      href={n.officialSourceUrl}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Official source
-                    </a>
-                  </>
+                  <a
+                    className="text-accent underline"
+                    href={n.officialSourceUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Source
+                  </a>
                 )}
               </p>
-            </Card>
+            </details>
           ))}
-          <p className="text-xs text-slate-600">If it’s not from JAMB or us, ignore it.</p>
         </section>
       )}
 
-      <Dialog open={diagOpen} onOpenChange={setDiagOpen} title="Choose your diagnostic">
+      <Dialog open={diagOpen} onOpenChange={setDiagOpen} title="Find your score">
         <div className="space-y-3">
-          <Card>
-            <p className="font-semibold">Full diagnostic</p>
-            <p className="text-sm text-pretty text-slate-600">
-              120 questions, 80 minutes. Gives a reliable predicted score.
-            </p>
-            <Button
-              className="mt-3"
-              block
-              loading={starting === 'diagnostic'}
-              onClick={() =>
-                void start({ type: 'diagnostic', planItemId: 'diagnostic' }, 'diagnostic')
-              }
+          {[
+            {
+              type: 'diagnostic' as const,
+              title: 'Full diagnostic',
+              meta: '120 questions · 80 min',
+              note: 'Most accurate',
+              primary: true,
+            },
+            {
+              type: 'short_diagnostic' as const,
+              title: 'Quick check',
+              meta: '31 questions · 20 min',
+              note: 'Wider range',
+              primary: false,
+            },
+          ].map((d) => (
+            <button
+              key={d.type}
+              type="button"
+              disabled={starting !== null}
+              onClick={() => void start({ type: d.type, planItemId: 'diagnostic' }, d.type)}
+              className={cn(
+                'flex w-full items-center gap-4 rounded-2xl border p-4 text-left transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-accent',
+                d.primary
+                  ? 'border-emerald-400/40 bg-accent-soft hover:bg-emerald-400/15'
+                  : 'border-line bg-white/[0.03] hover:bg-white/[0.06]',
+              )}
             >
-              Start full test
-            </Button>
-          </Card>
-          <Card>
-            <p className="font-semibold">Quick diagnostic</p>
-            <p className="text-sm text-pretty text-slate-600">
-              31 questions, 20 minutes. An early estimate with a wider range.
-            </p>
-            <Button
-              className="mt-3"
-              variant="secondary"
-              block
-              loading={starting === 'short_diagnostic'}
-              onClick={() =>
-                void start(
-                  { type: 'short_diagnostic', planItemId: 'diagnostic' },
-                  'short_diagnostic',
-                )
-              }
-            >
-              Start quick test
-            </Button>
-          </Card>
-          <p className="text-sm text-slate-600">
-            Your answers save as you go. If your network drops, keep answering.
+              <span className="min-w-0 flex-1">
+                <span className="block font-semibold">{d.title}</span>
+                <span className="block text-sm text-muted tabular-nums">{d.meta}</span>
+              </span>
+              <span
+                className={cn('text-xs font-medium', d.primary ? 'text-emerald-300' : 'text-muted')}
+              >
+                {starting === d.type ? 'Starting…' : d.note}
+              </span>
+            </button>
+          ))}
+          <p className="pt-1 text-center text-xs text-muted">
+            Answers save as you go — even offline.
           </p>
         </div>
       </Dialog>

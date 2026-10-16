@@ -81,7 +81,7 @@ export default function OrdersPage() {
             cell: (o) =>
               o.user ? (
                 <Link
-                  className="text-teal-800 underline-offset-4 hover:underline"
+                  className="text-fg underline-offset-4 hover:text-accent hover:underline"
                   href={`/admin/users/${o.user.id}`}
                 >
                   {o.user.name ?? o.user.phone}

@@ -83,10 +83,10 @@ export function Calculator() {
     <div className="space-y-3">
       <output
         aria-live="polite"
-        className="block rounded-lg bg-slate-900 px-3 py-3 text-right text-2xl text-white tabular-nums"
+        className="block rounded-xl bg-black px-4 py-4 text-right font-mono text-3xl text-fg tabular-nums"
       >
         {op && acc !== null ? (
-          <span className="mr-2 text-sm text-slate-400">
+          <span className="mr-2 text-sm text-faint">
             {fmt(acc)} {op}
           </span>
         ) : null}
@@ -100,14 +100,14 @@ export function Calculator() {
             aria-label={k.aria}
             onClick={k.onClick}
             className={cn(
-              'min-h-12 rounded-lg text-lg font-semibold tabular-nums focus-visible:outline-2 focus-visible:outline-teal-700',
+              'min-h-12 rounded-lg text-lg font-semibold tabular-nums focus-visible:outline-2 focus-visible:outline-accent',
               k.kind === 'op'
-                ? 'bg-teal-50 text-teal-800'
+                ? 'bg-accent-soft text-accent'
                 : k.kind === 'eq'
-                  ? 'col-span-2 bg-teal-700 text-white'
+                  ? 'col-span-2 bg-accent text-on-accent'
                   : k.kind === 'fn'
-                    ? 'bg-slate-200'
-                    : 'bg-slate-100',
+                    ? 'bg-surface-3'
+                    : 'bg-surface-2',
             )}
           >
             {k.label}

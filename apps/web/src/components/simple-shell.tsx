@@ -16,8 +16,8 @@ export function SimpleShell({
 }) {
   const { signedIn, signOut } = useSession();
   return (
-    <div className="min-h-dvh bg-slate-50">
-      <header className="border-b border-slate-200 bg-white">
+    <div className="min-h-dvh bg-canvas">
+      <header className="border-b border-line bg-surface">
         <div className={`mx-auto flex ${width} items-center justify-between px-4`}>
           <Logo href={home} />
           {signedIn && (

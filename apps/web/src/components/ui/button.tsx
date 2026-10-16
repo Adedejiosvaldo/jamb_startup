@@ -6,17 +6,18 @@ type Variant = 'primary' | 'secondary' | 'ghost' | 'danger';
 type Size = 'md' | 'sm' | 'lg';
 
 const base =
-  'inline-flex items-center justify-center gap-2 rounded-lg font-semibold transition-colors duration-150 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 disabled:cursor-not-allowed disabled:opacity-50';
+  'inline-flex items-center justify-center gap-2 rounded-xl font-semibold whitespace-nowrap transition-[background-color,border-color,color,opacity] duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent disabled:cursor-not-allowed disabled:opacity-40';
 const variants: Record<Variant, string> = {
-  primary: 'bg-teal-700 text-white hover:bg-teal-800',
-  secondary: 'border border-slate-300 bg-white text-slate-900 hover:bg-slate-50',
-  ghost: 'text-slate-700 hover:bg-slate-100',
-  danger: 'bg-red-700 text-white hover:bg-red-800',
+  primary:
+    'bg-gradient-to-b from-emerald-300 to-emerald-500 text-on-accent shadow-[inset_0_1px_0_rgb(255_255_255/0.35),0_8px_24px_-8px_rgb(16_185_129/0.5)] hover:from-emerald-200 hover:to-emerald-400',
+  secondary: 'border border-line-strong bg-white/[0.04] text-fg hover:bg-white/[0.08]',
+  ghost: 'text-fg-2 hover:bg-white/[0.06] hover:text-fg',
+  danger: 'bg-red-500 text-white hover:bg-red-600',
 };
 const sizes: Record<Size, string> = {
-  sm: 'min-h-9 px-3 text-sm',
-  md: 'min-h-11 px-4 text-base',
-  lg: 'min-h-12 px-6 text-base',
+  sm: 'min-h-9 px-3.5 text-sm',
+  md: 'min-h-11 px-5 text-[15px]',
+  lg: 'min-h-13 px-6 text-base',
 };
 
 export function buttonClass(variant: Variant = 'primary', size: Size = 'md', className?: string) {

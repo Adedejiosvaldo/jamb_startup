@@ -40,20 +40,20 @@ export function TrendChart({ history, target }: { history: Prediction[]; target:
       >
         {ticks.map((t) => (
           <g key={t}>
-            <line x1={pad.l} x2={W - pad.r} y1={y(t)} y2={y(t)} stroke="#e2e8f0" />
+            <line x1={pad.l} x2={W - pad.r} y1={y(t)} y2={y(t)} stroke="rgb(255 255 255 / 0.06)" />
             <text
               x={pad.l - 6}
               y={y(t) + 4}
               textAnchor="end"
               fontSize="11"
-              fill="#475569"
+              fill="#a1a1aa"
               style={{ fontVariantNumeric: 'tabular-nums' }}
             >
               {t}
             </text>
           </g>
         ))}
-        {history.length > 1 && <path d={band} fill="#0f766e" fillOpacity="0.12" />}
+        {history.length > 1 && <path d={band} fill="#34d399" fillOpacity="0.12" />}
         {target ? (
           <g>
             <line
@@ -61,15 +61,15 @@ export function TrendChart({ history, target }: { history: Prediction[]; target:
               x2={W - pad.r}
               y1={y(target)}
               y2={y(target)}
-              stroke="#0f172a"
+              stroke="#fafafa"
               strokeDasharray="4 4"
             />
-            <text x={W - pad.r} y={y(target) - 6} textAnchor="end" fontSize="11" fill="#0f172a">
+            <text x={W - pad.r} y={y(target) - 6} textAnchor="end" fontSize="11" fill="#fafafa">
               Target {target}
             </text>
           </g>
         ) : null}
-        <path d={line} fill="none" stroke="#0f766e" strokeWidth="2.5" strokeLinejoin="round" />
+        <path d={line} fill="none" stroke="#34d399" strokeWidth="2.5" strokeLinejoin="round" />
         {history.map((p, i) => (
           <circle
             key={p.id}
@@ -77,7 +77,7 @@ export function TrendChart({ history, target }: { history: Prediction[]; target:
             cy={y(p.mid)}
             r="4"
             fill="#fff"
-            stroke="#0f766e"
+            stroke="#34d399"
             strokeWidth="2"
           />
         ))}
@@ -89,7 +89,7 @@ export function TrendChart({ history, target }: { history: Prediction[]; target:
               y={H - 8}
               textAnchor={i === 0 && history.length > 1 ? 'start' : 'end'}
               fontSize="11"
-              fill="#475569"
+              fill="#a1a1aa"
             >
               {dayMonth(p.createdAt)}
             </text>

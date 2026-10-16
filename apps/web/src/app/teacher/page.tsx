@@ -130,31 +130,29 @@ export default function TeacherPage() {
         <PageHeader title="Your classes" />
         <div className="grid gap-3 sm:grid-cols-3">
           <Card>
-            <p className="text-sm text-slate-600">Your student discount code</p>
+            <p className="text-sm text-muted">Your student discount code</p>
             <p className="mt-1 font-mono text-xl font-bold">
               {me.data.coupon?.code ?? me.data.referralCode}
             </p>
             {me.data.coupon?.percentOff && (
-              <p className="text-sm text-slate-600">
+              <p className="text-sm text-muted">
                 {me.data.coupon.percentOff}% off for your students
               </p>
             )}
           </Card>
           <Card>
-            <p className="text-sm text-slate-600">Commission owed</p>
+            <p className="text-sm text-muted">Commission owed</p>
             <p className="mt-1 text-xl font-bold tabular-nums">
               {naira(earnings.data?.owedKobo ?? 0)}
             </p>
-            <p className="text-sm text-slate-600">
-              {me.data.commissionPct}% per sale · paid monthly
-            </p>
+            <p className="text-sm text-muted">{me.data.commissionPct}% per sale · paid monthly</p>
           </Card>
           <Card>
-            <p className="text-sm text-slate-600">Paid students</p>
+            <p className="text-sm text-muted">Paid students</p>
             <p className="mt-1 text-xl font-bold tabular-nums">
               {earnings.data?.paidStudents ?? 0}
             </p>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-muted">
               {naira(earnings.data?.paidKobo ?? 0)} paid out so far
             </p>
           </Card>
@@ -199,7 +197,7 @@ export default function TeacherPage() {
                   onClick={() => setSelected(c.id)}
                   className={cn(
                     'min-h-11 rounded-lg px-3 text-sm font-medium whitespace-nowrap',
-                    activeId === c.id ? 'bg-teal-700 text-white' : 'bg-white ring-1 ring-slate-200',
+                    activeId === c.id ? 'bg-accent text-on-accent' : 'bg-surface ring-1 ring-line',
                   )}
                 >
                   {c.name} <span className="tabular-nums">({c._count.members})</span>
@@ -211,7 +209,7 @@ export default function TeacherPage() {
               <div role="tabpanel" className="space-y-4">
                 <Card className="flex flex-wrap items-center justify-between gap-3">
                   <div>
-                    <p className="text-sm text-slate-600">
+                    <p className="text-sm text-muted">
                       Class code — students enter it in Account → Lesson class
                     </p>
                     <p className="font-mono text-2xl font-bold">{o.class.joinCode}</p>
@@ -262,7 +260,7 @@ export default function TeacherPage() {
                             </li>
                           ))}
                           {!o.weakestTopics.length && (
-                            <li className="text-slate-600">Not enough practice data yet.</li>
+                            <li className="text-muted">Not enough practice data yet.</li>
                           )}
                         </ol>
                       </Card>
@@ -281,7 +279,7 @@ export default function TeacherPage() {
                     <Card className="overflow-x-auto p-0">
                       <table className="w-full text-sm">
                         <caption className="sr-only">Students</caption>
-                        <thead className="bg-slate-50 text-left text-slate-600">
+                        <thead className="bg-canvas text-left text-muted">
                           <tr>
                             <th className="p-3 font-medium">Student</th>
                             <th className="p-3 font-medium">Days (7)</th>
@@ -289,7 +287,7 @@ export default function TeacherPage() {
                             <th className="p-3 font-medium">Predicted</th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-100">
+                        <tbody className="divide-y divide-line">
                           {o.students.map((s) => (
                             <tr key={s.id}>
                               <td className="p-3">
@@ -312,7 +310,7 @@ export default function TeacherPage() {
           <Empty
             title="Create your first class"
             action={
-              <span className="flex items-center gap-1 text-sm text-slate-600">
+              <span className="flex items-center gap-1 text-sm text-muted">
                 <Users aria-hidden="true" className="size-4" /> Use the form above
               </span>
             }
@@ -324,7 +322,7 @@ export default function TeacherPage() {
         {earnings.data && earnings.data.history.length > 0 && (
           <Card>
             <CardTitle>Earnings history</CardTitle>
-            <ul className="mt-2 divide-y divide-slate-100 text-sm">
+            <ul className="mt-2 divide-y divide-line text-sm">
               {earnings.data.history.map((h) => (
                 <li key={h.id} className="flex justify-between py-2">
                   <span>{h.saleAt ? shortDate(h.saleAt) : '—'}</span>

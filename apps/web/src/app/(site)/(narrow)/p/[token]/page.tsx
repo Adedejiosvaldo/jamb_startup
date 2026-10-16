@@ -65,7 +65,7 @@ export default function ParentPage() {
         <h1 className="text-2xl font-bold text-balance">
           Weekly JAMB progress reports for {child}
         </h1>
-        <p className="text-pretty text-slate-700">
+        <p className="text-pretty text-fg-2">
           {child} is preparing for JAMB with ScoreCoach and would like you to get one short WhatsApp
           message every Sunday: days studied, minutes, how the predicted score moved, and what
           improved. No other messages except important exam dates you can turn off.
@@ -76,7 +76,7 @@ export default function ParentPage() {
         <Button block size="lg" loading={busy} onClick={() => void act('opt-in')}>
           Yes, send me reports
         </Button>
-        <p className="text-sm text-slate-600">
+        <p className="text-sm text-muted">
           You can stop at any time by replying STOP or using this page. We never share your number.
           Not affiliated with JAMB.
         </p>
@@ -101,7 +101,7 @@ export default function ParentPage() {
   return (
     <div className="space-y-6">
       <div>
-        <p className="flex items-center gap-1 text-sm font-medium text-green-800">
+        <p className="flex items-center gap-1 text-sm font-medium text-emerald-300">
           <CheckCircle2 aria-hidden="true" className="size-4" /> You’re receiving weekly reports
         </p>
         <h1 className="mt-1 text-2xl font-bold text-balance">{child}’s JAMB progress</h1>
@@ -117,7 +117,7 @@ export default function ParentPage() {
             ].map((s) => (
               <Card key={s.label} className="p-3 text-center">
                 <p className="text-xl font-bold tabular-nums">{s.value}</p>
-                <p className="text-xs text-slate-600">{s.label}</p>
+                <p className="text-xs text-muted">{s.label}</p>
               </Card>
             ))}
           </div>
@@ -130,25 +130,25 @@ export default function ParentPage() {
                 </p>
                 {r.prediction.previous !== null &&
                   r.prediction.previous !== r.prediction.latest && (
-                    <p className="text-slate-700 tabular-nums">
+                    <p className="text-fg-2 tabular-nums">
                       Was about {r.prediction.previous}, now about {r.prediction.latest} (
                       {r.prediction.latest - r.prediction.previous >= 0 ? '+' : ''}
                       {r.prediction.latest - r.prediction.previous}).
                     </p>
                   )}
                 {r.target.score && (
-                  <p className="text-pretty text-slate-700">
+                  <p className="text-pretty text-fg-2">
                     Target for {r.target.course ?? 'their course'}
                     {r.target.university ? ` at ${r.target.university}` : ''}:{' '}
                     <span className="font-semibold tabular-nums">{r.target.score}+</span>
                   </p>
                 )}
-                <p className="text-sm text-slate-600">
+                <p className="text-sm text-muted">
                   This is an estimate from practice tests, not a guarantee.
                 </p>
               </>
             ) : (
-              <p className="text-slate-700">{child} hasn’t taken a diagnostic yet.</p>
+              <p className="text-fg-2">{child} hasn’t taken a diagnostic yet.</p>
             )}
           </Card>
           {history.length > 1 && (
@@ -162,7 +162,7 @@ export default function ParentPage() {
               {r.biggestImprovement}
             </Alert>
           )}
-          <p className="text-pretty text-slate-700">
+          <p className="text-pretty text-fg-2">
             {r.week.daysActive >= 4
               ? 'A quick “well done” goes a long way.'
               : 'A little encouragement to study daily this week will help.'}
@@ -171,7 +171,7 @@ export default function ParentPage() {
       )}
       <button
         type="button"
-        className="min-h-11 text-sm text-slate-600 underline"
+        className="min-h-11 text-sm text-muted underline"
         disabled={busy}
         onClick={() => void act('opt-out')}
       >
