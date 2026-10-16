@@ -21,6 +21,31 @@ describe('loadEnv', () => {
     expect(() => loadEnv({ ...base, NODE_ENV: 'production' })).toThrow(/console/);
   });
 
+  it('lets staging use test providers (Vercel sets NODE_ENV=production)', () => {
+    const env = loadEnv({
+      ...base,
+      NODE_ENV: 'production',
+      APP_ENV: 'staging',
+      DEV_FIXED_OTP: '123456',
+    });
+    expect(env.APP_ENV).toBe('staging');
+    expect(env.PAYMENT_PROVIDER).toBe('fake');
+  });
+
+  it('refuses a fixed OTP in production', () => {
+    expect(() =>
+      loadEnv({
+        ...base,
+        NODE_ENV: 'production',
+        SMS_PROVIDER: 'termii',
+        TERMII_API_KEY: 'k',
+        PAYMENT_PROVIDER: 'paystack',
+        PAYSTACK_SECRET_KEY: 's',
+        DEV_FIXED_OTP: '123456',
+      }),
+    ).toThrow(/DEV_FIXED_OTP/);
+  });
+
   it('refuses the fake payment provider in production', () => {
     expect(() =>
       loadEnv({ ...base, NODE_ENV: 'production', SMS_PROVIDER: 'termii', TERMII_API_KEY: 'k' }),

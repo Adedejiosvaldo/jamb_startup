@@ -11,74 +11,8 @@ import { PrismaClient, QuestionSource } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-// [VERIFY] topic names against the current JAMB syllabus; weights are placeholders.
-const TOPICS: Record<string, [string, number][]> = {
-  ENG: [
-    ['Comprehension', 0.3],
-    ['Lexis and structure', 0.35],
-    ['Oral forms', 0.15],
-    ['Prescribed novel', 0.2],
-  ],
-  MTH: [
-    ['Number and numeration', 0.25],
-    ['Algebra', 0.3],
-    ['Geometry and trigonometry', 0.2],
-    ['Calculus', 0.1],
-    ['Statistics', 0.15],
-  ],
-  PHY: [
-    ['Measurement and units', 0.1],
-    ['Motion', 0.25],
-    ['Heat', 0.15],
-    ['Waves and optics', 0.2],
-    ['Electricity', 0.3],
-  ],
-  CHM: [
-    ['Atomic structure', 0.2],
-    ['Chemical bonding', 0.2],
-    ['Acids, bases and salts', 0.2],
-    ['Organic chemistry', 0.25],
-    ['Electrolysis', 0.15],
-  ],
-  BIO: [
-    ['Cell biology', 0.2],
-    ['Ecology', 0.25],
-    ['Genetics', 0.2],
-    ['Human physiology', 0.35],
-  ],
-  ECO: [
-    ['Demand and supply', 0.3],
-    ['National income', 0.25],
-    ['Money and banking', 0.25],
-    ['Public finance', 0.2],
-  ],
-  GOV: [
-    ['Basic concepts', 0.3],
-    ['Nigerian constitutional development', 0.35],
-    ['International relations', 0.35],
-  ],
-  LIT: [
-    ['Drama', 0.3],
-    ['Prose', 0.35],
-    ['Poetry', 0.35],
-  ],
-  CRS: [
-    ['Old Testament', 0.5],
-    ['New Testament', 0.5],
-  ],
-  COM: [
-    ['Trade', 0.4],
-    ['Business organisations', 0.3],
-    ['Finance', 0.3],
-  ],
-  ACC: [
-    ['Bookkeeping', 0.4],
-    ['Final accounts', 0.35],
-    ['Partnership', 0.25],
-  ],
-};
-
-const QUESTIONS_PER_TOPIC = 40;
+/** Placeholder questions per syllabus topic, so every test type has enough to draw from locally. */
+const QUESTIONS_PER_TOPIC = 8;
 const LETTERS = ['A', 'B', 'C', 'D'] as const;
 
 function rng(seed: number) {
@@ -139,56 +73,55 @@ async function main(): Promise<void> {
     create: { phone: '+2348000000002', role: 'reviewer', name: 'Demo Reviewer' },
   });
 
+  // Fill each syllabus topic (from `db:seed`) with placeholders up to QUESTIONS_PER_TOPIC live questions.
   let qCount = 0;
-  for (const [code, topics] of Object.entries(TOPICS)) {
-    const subject = await prisma.subject.findUnique({ where: { code } });
-    if (!subject) continue;
-    for (const [ti, [name, weight]] of topics.entries()) {
-      const topic =
-        (await prisma.topic.findFirst({ where: { subjectId: subject.id, name } })) ??
-        (await prisma.topic.create({
-          data: { subjectId: subject.id, name, weight, syllabusRef: `demo-${code}-${ti + 1}` },
-        }));
-      const have = await prisma.question.count({ where: { topicId: topic.id } });
-      const r = rng(code.charCodeAt(0) * 1000 + ti);
-      const rows = [];
-      for (let i = have; i < QUESTIONS_PER_TOPIC; i++) {
-        const q =
-          code === 'MTH'
-            ? mathsQuestion(r, i)
-            : (() => {
-                const correct = LETTERS[Math.floor(r() * 4)]!;
-                return {
-                  stem: `[DEMO] Practice item ${i + 1} on ${name}. Placeholder content — replace with reviewed questions. The correct option is ${correct}.`,
-                  options: Object.fromEntries(LETTERS.map((l) => [l, `${name} option ${l}`])),
-                  correct,
-                  explanation: `[DEMO] ${correct} is correct for this placeholder.`,
-                  explanationsWrong: Object.fromEntries(
-                    LETTERS.filter((l) => l !== correct).map((l) => [
-                      l,
-                      `[DEMO] ${l} is a distractor.`,
-                    ]),
-                  ),
-                };
-              })();
-        rows.push({
-          subjectId: subject.id,
-          topicId: topic.id,
-          stem: q.stem,
-          options: q.options,
-          correctOption: q.correct,
-          explanationCorrect: q.explanation,
-          explanationsWrong: q.explanationsWrong,
-          difficulty: 1 + Math.floor(r() * 3),
-          source: QuestionSource.original,
-          status: 'live' as const,
-          authorId: admin.id,
-          reviewedBy: reviewer.id,
-          reviewedAt: new Date(),
-        });
-      }
-      if (rows.length) qCount += (await prisma.question.createMany({ data: rows })).count;
+  const topics = await prisma.topic.findMany({
+    include: { subject: true },
+    orderBy: { syllabusRef: 'asc' },
+  });
+  if (!topics.length) throw new Error('No topics — run db:seed first.');
+  for (const [ti, topic] of topics.entries()) {
+    const code = topic.subject.code;
+    const name = topic.name;
+    const have = await prisma.question.count({ where: { topicId: topic.id, status: 'live' } });
+    const r = rng(code.charCodeAt(0) * 1000 + ti);
+    const rows = [];
+    for (let i = have; i < QUESTIONS_PER_TOPIC; i++) {
+      const q =
+        code === 'MTH'
+          ? mathsQuestion(r, i)
+          : (() => {
+              const correct = LETTERS[Math.floor(r() * 4)]!;
+              return {
+                stem: `[DEMO] Practice item ${i + 1} on ${name}. Placeholder content — replace with reviewed questions. The correct option is ${correct}.`,
+                options: Object.fromEntries(LETTERS.map((l) => [l, `${name} option ${l}`])),
+                correct,
+                explanation: `[DEMO] ${correct} is correct for this placeholder.`,
+                explanationsWrong: Object.fromEntries(
+                  LETTERS.filter((l) => l !== correct).map((l) => [
+                    l,
+                    `[DEMO] ${l} is a distractor.`,
+                  ]),
+                ),
+              };
+            })();
+      rows.push({
+        subjectId: topic.subjectId,
+        topicId: topic.id,
+        stem: q.stem,
+        options: q.options,
+        correctOption: q.correct,
+        explanationCorrect: q.explanation,
+        explanationsWrong: q.explanationsWrong,
+        difficulty: 1 + Math.floor(r() * 3),
+        source: QuestionSource.original,
+        status: 'live' as const,
+        authorId: admin.id,
+        reviewedBy: reviewer.id,
+        reviewedAt: new Date(),
+      });
     }
+    if (rows.length) qCount += (await prisma.question.createMany({ data: rows })).count;
   }
 
   const universities = [

@@ -46,19 +46,22 @@ Tracks spec §25. Update this file in the same PR as the work.
 
 **Decisions** ([DECIDE])
 
-1. Hosting for staging/production (§12.2) — nothing is deployed yet.
+1. Hosting: **Vercel** chosen (web + API serverless + Neon Postgres). Config and guide ready in `docs/deploy-vercel.md`; needs your Vercel account to connect the repo.
 2. Product name + domain (code uses "ScoreCoach", `scorecoach.ng`, `pay.scorecoach.ng`).
 3. Price (seed uses ₦12,000), early-bird coupon, teacher commission (default 20%) and student discount (default 10%).
 4. MVP subject list; whether under-18 sign-up needs parental consent (§14).
 5. Short-diagnostic vs the "30 answers per subject" rule: implemented as an _early estimate_ (±25 floor) below 30. Confirm.
 
-**Content (the real bottleneck)** — `db:seed:demo` is placeholder only. Needed before launch: real syllabus topics + weights from tagged past papers, 300+ reviewed questions per subject with explanations, course requirements from the current JAMB brochure for 20 universities × 30 courses, 2027 exam dates/fees/novel.
+**Content (the real bottleneck)** — now in the repo: 250 syllabus topics across the 11 subjects ([VERIFY] against IBASS) and
+220 original JAMB-style questions with right/wrong explanations, imported as drafts awaiting teacher review
+(`docs/content-guide.md`). Still needed: topic weights from tagged past papers, ~300 reviewed questions per subject,
+course requirements from the current JAMB brochure (20 universities × 30 courses), 2027 exam dates/fees/novel.
 
 **Accounts / verification** — Termii (sender ID, DND delivery per network), Paystack business verification + webhook URL, WhatsApp Business number, legal review of privacy/terms/refunds and use of past questions, NDPA.
 
 **Engineering still open**
 
-- Deploy + staging, Sentry, structured logs, uptime checks, backups (§12)
+- Connect Vercel + Neon (config done), then Sentry, structured logs, uptime checks, backups (§12)
 - WhatsApp Cloud API automation (templates, inactivity alerts, key dates) — manual outbox works today
 - Offline content packs + delta updates (§13.1–2); today a started test works offline, starting a new one needs network
 - Refresh token in httpOnly cookie (currently localStorage) once web and API share a domain

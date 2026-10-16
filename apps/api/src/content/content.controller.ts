@@ -69,6 +69,32 @@ export class ContentAdminController {
     return this.content.review(req.auth.userId, id, body.decision, body.note);
   }
 
+  /** Review many at once; each still goes through the same rules (no self-approval, explanation required). */
+  @Post('questions/review-bulk')
+  async reviewBulk(
+    @Req() req: AuthedRequest,
+    @Body(
+      new ZodBodyPipe(
+        z.object({
+          ids: z.array(z.string().uuid()).min(1).max(200),
+          decision: z.enum(['approve', 'reject']),
+        }),
+      ),
+    )
+    body: { ids: string[]; decision: 'approve' | 'reject' },
+  ) {
+    const results = [];
+    for (const id of body.ids) {
+      try {
+        await this.content.review(req.auth.userId, id, body.decision);
+        results.push({ id, ok: true });
+      } catch (err) {
+        results.push({ id, ok: false, error: (err as Error).message });
+      }
+    }
+    return { done: results.filter((r) => r.ok).length, failed: results.filter((r) => !r.ok) };
+  }
+
   @Post('questions/import')
   import(
     @Req() req: AuthedRequest,

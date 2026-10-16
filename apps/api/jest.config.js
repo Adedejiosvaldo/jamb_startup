@@ -7,7 +7,11 @@ const base = {
 
 module.exports = {
   projects: [
-    { ...base, displayName: 'unit', testMatch: ['<rootDir>/src/**/*.spec.ts'] },
+    {
+      ...base,
+      displayName: 'unit',
+      testMatch: ['<rootDir>/src/**/*.spec.ts', '<rootDir>/prisma/**/*.spec.ts'],
+    },
     {
       ...base,
       displayName: 'e2e',

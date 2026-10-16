@@ -51,6 +51,11 @@ export default function QuestionsPage() {
   const isAdmin = me?.role === 'admin';
 
   const reviewed = list.data?.items.filter((r) => r.status === 'reviewed') ?? [];
+  const drafts =
+    list.data?.items.filter((r) => r.status === 'draft' || r.status === 'flagged') ?? [];
+  const selectable = (status: string) =>
+    status === 'draft' || status === 'flagged' || (status === 'reviewed' && isAdmin);
+  const selectedDrafts = drafts.filter((r) => selected.has(r.id)).map((r) => r.id);
 
   return (
     <div className="space-y-4">
@@ -113,31 +118,82 @@ export default function QuestionsPage() {
         />
       </form>
 
-      {isAdmin && reviewed.length > 0 && (
-        <div className="flex flex-wrap items-center gap-3 rounded-lg bg-accent-soft p-3 text-sm">
-          <span>
+      {(drafts.length > 0 || (isAdmin && reviewed.length > 0)) && (
+        <div className="flex flex-wrap items-center gap-3 rounded-xl border border-line bg-white/[0.03] p-3 text-sm">
+          <span className="text-muted">
             {selected.size
               ? `${selected.size} selected`
-              : `${reviewed.length} reviewed on this page ready to publish`}
+              : 'Tick questions to review or publish them in bulk.'}
           </span>
-          <Button
-            size="sm"
-            loading={action.busy === 'publish'}
-            onClick={() =>
-              void action.run(
-                'publish',
-                async () => {
-                  const ids = selected.size ? [...selected] : reviewed.map((r) => r.id);
-                  await api('/v1/admin/questions/publish', { method: 'POST', body: { ids } });
-                  setSelected(new Set());
-                  await list.reload();
-                },
-                'Published.',
-              )
-            }
-          >
-            Publish {selected.size ? 'selected' : 'all reviewed'}
-          </Button>
+          {drafts.length > 0 && (
+            <Button
+              size="sm"
+              variant="secondary"
+              disabled={!selectedDrafts.length}
+              loading={action.busy === 'approve'}
+              onClick={() =>
+                void action.run(
+                  'approve',
+                  async () => {
+                    const res = await api<{ done: number; failed: { error: string }[] }>(
+                      '/v1/admin/questions/review-bulk',
+                      {
+                        method: 'POST',
+                        body: { ids: selectedDrafts, decision: 'approve' },
+                      },
+                    );
+                    setSelected(new Set());
+                    await list.reload();
+                    if (res.failed.length)
+                      throw new Error(
+                        `${res.done} approved. ${res.failed.length} not: ${res.failed[0]!.error}`,
+                      );
+                    return res;
+                  },
+                  'Approved. An admin can now publish them.',
+                )
+              }
+            >
+              Approve {selectedDrafts.length || ''} draft{selectedDrafts.length === 1 ? '' : 's'}
+            </Button>
+          )}
+          {isAdmin && reviewed.length > 0 && (
+            <Button
+              size="sm"
+              loading={action.busy === 'publish'}
+              onClick={() =>
+                void action.run(
+                  'publish',
+                  async () => {
+                    const picked = reviewed.filter((r) => selected.has(r.id)).map((r) => r.id);
+                    const ids = picked.length ? picked : reviewed.map((r) => r.id);
+                    await api('/v1/admin/questions/publish', { method: 'POST', body: { ids } });
+                    setSelected(new Set());
+                    await list.reload();
+                  },
+                  'Published.',
+                )
+              }
+            >
+              Publish{' '}
+              {reviewed.some((r) => selected.has(r.id))
+                ? 'selected'
+                : `all ${reviewed.length} reviewed`}
+            </Button>
+          )}
+          {list.data && (
+            <button
+              type="button"
+              className="ml-auto text-sm text-accent underline-offset-4 hover:underline"
+              onClick={() =>
+                setSelected(
+                  new Set(list.data!.items.filter((r) => selectable(r.status)).map((r) => r.id)),
+                )
+              }
+            >
+              Select all on page
+            </button>
+          )}
         </div>
       )}
       {action.error && <Alert tone="danger">{action.error}</Alert>}
@@ -152,10 +208,10 @@ export default function QuestionsPage() {
           {
             header: <span className="sr-only">Select</span>,
             cell: (r) =>
-              r.status === 'reviewed' && isAdmin ? (
+              selectable(r.status) ? (
                 <input
                   type="checkbox"
-                  aria-label="Select for publishing"
+                  aria-label="Select"
                   className="size-4 accent-emerald-400"
                   checked={selected.has(r.id)}
                   onChange={() =>

@@ -70,7 +70,8 @@ export class OtpService {
       );
     }
 
-    const code = randomNumericCode(OTP_LENGTH);
+    // DEV_FIXED_OTP lets testers sign in on staging without SMS; loadEnv refuses it in production.
+    const code = this.env.DEV_FIXED_OTP ?? randomNumericCode(OTP_LENGTH);
     // Only the newest code is valid: expire any outstanding ones.
     await this.prisma.$transaction([
       this.prisma.otpRequest.updateMany({

@@ -1,0 +1,326 @@
+[
+  {
+    "topicName": "Economics as a science",
+    "stem": "Opportunity cost is best defined as",
+    "options": {
+      "A": "the alternative forgone",
+      "B": "the money price of a good",
+      "C": "the total cost of production",
+      "D": "the cost of borrowing"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Opportunity cost is the next best alternative given up when a choice is made.",
+    "explanationsWrong": {
+      "B": "Money price is just what is paid, not what is sacrificed.",
+      "C": "Total cost is the sum of fixed and variable costs.",
+      "D": "The cost of borrowing is interest."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Economic systems",
+    "stem": "In a capitalist economy, the means of production are mainly owned by",
+    "options": {
+      "A": "the government",
+      "B": "foreign countries",
+      "C": "trade unions",
+      "D": "private individuals"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Capitalism is based on private ownership of resources and the price mechanism.",
+    "explanationsWrong": {
+      "A": "Government ownership characterises socialism.",
+      "B": "Foreign ownership isn't a defining feature of any system.",
+      "C": "Trade unions represent workers; they don't own the means of production."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Theory of demand",
+    "stem": "The law of demand states that, other things being equal,",
+    "options": {
+      "A": "as price rises, quantity demanded rises",
+      "B": "as income rises, demand falls",
+      "C": "as price rises, quantity demanded falls",
+      "D": "supply creates its own demand"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Price and quantity demanded move in opposite directions (an inverse relationship), ceteris paribus.",
+    "explanationsWrong": {
+      "A": "That describes the law of supply.",
+      "B": "For normal goods, demand rises with income.",
+      "D": "That is Say's law."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Theory of demand",
+    "stem": "When the price of a good rises from ₦10 to ₦12, quantity demanded falls from 100 to 80 units. The price elasticity of demand is",
+    "options": {
+      "A": "0.5 (inelastic)",
+      "B": "1 (unitary)",
+      "C": "2 (elastic)",
+      "D": "0 (perfectly inelastic)"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "% change in quantity = −20/100 = −20%. % change in price = 2/10 = 20%. PED = 20%/20% = 1 (unitary).",
+    "explanationsWrong": {
+      "A": "0.5 would need quantity to fall by only 10%.",
+      "C": "2 would need quantity to fall by 40%.",
+      "D": "Quantity did change, so demand isn't perfectly inelastic."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Theory of supply",
+    "stem": "Which of these causes the supply curve of a good to shift to the right?",
+    "options": {
+      "A": "An improvement in production technology",
+      "B": "A rise in the price of the good",
+      "C": "A new tax on the good",
+      "D": "A rise in the cost of raw materials"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Better technology lowers costs, so more is supplied at every price — the curve shifts right.",
+    "explanationsWrong": {
+      "B": "A change in the good's own price is a movement along the curve.",
+      "C": "A tax raises costs and shifts supply left.",
+      "D": "Higher input costs shift supply left."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Theory of price determination",
+    "stem": "A maximum price (price ceiling) set below the equilibrium price leads to",
+    "options": {
+      "A": "a surplus",
+      "B": "no change",
+      "C": "a fall in demand",
+      "D": "a shortage"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "At the lower price, quantity demanded exceeds quantity supplied, creating a shortage (and often black markets).",
+    "explanationsWrong": {
+      "A": "A surplus results from a minimum price set above equilibrium.",
+      "B": "A binding ceiling below equilibrium always changes the market outcome.",
+      "C": "Quantity demanded rises at a lower price."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Theory of production",
+    "stem": "The law of diminishing returns operates when",
+    "options": {
+      "A": "all factors are variable",
+      "B": "output is zero",
+      "C": "at least one factor is fixed",
+      "D": "the firm is in the long run"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Adding more of a variable factor to a fixed factor eventually makes the marginal product fall — a short-run idea.",
+    "explanationsWrong": {
+      "A": "When all factors vary, we talk about returns to scale.",
+      "B": "The law is about how output changes as inputs are added.",
+      "D": "In the long run all factors are variable."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Theory of costs and revenue",
+    "stem": "A firm's total fixed cost is ₦500 and total variable cost is ₦300 at an output of 100 units. What is the average total cost?",
+    "options": {
+      "A": "₦3",
+      "B": "₦8",
+      "C": "₦5",
+      "D": "₦800"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "TC = 500 + 300 = ₦800. ATC = TC/Q = 800/100 = ₦8.",
+    "explanationsWrong": {
+      "A": "₦3 is average variable cost.",
+      "C": "₦5 is average fixed cost.",
+      "D": "₦800 is total cost, not average."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Market structures",
+    "stem": "A firm in perfect competition is described as a price taker because",
+    "options": {
+      "A": "it is too small to influence the market price",
+      "B": "it sets the market price",
+      "C": "it sells a unique product",
+      "D": "the government fixes its price"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "With many sellers of identical products, each firm accepts the market price.",
+    "explanationsWrong": {
+      "B": "Price-setting power belongs to monopolies.",
+      "C": "Products are identical (homogeneous) in perfect competition.",
+      "D": "Price is set by market demand and supply, not government."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "National income",
+    "stem": "Gross National Product (GNP) is equal to",
+    "options": {
+      "A": "GDP minus depreciation",
+      "B": "GDP minus taxes",
+      "C": "consumption plus savings",
+      "D": "GDP plus net income from abroad"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "GNP = GDP + net factor income from abroad.",
+    "explanationsWrong": {
+      "A": "GDP minus depreciation is Net Domestic Product.",
+      "B": "Subtracting taxes doesn't give GNP.",
+      "C": "Consumption plus savings is disposable income."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Money and inflation",
+    "stem": "Money solves the problem of barter by",
+    "options": {
+      "A": "increasing production",
+      "B": "reducing taxes",
+      "C": "acting as a medium of exchange",
+      "D": "creating employment"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Barter needs a double coincidence of wants; money as a medium of exchange removes that need.",
+    "explanationsWrong": {
+      "A": "Money doesn't directly increase production.",
+      "B": "Taxation is unrelated to the barter problem.",
+      "D": "Employment isn't the barter problem money solves."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Money and inflation",
+    "stem": "Demand-pull inflation is caused by",
+    "options": {
+      "A": "rising wages only",
+      "B": "too much money chasing too few goods",
+      "C": "a fall in aggregate demand",
+      "D": "falling import prices"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "When total demand exceeds the economy's output, prices are pulled up.",
+    "explanationsWrong": {
+      "A": "Rising wages push up costs — that's cost-push inflation.",
+      "C": "Falling demand lowers prices.",
+      "D": "Cheaper imports reduce inflation."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Financial institutions",
+    "stem": "Which institution is known as the lender of last resort?",
+    "options": {
+      "A": "The Central Bank",
+      "B": "Commercial banks",
+      "C": "Insurance companies",
+      "D": "The stock exchange"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "The Central Bank (CBN in Nigeria) lends to commercial banks when they can't get funds elsewhere.",
+    "explanationsWrong": {
+      "B": "Commercial banks borrow from the central bank.",
+      "C": "Insurance companies spread risk; they don't back up banks.",
+      "D": "The stock exchange is a market for securities."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Public finance",
+    "stem": "A tax whose rate increases as income increases is",
+    "options": {
+      "A": "regressive",
+      "B": "proportional",
+      "C": "indirect",
+      "D": "progressive"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "A progressive tax takes a higher percentage from higher incomes.",
+    "explanationsWrong": {
+      "A": "A regressive tax takes a higher percentage from lower incomes.",
+      "B": "A proportional tax uses the same rate for everyone.",
+      "C": "An indirect tax is on goods and services (e.g. VAT)."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "International trade",
+    "stem": "The theory of comparative advantage in international trade is associated with",
+    "options": {
+      "A": "Adam Smith",
+      "B": "Thomas Malthus",
+      "C": "David Ricardo",
+      "D": "J. M. Keynes"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Ricardo showed countries gain by specialising in goods with the lowest opportunity cost.",
+    "explanationsWrong": {
+      "A": "Adam Smith is linked with absolute advantage and division of labour.",
+      "B": "Malthus is known for his population theory.",
+      "D": "Keynes is known for macroeconomics and aggregate demand."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Population",
+    "stem": "Optimum population is the population size at which",
+    "options": {
+      "A": "birth rate equals death rate",
+      "B": "income per head is at its highest",
+      "C": "the country has the most people",
+      "D": "there is no migration"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Optimum population is the size that, with existing resources and technology, gives the highest output (income) per head.",
+    "explanationsWrong": {
+      "A": "Equal birth and death rates describe a stationary population.",
+      "C": "More people doesn't mean higher income per head.",
+      "D": "Migration isn't part of the definition."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Business organisations",
+    "stem": "Limited liability means that shareholders",
+    "options": {
+      "A": "can lose only the amount they invested",
+      "B": "cannot lose any money",
+      "C": "are liable for all the company's debts",
+      "D": "have limited voting rights"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Shareholders' personal assets are protected; they risk only their investment in the company.",
+    "explanationsWrong": {
+      "B": "They can lose what they invested.",
+      "C": "That describes unlimited liability (e.g. sole traders).",
+      "D": "Liability is about debts, not voting rights."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Factors of production",
+    "stem": "The reward for entrepreneurship is",
+    "options": {
+      "A": "rent",
+      "B": "wages",
+      "C": "interest",
+      "D": "profit"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "The entrepreneur bears risk and earns profit.",
+    "explanationsWrong": {
+      "A": "Rent is the reward for land.",
+      "B": "Wages are the reward for labour.",
+      "C": "Interest is the reward for capital."
+    },
+    "difficulty": 1
+  }
+]

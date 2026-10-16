@@ -1,0 +1,434 @@
+[
+  {
+    "topicName": "Measurements and units",
+    "stem": "Which of the following is a fundamental SI unit?",
+    "options": {
+      "A": "Kilogram",
+      "B": "Newton",
+      "C": "Joule",
+      "D": "Watt"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "The kilogram is the SI base unit of mass. The others are derived from base units.",
+    "explanationsWrong": {
+      "B": "The newton is derived: 1 N = 1 kg m s⁻².",
+      "C": "The joule is derived: 1 J = 1 N m.",
+      "D": "The watt is derived: 1 W = 1 J s⁻¹."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Scalars and vectors",
+    "stem": "Which of these is a vector quantity?",
+    "options": {
+      "A": "Speed",
+      "B": "Mass",
+      "C": "Energy",
+      "D": "Displacement"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Displacement has both magnitude and direction, so it is a vector.",
+    "explanationsWrong": {
+      "A": "Speed has magnitude only; velocity is its vector form.",
+      "B": "Mass has magnitude only.",
+      "C": "Energy has magnitude only."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Motion",
+    "stem": "A car starts from rest and reaches 20 m/s in 5 s with uniform acceleration. What is its acceleration?",
+    "options": {
+      "A": "100 m/s²",
+      "B": "0.25 m/s²",
+      "C": "4 m/s²",
+      "D": "25 m/s²"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "a = (v − u)/t = (20 − 0)/5 = 4 m/s².",
+    "explanationsWrong": {
+      "A": "100 multiplies v by t instead of dividing.",
+      "B": "0.25 divides t by v — the formula is the other way round.",
+      "D": "25 adds 20 + 5."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Motion",
+    "stem": "A body starts from rest with a uniform acceleration of 2 m/s². How far does it travel in 5 s?",
+    "options": {
+      "A": "10 m",
+      "B": "25 m",
+      "C": "50 m",
+      "D": "20 m"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "s = ut + ½at² = 0 + ½ × 2 × 5² = 25 m.",
+    "explanationsWrong": {
+      "A": "10 m is the final velocity (at) in m/s, not the distance.",
+      "C": "50 m forgets the ½ in ½at².",
+      "D": "20 m uses t instead of t²."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Motion",
+    "stem": "A force acts on a 2 kg mass and gives it an acceleration of 3 m/s². What is the force?",
+    "options": {
+      "A": "6 N",
+      "B": "1.5 N",
+      "C": "5 N",
+      "D": "0.67 N"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Newton's second law: F = ma = 2 × 3 = 6 N.",
+    "explanationsWrong": {
+      "B": "1.5 divides a by m.",
+      "C": "5 adds m + a.",
+      "D": "0.67 divides m by a."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Gravitational field",
+    "stem": "What is the weight of a 5 kg mass on Earth? (g = 10 m/s²)",
+    "options": {
+      "A": "5 N",
+      "B": "0.5 N",
+      "C": "15 N",
+      "D": "50 N"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Weight W = mg = 5 × 10 = 50 N.",
+    "explanationsWrong": {
+      "A": "5 kg is the mass; weight is a force in newtons.",
+      "B": "0.5 divides m by g.",
+      "C": "15 adds m + g."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Work, energy and power",
+    "stem": "Find the kinetic energy of a 2 kg body moving at 3 m/s.",
+    "options": {
+      "A": "6 J",
+      "B": "18 J",
+      "C": "9 J",
+      "D": "3 J"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "KE = ½mv² = ½ × 2 × 3² = 9 J.",
+    "explanationsWrong": {
+      "A": "6 J is mv (momentum, in kg m/s), not energy.",
+      "B": "18 J forgets the ½.",
+      "D": "3 J squares nothing; v must be squared."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Work, energy and power",
+    "stem": "A man lifts a 50 kg load through 4 m in 10 s. What is his power? (g = 10 m/s²)",
+    "options": {
+      "A": "20 W",
+      "B": "200 W",
+      "C": "2000 W",
+      "D": "500 W"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Work = mgh = 50 × 10 × 4 = 2000 J. Power = work/time = 2000/10 = 200 W.",
+    "explanationsWrong": {
+      "A": "20 W leaves out g.",
+      "C": "2000 J is the work done, not power.",
+      "D": "500 N is the weight (mg); multiply by the height and divide by the time."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Simple machines",
+    "stem": "A machine with velocity ratio 4 lifts a 600 N load with an effort of 200 N. What is its efficiency?",
+    "options": {
+      "A": "75%",
+      "B": "133%",
+      "C": "50%",
+      "D": "300%"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "MA = load/effort = 600/200 = 3. Efficiency = MA/VR × 100% = 3/4 × 100% = 75%.",
+    "explanationsWrong": {
+      "B": "133% inverts the ratio (VR/MA); real machines can't exceed 100%.",
+      "C": "50% would need MA = 2.",
+      "D": "300% is the MA expressed as a percentage."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Elasticity",
+    "stem": "A spring of force constant 200 N/m is stretched by a force of 10 N. Find the extension.",
+    "options": {
+      "A": "2000 m",
+      "B": "20 m",
+      "C": "0.5 m",
+      "D": "0.05 m"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Hooke's law: F = ke, so e = F/k = 10/200 = 0.05 m.",
+    "explanationsWrong": {
+      "A": "2000 multiplies F by k.",
+      "B": "20 divides k by F.",
+      "C": "0.5 m is a decimal-place slip: 10/200 = 0.05."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Liquids at rest",
+    "stem": "Find the pressure due to water at a depth of 2 m. (Density of water = 1000 kg/m³, g = 10 m/s²)",
+    "options": {
+      "A": "2000 Pa",
+      "B": "200 Pa",
+      "C": "20 000 Pa",
+      "D": "5000 Pa"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "P = hρg = 2 × 1000 × 10 = 20 000 Pa.",
+    "explanationsWrong": {
+      "A": "2000 Pa leaves out g.",
+      "B": "200 Pa leaves out a factor of 100.",
+      "D": "5000 Pa divides ρg by h."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Gas laws",
+    "stem": "A gas occupies 4 L at 100 kPa. At constant temperature it is compressed to 2 L. What is the new pressure?",
+    "options": {
+      "A": "50 kPa",
+      "B": "200 kPa",
+      "C": "400 kPa",
+      "D": "100 kPa"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Boyle's law: P₁V₁ = P₂V₂, so P₂ = 100 × 4/2 = 200 kPa.",
+    "explanationsWrong": {
+      "A": "Halving the volume doubles the pressure; it doesn't halve it.",
+      "C": "400 kPa multiplies by 4 instead of by 4/2.",
+      "D": "Pressure changes when volume changes at constant temperature."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Temperature and its measurement",
+    "stem": "Convert 27 °C to kelvin.",
+    "options": {
+      "A": "300 K",
+      "B": "246 K",
+      "C": "27 K",
+      "D": "373 K"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "T(K) = θ(°C) + 273 = 27 + 273 = 300 K.",
+    "explanationsWrong": {
+      "B": "246 subtracts 27 from 273.",
+      "C": "The two scales differ by 273.",
+      "D": "373 K is the boiling point of water (100 °C)."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Quantity of heat",
+    "stem": "How much heat raises the temperature of 2 kg of water by 10 °C? (Specific heat capacity of water = 4200 J/kg K)",
+    "options": {
+      "A": "8400 J",
+      "B": "42 000 J",
+      "C": "840 J",
+      "D": "84 000 J"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Q = mcΔθ = 2 × 4200 × 10 = 84 000 J.",
+    "explanationsWrong": {
+      "A": "8400 J leaves out the temperature change.",
+      "B": "42 000 J leaves out the mass.",
+      "C": "840 J drops two zeros."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Waves",
+    "stem": "A wave has frequency 50 Hz and wavelength 2 m. What is its speed?",
+    "options": {
+      "A": "25 m/s",
+      "B": "52 m/s",
+      "C": "100 m/s",
+      "D": "0.04 m/s"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "v = fλ = 50 × 2 = 100 m/s.",
+    "explanationsWrong": {
+      "A": "25 divides f by λ.",
+      "B": "52 adds f + λ.",
+      "D": "0.04 divides λ by f."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Reflection of light",
+    "stem": "Which describes the image formed by a plane mirror?",
+    "options": {
+      "A": "Real, upright, same size",
+      "B": "Virtual, upright, laterally inverted",
+      "C": "Virtual, inverted, magnified",
+      "D": "Real, inverted, diminished"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "A plane mirror forms a virtual, upright image of the same size, laterally inverted (left and right swapped), as far behind the mirror as the object is in front.",
+    "explanationsWrong": {
+      "A": "The image can't be caught on a screen, so it is virtual, not real.",
+      "C": "It is upright and the same size, not inverted or magnified.",
+      "D": "That describes a concave mirror with the object beyond C."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Refraction of light",
+    "stem": "A ray of light passes from air into glass with angle of incidence 60° and angle of refraction 30°. Find the refractive index of the glass.",
+    "options": {
+      "A": "1.73",
+      "B": "2.0",
+      "C": "0.58",
+      "D": "0.5"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "n = sin i / sin r = sin 60° / sin 30° = (√3/2)/(1/2) = √3 ≈ 1.73.",
+    "explanationsWrong": {
+      "B": "2.0 divides the angles (60/30), not their sines.",
+      "C": "0.58 is sin r / sin i — upside down.",
+      "D": "0.5 is sin 30° alone."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Electromagnetic spectrum",
+    "stem": "Which of these electromagnetic waves has the longest wavelength?",
+    "options": {
+      "A": "X-rays",
+      "B": "Ultraviolet",
+      "C": "Gamma rays",
+      "D": "Radio waves"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "In order of increasing wavelength: gamma, X-rays, ultraviolet, visible, infrared, microwaves, radio. Radio waves are longest.",
+    "explanationsWrong": {
+      "A": "X-rays have very short wavelengths.",
+      "B": "Ultraviolet is shorter than visible light.",
+      "C": "Gamma rays have the shortest wavelength."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Capacitors",
+    "stem": "A 2 µF capacitor is connected to a 10 V supply. What charge does it store?",
+    "options": {
+      "A": "5 µC",
+      "B": "0.2 µC",
+      "C": "20 µC",
+      "D": "12 µC"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Q = CV = 2 µF × 10 V = 20 µC.",
+    "explanationsWrong": {
+      "A": "5 µC divides V by C.",
+      "B": "0.2 µC divides C by V.",
+      "D": "12 adds C + V."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Current electricity",
+    "stem": "A 12 V battery is connected across a 4 Ω resistor. What current flows?",
+    "options": {
+      "A": "48 A",
+      "B": "3 A",
+      "C": "0.33 A",
+      "D": "16 A"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Ohm's law: I = V/R = 12/4 = 3 A.",
+    "explanationsWrong": {
+      "A": "48 multiplies V by R.",
+      "C": "0.33 divides R by V.",
+      "D": "16 adds V + R."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Current electricity",
+    "stem": "Find the effective resistance of a 6 Ω and a 3 Ω resistor connected in parallel.",
+    "options": {
+      "A": "2 Ω",
+      "B": "9 Ω",
+      "C": "4.5 Ω",
+      "D": "18 Ω"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "1/R = 1/6 + 1/3 = 1/6 + 2/6 = 3/6, so R = 2 Ω. (Or R = (6×3)/(6+3) = 2 Ω.)",
+    "explanationsWrong": {
+      "B": "9 Ω is the series combination.",
+      "C": "4.5 Ω is the average; parallel resistance is less than the smallest resistor.",
+      "D": "18 is the product only — divide by the sum."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Electrical energy and power",
+    "stem": "A 100 W lamp is used for 5 hours. How much energy does it use in kWh?",
+    "options": {
+      "A": "500 kWh",
+      "B": "20 kWh",
+      "C": "5 kWh",
+      "D": "0.5 kWh"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "100 W = 0.1 kW. Energy = 0.1 kW × 5 h = 0.5 kWh.",
+    "explanationsWrong": {
+      "A": "500 is in watt-hours (Wh), not kWh.",
+      "B": "20 divides power by time.",
+      "C": "5 kWh treats 100 W as 1 kW."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Elementary modern physics",
+    "stem": "A radioactive sample of 80 g has a half-life of 2 days. How much remains after 6 days?",
+    "options": {
+      "A": "40 g",
+      "B": "20 g",
+      "C": "10 g",
+      "D": "13.3 g"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "6 days = 3 half-lives: 80 → 40 → 20 → 10 g.",
+    "explanationsWrong": {
+      "A": "40 g is after only one half-life.",
+      "B": "20 g is after two half-lives.",
+      "D": "Decay halves each period; it doesn't divide the mass by 6."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Introductory electronics",
+    "stem": "A p–n junction diode is mainly used in a circuit to",
+    "options": {
+      "A": "amplify signals",
+      "B": "rectify alternating current",
+      "C": "store charge",
+      "D": "increase resistance"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "A diode conducts in one direction only, so it converts a.c. to d.c. — rectification.",
+    "explanationsWrong": {
+      "A": "Amplification needs a transistor.",
+      "C": "Storing charge is the job of a capacitor.",
+      "D": "That describes a resistor's purpose."
+    },
+    "difficulty": 1
+  }
+]

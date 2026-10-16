@@ -1,0 +1,362 @@
+[
+  {
+    "topicName": "The sovereignty of God",
+    "stem": "According to Genesis 1, what did God create on the first day?",
+    "options": {
+      "A": "Light",
+      "B": "Man",
+      "C": "Dry land",
+      "D": "The sun and moon"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "'Let there be light' — God created light and separated it from darkness on the first day (Gen 1:3–5).",
+    "explanationsWrong": {
+      "B": "Man was created on the sixth day.",
+      "C": "Dry land appeared on the third day.",
+      "D": "The sun and moon were made on the fourth day."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "The covenant",
+    "stem": "What was the sign of God's covenant with Noah?",
+    "options": {
+      "A": "Circumcision",
+      "B": "The Sabbath",
+      "C": "The ark",
+      "D": "The rainbow"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "God set the rainbow in the clouds as a sign that He would never again destroy the earth by flood (Gen 9:12–17).",
+    "explanationsWrong": {
+      "A": "Circumcision was the sign of the covenant with Abraham.",
+      "B": "The Sabbath was a sign of the Sinai covenant.",
+      "C": "The ark was the means of rescue, not the covenant sign."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "The covenant",
+    "stem": "What was the sign of God's covenant with Abraham?",
+    "options": {
+      "A": "The rainbow",
+      "B": "The tablets of stone",
+      "C": "Circumcision",
+      "D": "Burnt offering"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Circumcision of every male was the sign of the covenant between God and Abraham (Gen 17:10–11).",
+    "explanationsWrong": {
+      "A": "The rainbow was Noah's covenant sign.",
+      "B": "The tablets belonged to the Sinai covenant with Moses.",
+      "D": "Offerings were acts of worship, not the covenant sign."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Leadership qualities",
+    "stem": "Who succeeded Moses as leader of the Israelites?",
+    "options": {
+      "A": "Aaron",
+      "B": "Joshua",
+      "C": "Caleb",
+      "D": "Samuel"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Joshua, son of Nun, was commissioned to lead Israel into Canaan after Moses (Deut 31; Josh 1).",
+    "explanationsWrong": {
+      "A": "Aaron was Moses' brother and priest; he died before Moses.",
+      "C": "Caleb was faithful but not Moses' successor.",
+      "D": "Samuel lived much later, in the period of the judges and kings."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Leadership qualities",
+    "stem": "Deborah, the judge and prophetess, led Israel to victory together with",
+    "options": {
+      "A": "Barak",
+      "B": "Gideon",
+      "C": "Samson",
+      "D": "Jephthah"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Deborah summoned Barak to fight Sisera, Jabin's commander (Judges 4–5).",
+    "explanationsWrong": {
+      "B": "Gideon defeated the Midianites.",
+      "C": "Samson fought the Philistines.",
+      "D": "Jephthah defeated the Ammonites."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Parental responsibility",
+    "stem": "The sons of Eli who were condemned for their wickedness were",
+    "options": {
+      "A": "Joel and Abijah",
+      "B": "Nadab and Abihu",
+      "C": "Amnon and Absalom",
+      "D": "Hophni and Phinehas"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Eli failed to restrain Hophni and Phinehas, who treated the Lord's offering with contempt (1 Sam 2–4).",
+    "explanationsWrong": {
+      "A": "Joel and Abijah were Samuel's sons.",
+      "B": "Nadab and Abihu were Aaron's sons.",
+      "C": "Amnon and Absalom were David's sons."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Obedience and disobedience",
+    "stem": "King Saul disobeyed God by",
+    "options": {
+      "A": "building a temple",
+      "B": "marrying a foreign wife",
+      "C": "sparing Agag and the best of the Amalekites' animals",
+      "D": "refusing to fight Goliath"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Saul spared King Agag and the best livestock instead of destroying everything as commanded (1 Sam 15).",
+    "explanationsWrong": {
+      "A": "Solomon built the temple.",
+      "B": "This isn't Saul's recorded disobedience.",
+      "D": "David fought Goliath; Saul's sin was over the Amalekites."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "A man after God’s own heart",
+    "stem": "Which prophet rebuked David after his sin with Bathsheba?",
+    "options": {
+      "A": "Samuel",
+      "B": "Nathan",
+      "C": "Elijah",
+      "D": "Gad"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Nathan told David the parable of the rich man and the poor man's lamb (2 Sam 12).",
+    "explanationsWrong": {
+      "A": "Samuel had died by then.",
+      "C": "Elijah prophesied later, under Ahab.",
+      "D": "Gad advised David on other occasions, such as the census."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Greed and its effects",
+    "stem": "King Ahab coveted the vineyard of",
+    "options": {
+      "A": "Naboth",
+      "B": "Nabal",
+      "C": "Obadiah",
+      "D": "Micaiah"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Jezebel had Naboth killed so Ahab could seize his vineyard (1 Kings 21).",
+    "explanationsWrong": {
+      "B": "Nabal was the foolish man who insulted David.",
+      "C": "Obadiah was Ahab's steward who hid prophets.",
+      "D": "Micaiah was a prophet who warned Ahab."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "The supremacy of God",
+    "stem": "Elijah demonstrated the supremacy of God over the prophets of Baal on Mount",
+    "options": {
+      "A": "Sinai",
+      "B": "Horeb",
+      "C": "Zion",
+      "D": "Carmel"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "On Mount Carmel, God answered Elijah by fire (1 Kings 18).",
+    "explanationsWrong": {
+      "A": "Sinai is where the law was given.",
+      "B": "Elijah fled to Horeb afterwards.",
+      "C": "Zion is Jerusalem."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Religious reforms in Judah",
+    "stem": "King Josiah's religious reforms were sparked by the",
+    "options": {
+      "A": "return from exile",
+      "B": "death of Jezebel",
+      "C": "discovery of the book of the law in the temple",
+      "D": "preaching of Amos"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Hilkiah the priest found the book of the law during temple repairs, leading to Josiah's reforms (2 Kings 22–23).",
+    "explanationsWrong": {
+      "A": "The return from exile came much later (Ezra, Nehemiah).",
+      "B": "Jezebel was in the northern kingdom long before.",
+      "D": "Amos prophesied in Israel, not in Josiah's reign."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Concern for judgement and justice",
+    "stem": "Which prophet is best known for preaching social justice, saying 'let justice roll down like waters'?",
+    "options": {
+      "A": "Hosea",
+      "B": "Amos",
+      "C": "Jonah",
+      "D": "Ezekiel"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Amos condemned oppression of the poor (Amos 5:24).",
+    "explanationsWrong": {
+      "A": "Hosea emphasised God's faithful love.",
+      "C": "Jonah preached to Nineveh.",
+      "D": "Ezekiel prophesied to the exiles in Babylon."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Holiness and divine call",
+    "stem": "Isaiah saw his vision of the Lord in the year that",
+    "options": {
+      "A": "King Uzziah died",
+      "B": "Jerusalem fell",
+      "C": "Solomon was crowned",
+      "D": "Cyrus freed the exiles"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "'In the year that King Uzziah died, I saw the Lord…' (Isaiah 6:1).",
+    "explanationsWrong": {
+      "B": "Jerusalem fell over a century later.",
+      "C": "Solomon lived about two centuries earlier.",
+      "D": "Cyrus' decree came long after Isaiah's call."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "The birth and early life of Jesus",
+    "stem": "Where was Jesus born?",
+    "options": {
+      "A": "Nazareth",
+      "B": "Jerusalem",
+      "C": "Capernaum",
+      "D": "Bethlehem"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Jesus was born in Bethlehem of Judea (Matthew 2:1; Luke 2:4–7).",
+    "explanationsWrong": {
+      "A": "Jesus grew up in Nazareth.",
+      "B": "Jesus was presented in the temple in Jerusalem, but not born there.",
+      "C": "Capernaum was a base of his ministry."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Baptism and temptation of Jesus",
+    "stem": "How long did Jesus fast in the wilderness before he was tempted?",
+    "options": {
+      "A": "Seven days",
+      "B": "Twelve days",
+      "C": "Forty days",
+      "D": "Three days"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Jesus fasted forty days and forty nights (Matthew 4:2).",
+    "explanationsWrong": {
+      "A": "Seven days isn't the gospel account.",
+      "B": "Twelve days isn't the gospel account.",
+      "D": "Three days is linked with the resurrection."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Miracles of Jesus",
+    "stem": "According to John's gospel, Jesus' first miracle was",
+    "options": {
+      "A": "feeding the five thousand",
+      "B": "turning water into wine at Cana",
+      "C": "raising Lazarus",
+      "D": "healing the blind man"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "John 2:11 calls turning water into wine at the wedding in Cana the first of his signs.",
+    "explanationsWrong": {
+      "A": "The feeding came later in his ministry.",
+      "C": "Raising Lazarus was the last major sign before his passion.",
+      "D": "Healing the man born blind came later (John 9)."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Parables of Jesus",
+    "stem": "The parable of the Good Samaritan teaches mainly about",
+    "options": {
+      "A": "love for one's neighbour",
+      "B": "forgiveness",
+      "C": "prayer",
+      "D": "the kingdom's growth"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Jesus told it to answer 'Who is my neighbour?' — show mercy to anyone in need (Luke 10).",
+    "explanationsWrong": {
+      "B": "Forgiveness is the focus of the unforgiving servant parable.",
+      "C": "Prayer is the focus of the persistent widow parable.",
+      "D": "Growth of the kingdom is in the mustard seed parable."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "The early church and Pentecost",
+    "stem": "On the day of Pentecost, the disciples were",
+    "options": {
+      "A": "scattered by persecution",
+      "B": "sent to Rome",
+      "C": "forbidden to preach",
+      "D": "filled with the Holy Spirit and spoke in other tongues"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "The Holy Spirit came upon them and they spoke in other languages (Acts 2:1–4).",
+    "explanationsWrong": {
+      "A": "Persecution and scattering came later, after Stephen's death.",
+      "B": "Paul was taken to Rome much later.",
+      "C": "The ban by the council came later (Acts 4)."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Mission to the Gentiles",
+    "stem": "Saul (Paul) was converted on the road to",
+    "options": {
+      "A": "Jerusalem",
+      "B": "Antioch",
+      "C": "Damascus",
+      "D": "Emmaus"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "A light from heaven struck Saul down on the road to Damascus (Acts 9).",
+    "explanationsWrong": {
+      "A": "He was travelling from Jerusalem.",
+      "B": "Antioch later became his missionary base.",
+      "D": "Two disciples met the risen Jesus on the road to Emmaus."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Christian living and spiritual gifts",
+    "stem": "According to Galatians 5, which of these is part of the fruit of the Spirit?",
+    "options": {
+      "A": "Wealth",
+      "B": "Patience",
+      "C": "Wisdom of the world",
+      "D": "Power"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "The fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness and self-control (Gal 5:22–23).",
+    "explanationsWrong": {
+      "A": "Wealth isn't listed.",
+      "C": "Worldly wisdom isn't listed.",
+      "D": "Power isn't listed."
+    },
+    "difficulty": 1
+  }
+]

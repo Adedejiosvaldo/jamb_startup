@@ -218,7 +218,7 @@ export class DevPaymentsController {
   @Post(':reference/succeed')
   @HttpCode(200)
   async succeed(@Param('reference') reference: string) {
-    if (!(this.provider instanceof FakePaymentProvider) || this.env.NODE_ENV === 'production')
+    if (!(this.provider instanceof FakePaymentProvider) || this.env.APP_ENV === 'production')
       throw new NotFoundException();
     this.provider.markPaid(reference);
     return { result: await this.commerce.fulfil(reference) };

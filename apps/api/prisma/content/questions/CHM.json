@@ -1,0 +1,380 @@
+[
+  {
+    "topicName": "Separation of mixtures and purification",
+    "stem": "Which method is best for separating two miscible liquids with different boiling points?",
+    "options": {
+      "A": "Fractional distillation",
+      "B": "Filtration",
+      "C": "Decantation",
+      "D": "Sublimation"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Miscible liquids form one layer, so they are separated by boiling point using fractional distillation (e.g. ethanol and water).",
+    "explanationsWrong": {
+      "B": "Filtration separates an insoluble solid from a liquid.",
+      "C": "Decantation works only when a solid settles or liquids form separate layers.",
+      "D": "Sublimation separates a solid that changes directly to vapour (e.g. iodine)."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Chemical combination",
+    "stem": "How many moles are in 4.4 g of carbon(IV) oxide, CO₂? (C = 12, O = 16)",
+    "options": {
+      "A": "1.0 mol",
+      "B": "0.4 mol",
+      "C": "10 mol",
+      "D": "0.1 mol"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Molar mass of CO₂ = 12 + 2×16 = 44 g/mol. Moles = 4.4/44 = 0.1 mol.",
+    "explanationsWrong": {
+      "A": "1 mol would be 44 g.",
+      "B": "0.4 mol divides 4.4 by 11.",
+      "C": "10 mol divides 44 by 4.4 — upside down."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Kinetic theory of matter and gas laws",
+    "stem": "A gas occupies 200 cm³ at 27 °C. At constant pressure, what volume will it occupy at 127 °C?",
+    "options": {
+      "A": "940 cm³",
+      "B": "150 cm³",
+      "C": "266.7 cm³",
+      "D": "200 cm³"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Charles' law with kelvin temperatures: V₂ = V₁ × T₂/T₁ = 200 × 400/300 ≈ 266.7 cm³.",
+    "explanationsWrong": {
+      "A": "940 uses °C (200 × 127/27); gas laws need kelvin.",
+      "B": "150 inverts the ratio — heating increases the volume.",
+      "D": "Volume changes with temperature at constant pressure."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Atomic structure and bonding",
+    "stem": "How many neutrons are in an atom of chlorine-35, ³⁵₁₇Cl?",
+    "options": {
+      "A": "17",
+      "B": "18",
+      "C": "35",
+      "D": "52"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Neutrons = mass number − atomic number = 35 − 17 = 18.",
+    "explanationsWrong": {
+      "A": "17 is the number of protons (atomic number).",
+      "C": "35 is the mass number (protons + neutrons).",
+      "D": "52 adds the two numbers."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Atomic structure and bonding",
+    "stem": "What type of bond holds sodium chloride together?",
+    "options": {
+      "A": "Ionic (electrovalent)",
+      "B": "Covalent",
+      "C": "Metallic",
+      "D": "Hydrogen bond"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Sodium transfers one electron to chlorine, forming Na⁺ and Cl⁻ ions held by electrostatic attraction — an ionic bond.",
+    "explanationsWrong": {
+      "B": "Covalent bonds share electrons, usually between non-metals.",
+      "C": "Metallic bonding is between metal atoms in a sea of electrons.",
+      "D": "Hydrogen bonds are weak forces between molecules, e.g. in water."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Periodic table and periodicity",
+    "stem": "An element has the electronic configuration 2, 8, 1. In which group and period of the periodic table is it?",
+    "options": {
+      "A": "Group 3, period 1",
+      "B": "Group 1, period 2",
+      "C": "Group 8, period 3",
+      "D": "Group 1, period 3"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "One electron in the outer shell means group 1; three occupied shells means period 3. The element is sodium.",
+    "explanationsWrong": {
+      "A": "The group is set by outer electrons (1), the period by the number of shells (3).",
+      "B": "Period 2 elements have only two shells.",
+      "C": "Group 8 (noble gases) has a full outer shell."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Air",
+    "stem": "Approximately what percentage of air by volume is nitrogen?",
+    "options": {
+      "A": "21%",
+      "B": "1%",
+      "C": "78%",
+      "D": "0.03%"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Dry air is about 78% nitrogen, 21% oxygen and about 1% other gases.",
+    "explanationsWrong": {
+      "A": "21% is oxygen.",
+      "B": "About 1% is argon and other noble gases.",
+      "D": "About 0.03–0.04% is carbon(IV) oxide."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Water",
+    "stem": "Temporary hardness of water can be removed by",
+    "options": {
+      "A": "filtration",
+      "B": "boiling",
+      "C": "adding chlorine",
+      "D": "freezing"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Temporary hardness is caused by calcium/magnesium hydrogencarbonates. Boiling decomposes them into insoluble carbonates that precipitate out.",
+    "explanationsWrong": {
+      "A": "The hardness ions are dissolved, so filtration alone can't remove them.",
+      "C": "Chlorine kills germs; it doesn't remove hardness.",
+      "D": "Freezing doesn't remove dissolved salts."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Environmental pollution",
+    "stem": "Which gas is mainly responsible for acid rain?",
+    "options": {
+      "A": "Sulphur(IV) oxide",
+      "B": "Oxygen",
+      "C": "Nitrogen",
+      "D": "Helium"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "SO₂ from burning fossil fuels dissolves in rainwater to form acids (with nitrogen oxides, also a cause).",
+    "explanationsWrong": {
+      "B": "Oxygen does not form acid rain.",
+      "C": "Nitrogen gas (N₂) is unreactive; it's nitrogen oxides that contribute.",
+      "D": "Helium is an inert noble gas."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Acids, bases and salts",
+    "stem": "Which of these is a strong acid?",
+    "options": {
+      "A": "Ethanoic acid",
+      "B": "Carbonic acid",
+      "C": "Citric acid",
+      "D": "Hydrochloric acid"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Hydrochloric acid ionises completely in water, so it is a strong acid.",
+    "explanationsWrong": {
+      "A": "Ethanoic acid ionises only partially — a weak acid.",
+      "B": "Carbonic acid is weak.",
+      "C": "Citric acid is a weak organic acid."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Oxidation and reduction",
+    "stem": "What is the oxidation number of manganese in KMnO₄?",
+    "options": {
+      "A": "+2",
+      "B": "+4",
+      "C": "+7",
+      "D": "−1"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "K = +1 and each O = −2. +1 + Mn + 4(−2) = 0, so Mn = +7.",
+    "explanationsWrong": {
+      "A": "+2 is Mn in MnSO₄ or Mn²⁺.",
+      "B": "+4 is Mn in MnO₂.",
+      "D": "−1 is the charge of the whole MnO₄⁻ ion, not manganese."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Electrolysis",
+    "stem": "In the electrolysis of concentrated sodium chloride solution using inert electrodes, which gas is given off at the anode?",
+    "options": {
+      "A": "Hydrogen",
+      "B": "Chlorine",
+      "C": "Oxygen",
+      "D": "Sodium vapour"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "In concentrated brine, Cl⁻ ions are discharged at the anode in preference to OH⁻, giving chlorine gas.",
+    "explanationsWrong": {
+      "A": "Hydrogen is given off at the cathode.",
+      "C": "Oxygen forms at the anode only when the chloride solution is very dilute.",
+      "D": "Sodium is not discharged from aqueous solution; it's too reactive."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Energy changes",
+    "stem": "For an exothermic reaction, the enthalpy change ΔH is",
+    "options": {
+      "A": "negative",
+      "B": "positive",
+      "C": "zero",
+      "D": "always equal to the activation energy"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Exothermic reactions release heat to the surroundings, so the products have less energy than the reactants: ΔH is negative.",
+    "explanationsWrong": {
+      "B": "Positive ΔH is endothermic — heat is absorbed.",
+      "C": "Zero would mean no net energy change.",
+      "D": "Activation energy is the energy barrier, not ΔH."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Rates of chemical reaction",
+    "stem": "A catalyst increases the rate of a reaction by",
+    "options": {
+      "A": "increasing the temperature",
+      "B": "increasing the concentration of reactants",
+      "C": "shifting the equilibrium to the right",
+      "D": "lowering the activation energy"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "A catalyst provides an alternative route with lower activation energy, so more collisions succeed.",
+    "explanationsWrong": {
+      "A": "A catalyst doesn't change the temperature.",
+      "B": "It doesn't change the amounts of reactants.",
+      "C": "It speeds up forward and backward reactions equally; the equilibrium position is unchanged."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Chemical equilibria",
+    "stem": "N₂(g) + 3H₂(g) ⇌ 2NH₃(g), ΔH negative. Which change increases the yield of ammonia?",
+    "options": {
+      "A": "Increasing the temperature",
+      "B": "Removing nitrogen",
+      "C": "Increasing the pressure",
+      "D": "Adding a catalyst"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "4 moles of gas become 2. Higher pressure favours the side with fewer gas moles, so equilibrium shifts right (Le Chatelier).",
+    "explanationsWrong": {
+      "A": "The forward reaction is exothermic, so raising temperature shifts it left.",
+      "B": "Removing a reactant shifts equilibrium to the left.",
+      "D": "A catalyst speeds up reaching equilibrium but doesn't change the yield."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Non-metals and their compounds",
+    "stem": "Which gas turns lime water milky?",
+    "options": {
+      "A": "Oxygen",
+      "B": "Carbon(IV) oxide",
+      "C": "Hydrogen",
+      "D": "Ammonia"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "CO₂ reacts with lime water (calcium hydroxide) to form insoluble calcium carbonate, which looks milky.",
+    "explanationsWrong": {
+      "A": "Oxygen relights a glowing splint.",
+      "C": "Hydrogen burns with a 'pop'.",
+      "D": "Ammonia turns damp red litmus blue."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Metals and their compounds",
+    "stem": "Which of these metals is the most reactive?",
+    "options": {
+      "A": "Potassium",
+      "B": "Copper",
+      "C": "Iron",
+      "D": "Silver"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Potassium is near the top of the reactivity series; it reacts violently with cold water.",
+    "explanationsWrong": {
+      "B": "Copper is low in the reactivity series.",
+      "C": "Iron is moderately reactive — far less than potassium.",
+      "D": "Silver is very unreactive."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Hydrocarbons",
+    "stem": "What is the general formula of the alkanes?",
+    "options": {
+      "A": "CₙH₂ₙ",
+      "B": "CₙH₂ₙ₋₂",
+      "C": "CₙH₂ₙ₊₁OH",
+      "D": "CₙH₂ₙ₊₂"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Alkanes are saturated hydrocarbons with formula CₙH₂ₙ₊₂, e.g. methane CH₄, ethane C₂H₆.",
+    "explanationsWrong": {
+      "A": "CₙH₂ₙ is the alkenes.",
+      "B": "CₙH₂ₙ₋₂ is the alkynes.",
+      "C": "CₙH₂ₙ₊₁OH is the alkanols."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Alkanols, alkanoic acids and esters",
+    "stem": "An alkanoic acid reacts with an alkanol in the presence of concentrated H₂SO₄ to form",
+    "options": {
+      "A": "an alkene and water",
+      "B": "a salt and water",
+      "C": "an ester and water",
+      "D": "an aldehyde"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "This is esterification: acid + alcohol ⇌ ester + water, e.g. ethanoic acid + ethanol → ethyl ethanoate + water.",
+    "explanationsWrong": {
+      "A": "Dehydrating an alkanol alone gives an alkene.",
+      "B": "Salt + water comes from an acid reacting with a base.",
+      "D": "Aldehydes come from mild oxidation of alkanols."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Carbohydrates, proteins and polymers",
+    "stem": "Polymerisation of ethene produces",
+    "options": {
+      "A": "polystyrene",
+      "B": "polythene",
+      "C": "nylon",
+      "D": "PVC"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Many ethene molecules join by addition polymerisation to form poly(ethene), polythene.",
+    "explanationsWrong": {
+      "A": "Polystyrene comes from phenylethene (styrene).",
+      "C": "Nylon is a condensation polymer of a diamine and a dioic acid.",
+      "D": "PVC comes from chloroethene (vinyl chloride)."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Nuclear chemistry",
+    "stem": "An alpha particle is identical to",
+    "options": {
+      "A": "a helium nucleus",
+      "B": "an electron",
+      "C": "a proton",
+      "D": "a neutron"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "An alpha particle has 2 protons and 2 neutrons — a helium-4 nucleus (⁴₂He).",
+    "explanationsWrong": {
+      "B": "A fast electron is a beta particle.",
+      "C": "A proton has one positive charge and mass 1; alpha has charge +2 and mass 4.",
+      "D": "Neutrons are uncharged."
+    },
+    "difficulty": 1
+  }
+]

@@ -26,6 +26,7 @@ jobs:
           --health-interval 5s --health-timeout 5s --health-retries 10
     env:
       DATABASE_URL: postgresql://postgres:postgres@localhost:5432/scorecoach_test?schema=public
+      DIRECT_URL: postgresql://postgres:postgres@localhost:5432/scorecoach_test?schema=public
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4

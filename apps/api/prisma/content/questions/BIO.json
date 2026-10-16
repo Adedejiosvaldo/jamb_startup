@@ -1,0 +1,380 @@
+[
+  {
+    "topicName": "Living organisms: characteristics",
+    "stem": "Which of these is NOT a characteristic of all living things?",
+    "options": {
+      "A": "Photosynthesis",
+      "B": "Respiration",
+      "C": "Excretion",
+      "D": "Reproduction"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Only green plants and some protists and bacteria photosynthesise. Animals and fungi don't.",
+    "explanationsWrong": {
+      "B": "All living cells respire to release energy.",
+      "C": "All organisms remove metabolic wastes.",
+      "D": "All living things reproduce."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Classification of living things",
+    "stem": "Which is the correct order of classification, from the largest group to the smallest?",
+    "options": {
+      "A": "Kingdom, Class, Phylum, Order, Family, Species, Genus",
+      "B": "Phylum, Kingdom, Class, Family, Order, Genus, Species",
+      "C": "Species, Genus, Family, Order, Class, Phylum, Kingdom",
+      "D": "Kingdom, Phylum, Class, Order, Family, Genus, Species"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Kingdom → Phylum → Class → Order → Family → Genus → Species. (Memory aid: King Philip Came Over For Good Soup.)",
+    "explanationsWrong": {
+      "A": "Phylum comes before Class, and Genus before Species.",
+      "B": "Kingdom is the largest group, and Order comes before Family.",
+      "C": "This is smallest to largest — reversed."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "The cell: structure and organisation",
+    "stem": "Which organelle is the site of aerobic respiration?",
+    "options": {
+      "A": "Ribosome",
+      "B": "Chloroplast",
+      "C": "Mitochondrion",
+      "D": "Nucleus"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Mitochondria carry out aerobic respiration and release most of the cell's energy (ATP).",
+    "explanationsWrong": {
+      "A": "Ribosomes make proteins.",
+      "B": "Chloroplasts carry out photosynthesis.",
+      "D": "The nucleus controls the cell and holds DNA."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "The cell: structure and organisation",
+    "stem": "Which structure is found in plant cells but NOT in animal cells?",
+    "options": {
+      "A": "Cell membrane",
+      "B": "Cellulose cell wall",
+      "C": "Cytoplasm",
+      "D": "Nucleus"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Plant cells have a cellulose cell wall (and usually chloroplasts and a large vacuole); animal cells don't.",
+    "explanationsWrong": {
+      "A": "Both plant and animal cells have a cell membrane.",
+      "C": "Both have cytoplasm.",
+      "D": "Both have a nucleus."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Nutrition",
+    "stem": "The enzyme in saliva that starts the digestion of starch is",
+    "options": {
+      "A": "ptyalin (salivary amylase)",
+      "B": "pepsin",
+      "C": "lipase",
+      "D": "trypsin"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Salivary amylase (ptyalin) breaks starch down into maltose in the mouth.",
+    "explanationsWrong": {
+      "B": "Pepsin digests proteins in the stomach.",
+      "C": "Lipase digests fats.",
+      "D": "Trypsin digests proteins in the small intestine."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Nutrition",
+    "stem": "The raw materials for photosynthesis are",
+    "options": {
+      "A": "oxygen and glucose",
+      "B": "glucose and water",
+      "C": "oxygen and water",
+      "D": "carbon(IV) oxide and water"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂, using light energy absorbed by chlorophyll.",
+    "explanationsWrong": {
+      "A": "Oxygen and glucose are the products of photosynthesis.",
+      "B": "Glucose is a product, not a raw material.",
+      "C": "Oxygen is released, not used."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Transport",
+    "stem": "Which blood vessel carries oxygenated blood from the lungs to the heart?",
+    "options": {
+      "A": "Pulmonary artery",
+      "B": "Aorta",
+      "C": "Pulmonary vein",
+      "D": "Vena cava"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "The pulmonary vein is the only vein carrying oxygenated blood — from the lungs to the left atrium.",
+    "explanationsWrong": {
+      "A": "The pulmonary artery carries deoxygenated blood to the lungs.",
+      "B": "The aorta carries oxygenated blood from the heart to the body.",
+      "D": "The vena cava returns deoxygenated blood from the body."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Respiration",
+    "stem": "During vigorous exercise, anaerobic respiration in human muscles produces",
+    "options": {
+      "A": "ethanol",
+      "B": "lactic acid",
+      "C": "oxygen",
+      "D": "glucose"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Without enough oxygen, muscle cells convert glucose to lactic acid, causing fatigue.",
+    "explanationsWrong": {
+      "A": "Ethanol (and CO₂) is produced by yeast, not human muscle.",
+      "C": "Oxygen is used in aerobic respiration, not produced.",
+      "D": "Glucose is the starting material."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Excretion",
+    "stem": "The functional unit of the mammalian kidney is the",
+    "options": {
+      "A": "nephron",
+      "B": "neuron",
+      "C": "alveolus",
+      "D": "villus"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Each nephron filters blood and forms urine.",
+    "explanationsWrong": {
+      "B": "The neuron is the unit of the nervous system.",
+      "C": "Alveoli are air sacs in the lungs.",
+      "D": "Villi are in the small intestine, for absorption."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Support and movement",
+    "stem": "The joint at the shoulder is an example of a",
+    "options": {
+      "A": "hinge joint",
+      "B": "pivot joint",
+      "C": "fixed joint",
+      "D": "ball and socket joint"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "The shoulder (and hip) is a ball and socket joint, allowing movement in all directions.",
+    "explanationsWrong": {
+      "A": "Hinge joints (elbow, knee) move in one plane.",
+      "B": "The pivot joint is between the atlas and axis vertebrae.",
+      "C": "Fixed joints are found in the skull."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Reproduction",
+    "stem": "In humans, fertilisation normally takes place in the",
+    "options": {
+      "A": "uterus",
+      "B": "ovary",
+      "C": "oviduct (fallopian tube)",
+      "D": "vagina"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Sperm meets the ovum in the oviduct; the zygote then moves to the uterus to implant.",
+    "explanationsWrong": {
+      "A": "The uterus is where implantation and development happen.",
+      "B": "The ovary releases the ovum.",
+      "D": "Sperm is deposited in the vagina but fertilisation happens higher up."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Coordination and control",
+    "stem": "Which hormone lowers blood glucose level?",
+    "options": {
+      "A": "Adrenaline",
+      "B": "Insulin",
+      "C": "Glucagon",
+      "D": "Thyroxine"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Insulin from the pancreas helps cells take up glucose and the liver store it as glycogen.",
+    "explanationsWrong": {
+      "A": "Adrenaline raises blood glucose for 'fight or flight'.",
+      "C": "Glucagon raises blood glucose.",
+      "D": "Thyroxine controls metabolic rate."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Ecosystems, food chains and nutrient cycles",
+    "stem": "Organisms that make their own food in an ecosystem are called",
+    "options": {
+      "A": "producers",
+      "B": "consumers",
+      "C": "decomposers",
+      "D": "parasites"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Producers (autotrophs), mainly green plants, make food by photosynthesis.",
+    "explanationsWrong": {
+      "B": "Consumers feed on other organisms.",
+      "C": "Decomposers break down dead matter.",
+      "D": "Parasites feed on a living host."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Ecosystems, food chains and nutrient cycles",
+    "stem": "As you move along a food chain from producers to top consumers, the energy available at each level",
+    "options": {
+      "A": "increases",
+      "B": "stays the same",
+      "C": "doubles",
+      "D": "decreases"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "Energy is lost at each level through respiration, heat and waste — only about 10% passes on.",
+    "explanationsWrong": {
+      "A": "Energy can't be created; most is lost at each step.",
+      "B": "Energy is lost at every transfer.",
+      "C": "Energy decreases; it never doubles."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Population studies",
+    "stem": "Which instrument is used to estimate the population of plants in a field?",
+    "options": {
+      "A": "Sweep net",
+      "B": "Pooter",
+      "C": "Quadrat",
+      "D": "Pitfall trap"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "A quadrat (a square frame) is thrown randomly to count plants per unit area.",
+    "explanationsWrong": {
+      "A": "Sweep nets catch flying insects.",
+      "B": "A pooter collects small insects.",
+      "D": "Pitfall traps catch crawling animals."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Soil",
+    "stem": "Which soil type holds the most water?",
+    "options": {
+      "A": "Sandy soil",
+      "B": "Clay soil",
+      "C": "Loamy soil",
+      "D": "Gravel"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Clay has the finest particles and smallest pores, so it retains the most water (and drains poorly).",
+    "explanationsWrong": {
+      "A": "Sandy soil has large pores and drains quickly.",
+      "C": "Loam holds water moderately — ideal for most crops, but less than clay.",
+      "D": "Gravel drains almost immediately."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Heredity and genetics",
+    "stem": "Tallness (T) is dominant over shortness (t). What fraction of offspring of a Tt × Tt cross will be tall?",
+    "options": {
+      "A": "3/4",
+      "B": "1/4",
+      "C": "1/2",
+      "D": "All"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Offspring: TT, Tt, Tt, tt. Three of the four have at least one T, so 3/4 are tall.",
+    "explanationsWrong": {
+      "B": "1/4 is the fraction that is short (tt).",
+      "C": "1/2 is the fraction that is heterozygous (Tt).",
+      "D": "tt offspring are short."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Heredity and genetics",
+    "stem": "A man of blood group AB marries a woman of blood group O. What blood groups can their children have?",
+    "options": {
+      "A": "AB and O",
+      "B": "A, B, AB and O",
+      "C": "O only",
+      "D": "A and B only"
+    },
+    "correctOption": "D",
+    "explanationCorrect": "The father passes A or B; the mother passes O. Children are AO (group A) or BO (group B).",
+    "explanationsWrong": {
+      "A": "AB needs A and B from both parents; O needs O from both.",
+      "B": "Only A and B are possible here.",
+      "C": "The father has no O allele to pass on."
+    },
+    "difficulty": 2
+  },
+  {
+    "topicName": "Variation",
+    "stem": "Which of these is an example of continuous variation in humans?",
+    "options": {
+      "A": "Blood group",
+      "B": "Tongue rolling",
+      "C": "Height",
+      "D": "Sex"
+    },
+    "correctOption": "C",
+    "explanationCorrect": "Height shows a range of values with no clear-cut classes — continuous variation.",
+    "explanationsWrong": {
+      "A": "Blood groups fall into distinct classes — discontinuous.",
+      "B": "You either can or can't roll your tongue — discontinuous.",
+      "D": "Sex falls into distinct classes."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Evolution",
+    "stem": "The theory of use and disuse and the inheritance of acquired characters was proposed by",
+    "options": {
+      "A": "Charles Darwin",
+      "B": "Jean-Baptiste Lamarck",
+      "C": "Gregor Mendel",
+      "D": "Robert Hooke"
+    },
+    "correctOption": "B",
+    "explanationCorrect": "Lamarck proposed that organs used more develop and that acquired traits are passed on.",
+    "explanationsWrong": {
+      "A": "Darwin proposed natural selection.",
+      "C": "Mendel founded the laws of inheritance.",
+      "D": "Hooke first described cells."
+    },
+    "difficulty": 1
+  },
+  {
+    "topicName": "Humans and the environment",
+    "stem": "Malaria is transmitted by the",
+    "options": {
+      "A": "female Anopheles mosquito",
+      "B": "male Anopheles mosquito",
+      "C": "housefly",
+      "D": "tsetse fly"
+    },
+    "correctOption": "A",
+    "explanationCorrect": "Only female Anopheles mosquitoes suck blood and transmit the Plasmodium parasite.",
+    "explanationsWrong": {
+      "B": "Male mosquitoes feed on plant juices, not blood.",
+      "C": "Houseflies spread diseases like cholera and typhoid mechanically.",
+      "D": "Tsetse flies transmit sleeping sickness."
+    },
+    "difficulty": 1
+  }
+]
