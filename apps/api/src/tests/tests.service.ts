@@ -203,19 +203,59 @@ export class TestsService {
   async answer(userId: string, testId: string, position: number, dto: AnswerDto) {
     const test = await this.owned(userId, testId);
     this.assertOpen(test);
-    await this.applyAnswers(testId, [{ position, ...dto }]);
-    return { saved: true };
+    if (test.type !== 'practice') {
+      await this.applyAnswers(testId, [{ position, ...dto }]);
+      return { saved: true };
+    }
+
+    // Practice (F-PRAC-02): instant feedback, so the first answer is final.
+    const item = await this.prisma.testItem.findUnique({
+      where: { testId_position: { testId, position } },
+      include: { question: true },
+    });
+    if (!item) throw new ApiError(HttpStatus.NOT_FOUND, 'ITEM_NOT_FOUND', 'Question not found.');
+    if (item.chosenOption === null && dto.chosenOption !== null) {
+      await this.applyAnswers(testId, [{ position, ...dto }]);
+    } else if (dto.flagged !== undefined || dto.timeSpentMs !== undefined) {
+      await this.applyAnswers(testId, [
+        {
+          position,
+          flagged: dto.flagged,
+          timeSpentMs: dto.timeSpentMs,
+          chosenOption: item.chosenOption as AnswerDto['chosenOption'],
+          answeredAt: dto.answeredAt,
+        },
+      ]);
+    }
+    const chosen = item.chosenOption ?? dto.chosenOption;
+    if (chosen === null) return { saved: true };
+    const config = test.config as unknown as TestConfig;
+    const q = item.question;
+    return {
+      saved: true,
+      feedback: {
+        chosenOption: chosen,
+        isCorrect: chosen === q.correctOption,
+        correctOption: q.correctOption,
+        explanationCorrect: config.explanations ? q.explanationCorrect : null,
+        explanationsWrong: config.explanations ? q.explanationsWrong : null,
+      },
+    };
   }
 
   /** Offline batch (spec §13.3). Last write wins by answeredAt; idempotent. */
   async sync(userId: string, testId: string, items: (AnswerDto & { position: number })[]) {
     const test = await this.owned(userId, testId);
     this.assertOpen(test);
-    await this.applyAnswers(testId, items);
+    await this.applyAnswers(testId, items, test.type === 'practice');
     return { saved: items.length };
   }
 
-  private async applyAnswers(testId: string, items: (AnswerDto & { position: number })[]) {
+  private async applyAnswers(
+    testId: string,
+    items: (AnswerDto & { position: number })[],
+    lockAnswered = false,
+  ) {
     if (!items.length) return;
     const existing = await this.prisma.testItem.findMany({
       where: { testId, position: { in: items.map((i) => i.position) } },
@@ -227,6 +267,8 @@ export class TestsService {
       if (!row) continue;
       const at = it.answeredAt ?? new Date();
       if (row.answeredAt && row.answeredAt > at) continue; // stale write from another tab/device
+      if (lockAnswered && row.chosenOption !== null && it.chosenOption !== row.chosenOption)
+        continue;
       ops.push(
         this.prisma.testItem.update({
           where: { id: row.id },
@@ -253,7 +295,7 @@ export class TestsService {
     ) {
       this.logger.warn(`Late submit for test ${testId}`);
     }
-    await this.applyAnswers(testId, items);
+    await this.applyAnswers(testId, items, test.type === 'practice');
 
     const now = new Date();
     const rows = await this.prisma.testItem.findMany({
