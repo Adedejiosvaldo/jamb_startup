@@ -1,0 +1,877 @@
+// ScoreCoach schema v1 — mirrors docs/build-spec.md §9.
+// Conventions: UUID ids, snake_case tables/columns, money in kobo (integers),
+// created_at/updated_at on every table. Change this file, then run
+// `pnpm --filter @scorecoach/api db:migrate --name <change>`; never hand-edit prod.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ───────────────────────────── Enums ─────────────────────────────
+
+enum UserRole {
+  student
+  parent
+  teacher
+  admin
+  reviewer
+}
+
+enum UserStatus {
+  active
+  suspended
+  deleted
+}
+
+enum OtpChannel {
+  sms
+  whatsapp
+}
+
+enum StudentTrack {
+  first_timer
+  retaker
+}
+
+enum QuestionSource {
+  past
+  original
+  variant
+}
+
+enum QuestionStatus {
+  draft
+  reviewed
+  live
+  flagged
+  retired
+}
+
+enum ReportStatus {
+  open
+  confirmed
+  rejected
+}
+
+enum ContentStatus {
+  draft
+  reviewed
+  live
+  retired
+}
+
+enum TestType {
+  diagnostic
+  short_diagnostic
+  mini_mock
+  full_mock
+  practice
+  speed_drill
+  school_paper
+}
+
+enum OrderStatus {
+  pending
+  paid
+  failed
+  refunded
+}
+
+enum RefundReason {
+  guarantee
+  goodwill
+  duplicate
+  error
+}
+
+enum CommissionStatus {
+  owed
+  paid
+  reversed
+}
+
+enum SchoolEventType {
+  paper_mock
+  lab_mock
+}
+
+enum TicketStatus {
+  open
+  pending
+  resolved
+}
+
+// ─────────────────────────── Identity ────────────────────────────
+
+model User {
+  id         String     @id @default(uuid()) @db.Uuid
+  phone      String     @unique // E.164, e.g. +2348031234567
+  name       String?
+  role       UserRole   @default(student)
+  state      String?
+  schoolId   String?    @map("school_id") @db.Uuid
+  examYear   Int?       @map("exam_year")
+  status     UserStatus @default(active)
+  lastSeenAt DateTime?  @map("last_seen_at")
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime   @updatedAt @map("updated_at")
+
+  school           School?              @relation(fields: [schoolId], references: [id])
+  devices          Device[]
+  refreshTokens    RefreshToken[]
+  studentProfile   StudentProfile?
+  subjects         StudentSubject[]
+  parentLinks      ParentLink[]         @relation("StudentParentLinks")
+  parentOf         ParentLink[]         @relation("ParentUserLinks")
+  tests            Test[]
+  predictions      Prediction[]
+  topicMastery     TopicMastery[]
+  reviewQueue      ReviewQueueItem[]
+  dailyPlans       DailyPlan[]
+  activityDays     ActivityDay[]
+  utmeResults      ReportedUtmeResult[]
+  orders           Order[]
+  entitlements     Entitlement[]
+  guaranteeClaims  GuaranteeClaim[]     @relation("ClaimStudent")
+  questionReports  QuestionReport[]     @relation("ReportAuthor")
+  teacher          Teacher?
+  classMemberships ClassMember[]
+  supportTickets   SupportTicket[]      @relation("TicketUser")
+
+  @@map("users")
+}
+
+model Device {
+  id                String    @id @default(uuid()) @db.Uuid
+  userId            String    @map("user_id") @db.Uuid
+  deviceFingerprint String    @map("device_fingerprint")
+  userAgent         String?   @map("user_agent")
+  label             String? // human-friendly, e.g. "Chrome on Android"
+  lastActiveAt      DateTime  @default(now()) @map("last_active_at")
+  revokedAt         DateTime? @map("revoked_at")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  refreshTokens RefreshToken[]
+
+  @@index([userId, revokedAt])
+  @@map("devices")
+}
+
+/// Not in spec §9 but required by §10 (rotating, device-bound refresh tokens).
+/// Only a SHA-256 hash of the token is stored. `familyId` groups a rotation
+/// chain so reuse of an already-rotated token revokes the whole chain.
+model RefreshToken {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  deviceId  String    @map("device_id") @db.Uuid
+  familyId  String    @map("family_id") @db.Uuid
+  tokenHash String    @unique @map("token_hash")
+  expiresAt DateTime  @map("expires_at")
+  rotatedAt DateTime? @map("rotated_at")
+  revokedAt DateTime? @map("revoked_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  device Device @relation(fields: [deviceId], references: [id], onDelete: Cascade)
+
+  @@index([familyId])
+  @@index([deviceId])
+  @@map("refresh_tokens")
+}
+
+model OtpRequest {
+  id         String     @id @default(uuid()) @db.Uuid
+  phone      String
+  codeHash   String     @map("code_hash")
+  expiresAt  DateTime   @map("expires_at")
+  attempts   Int        @default(0)
+  channel    OtpChannel @default(sms)
+  consumedAt DateTime?  @map("consumed_at")
+  createdAt  DateTime   @default(now()) @map("created_at")
+  updatedAt  DateTime   @updatedAt @map("updated_at")
+
+  @@index([phone, createdAt])
+  @@map("otp_requests")
+}
+
+model StudentProfile {
+  userId             String       @id @map("user_id") @db.Uuid
+  track              StudentTrack @default(first_timer)
+  lastUtmeScore      Int?         @map("last_utme_score")
+  targetUniversityId String?      @map("target_university_id") @db.Uuid
+  targetCourseId     String?      @map("target_course_id") @db.Uuid
+  dailyMinutes       Int?         @map("daily_minutes") // 20 / 40 / 60 / 90
+  onboardingDoneAt   DateTime?    @map("onboarding_done_at")
+  createdAt          DateTime     @default(now()) @map("created_at")
+  updatedAt          DateTime     @updatedAt @map("updated_at")
+
+  user             User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  targetUniversity University? @relation(fields: [targetUniversityId], references: [id])
+  targetCourse     Course?     @relation(fields: [targetCourseId], references: [id])
+
+  @@map("student_profiles")
+}
+
+/// English is always one of the four; enforced in the application layer.
+model StudentSubject {
+  userId    String   @map("user_id") @db.Uuid
+  subjectId String   @map("subject_id") @db.Uuid
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subjectId], references: [id])
+
+  @@id([userId, subjectId])
+  @@map("student_subjects")
+}
+
+model ParentLink {
+  id           String    @id @default(uuid()) @db.Uuid
+  studentId    String    @map("student_id") @db.Uuid
+  parentPhone  String    @map("parent_phone")
+  parentUserId String?   @map("parent_user_id") @db.Uuid
+  optedInAt    DateTime? @map("opted_in_at")
+  optedOutAt   DateTime? @map("opted_out_at")
+  createdAt    DateTime  @default(now()) @map("created_at")
+  updatedAt    DateTime  @updatedAt @map("updated_at")
+
+  student    User  @relation("StudentParentLinks", fields: [studentId], references: [id], onDelete: Cascade)
+  parentUser User? @relation("ParentUserLinks", fields: [parentUserId], references: [id])
+
+  @@unique([studentId, parentPhone])
+  @@map("parent_links")
+}
+
+// ──────────────────── Catalogue / reference data ────────────────────
+
+model Subject {
+  id                  String   @id @default(uuid()) @db.Uuid
+  code                String   @unique // e.g. ENG, MTH, PHY
+  name                String
+  questionCountInExam Int      @map("question_count_in_exam")
+  active              Boolean  @default(true)
+  createdAt           DateTime @default(now()) @map("created_at")
+  updatedAt           DateTime @updatedAt @map("updated_at")
+
+  topics          Topic[]
+  questions       Question[]
+  studentSubjects StudentSubject[]
+
+  @@map("subjects")
+}
+
+model Topic {
+  id            String   @id @default(uuid()) @db.Uuid
+  subjectId     String   @map("subject_id") @db.Uuid
+  name          String
+  syllabusRef   String?  @map("syllabus_ref")
+  weight        Decimal  @default(0) @db.Decimal(6, 5) // share of past-exam questions
+  learnability  Decimal  @default(1) @db.Decimal(4, 3)
+  parentTopicId String?  @map("parent_topic_id") @db.Uuid
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  subject     Subject        @relation(fields: [subjectId], references: [id])
+  parentTopic Topic?         @relation("TopicTree", fields: [parentTopicId], references: [id])
+  subtopics   Topic[]        @relation("TopicTree")
+  questions   Question[]
+  lessons     Lesson[]
+  mastery     TopicMastery[]
+
+  @@index([subjectId])
+  @@map("topics")
+}
+
+model University {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  shortName String?  @map("short_name")
+  state     String?
+  type      String? // federal | state | private
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  requirements   CourseRequirement[]
+  studentTargets StudentProfile[]
+
+  @@map("universities")
+}
+
+model Course {
+  id        String   @id @default(uuid()) @db.Uuid
+  name      String   @unique
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  requirements   CourseRequirement[]
+  studentTargets StudentProfile[]
+
+  @@map("courses")
+}
+
+model CourseRequirement {
+  id                 String   @id @default(uuid()) @db.Uuid
+  universityId       String   @map("university_id") @db.Uuid
+  courseId           String   @map("course_id") @db.Uuid
+  utmeSubjects       Json     @map("utme_subjects")
+  olevelRequirements String?  @map("olevel_requirements")
+  notes              String?
+  source             String
+  checkedAt          DateTime @map("checked_at")
+  cutoffHint         String?  @map("cutoff_hint")
+  createdAt          DateTime @default(now()) @map("created_at")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+
+  university University @relation(fields: [universityId], references: [id])
+  course     Course     @relation(fields: [courseId], references: [id])
+
+  @@unique([universityId, courseId])
+  @@map("course_requirements")
+}
+
+/// Exam rules as data, not code (spec §6.1): dates, durations, counts, fees.
+model ExamConfig {
+  id        String   @id @default(uuid()) @db.Uuid
+  year      Int
+  key       String
+  value     Json
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([year, key])
+  @@map("exam_config")
+}
+
+// ─────────────────────────── Content ─────────────────────────────
+
+model Question {
+  id                 String         @id @default(uuid()) @db.Uuid
+  subjectId          String         @map("subject_id") @db.Uuid
+  topicId            String         @map("topic_id") @db.Uuid
+  stem               String
+  options            Json // { "A": "...", "B": "...", "C": "...", "D": "..." }
+  correctOption      String         @map("correct_option") @db.Char(1)
+  explanationCorrect String?        @map("explanation_correct")
+  explanationsWrong  Json?          @map("explanations_wrong") // { "B": "why B is wrong", ... }
+  difficulty         Int            @default(2) @db.SmallInt // 1 easy · 2 medium · 3 hard
+  source             QuestionSource
+  pastYear           Int?           @map("past_year")
+  assetIds           String[]       @default([]) @map("asset_ids") @db.Uuid
+  status             QuestionStatus @default(draft)
+  version            Int            @default(1)
+  authorId           String?        @map("author_id") @db.Uuid
+  reviewedBy         String?        @map("reviewed_by") @db.Uuid
+  reviewedAt         DateTime?      @map("reviewed_at")
+  createdAt          DateTime       @default(now()) @map("created_at")
+  updatedAt          DateTime       @updatedAt @map("updated_at")
+
+  subject     Subject           @relation(fields: [subjectId], references: [id])
+  topic       Topic             @relation(fields: [topicId], references: [id])
+  reports     QuestionReport[]
+  testItems   TestItem[]
+  reviewQueue ReviewQueueItem[]
+
+  @@index([subjectId, topicId, status])
+  @@map("questions")
+}
+
+model QuestionReport {
+  id          String       @id @default(uuid()) @db.Uuid
+  questionId  String       @map("question_id") @db.Uuid
+  userId      String?      @map("user_id") @db.Uuid
+  reason      String
+  note        String?
+  status      ReportStatus @default(open)
+  resolvedBy  String?      @map("resolved_by") @db.Uuid
+  resolvedAt  DateTime?    @map("resolved_at")
+  rewardGiven Boolean      @default(false) @map("reward_given")
+  createdAt   DateTime     @default(now()) @map("created_at")
+  updatedAt   DateTime     @updatedAt @map("updated_at")
+
+  question Question @relation(fields: [questionId], references: [id])
+  user     User?    @relation("ReportAuthor", fields: [userId], references: [id])
+
+  @@index([questionId, status])
+  @@map("question_reports")
+}
+
+model Asset {
+  id         String   @id @default(uuid()) @db.Uuid
+  type       String // image/webp, application/pdf, ...
+  storageKey String   @unique @map("storage_key")
+  bytes      Int
+  width      Int?
+  height     Int?
+  createdAt  DateTime @default(now()) @map("created_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@map("assets")
+}
+
+model Lesson {
+  id         String        @id @default(uuid()) @db.Uuid
+  topicId    String        @map("topic_id") @db.Uuid
+  bodyMd     String        @map("body_md")
+  status     ContentStatus @default(draft)
+  reviewedBy String?       @map("reviewed_by") @db.Uuid
+  createdAt  DateTime      @default(now()) @map("created_at")
+  updatedAt  DateTime      @updatedAt @map("updated_at")
+
+  topic Topic @relation(fields: [topicId], references: [id])
+
+  @@map("lessons")
+}
+
+// ────────────────────────── Assessment ───────────────────────────
+
+model Test {
+  id              String    @id @default(uuid()) @db.Uuid
+  userId          String    @map("user_id") @db.Uuid
+  type            TestType
+  config          Json      @default("{}")
+  startedAt       DateTime  @default(now()) @map("started_at")
+  submittedAt     DateTime? @map("submitted_at")
+  durationSeconds Int?      @map("duration_seconds")
+  engineVersion   String    @map("engine_version")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  user        User         @relation(fields: [userId], references: [id])
+  items       TestItem[]
+  predictions Prediction[]
+
+  @@index([userId, type])
+  @@map("tests")
+}
+
+model TestItem {
+  id               String    @id @default(uuid()) @db.Uuid
+  testId           String    @map("test_id") @db.Uuid
+  questionId       String    @map("question_id") @db.Uuid
+  position         Int
+  chosenOption     String?   @map("chosen_option") @db.Char(1)
+  isCorrect        Boolean?  @map("is_correct")
+  timeSpentMs      Int?      @map("time_spent_ms")
+  answeredAt       DateTime? @map("answered_at")
+  flaggedByStudent Boolean   @default(false) @map("flagged_by_student")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+
+  test     Test     @relation(fields: [testId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id])
+
+  @@unique([testId, position])
+  @@index([testId])
+  @@map("test_items")
+}
+
+model Prediction {
+  id            String   @id @default(uuid()) @db.Uuid
+  userId        String   @map("user_id") @db.Uuid
+  testId        String?  @map("test_id") @db.Uuid
+  totalLow      Int      @map("total_low")
+  totalMid      Int      @map("total_mid")
+  totalHigh     Int      @map("total_high")
+  perSubject    Json     @map("per_subject")
+  inputsHash    String   @map("inputs_hash")
+  engineVersion String   @map("engine_version")
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  user              User             @relation(fields: [userId], references: [id])
+  test              Test?            @relation(fields: [testId], references: [id])
+  baselineForClaims GuaranteeClaim[] @relation("BaselinePrediction")
+  finalForClaims    GuaranteeClaim[] @relation("FinalPrediction")
+
+  @@index([userId, createdAt])
+  @@map("predictions")
+}
+
+model TopicMastery {
+  userId          String    @map("user_id") @db.Uuid
+  topicId         String    @map("topic_id") @db.Uuid
+  mastery         Decimal   @default(0) @db.Decimal(4, 3)
+  attempts        Int       @default(0)
+  lastPractisedAt DateTime? @map("last_practised_at")
+  createdAt       DateTime  @default(now()) @map("created_at")
+  updatedAt       DateTime  @updatedAt @map("updated_at")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  topic Topic @relation(fields: [topicId], references: [id])
+
+  @@id([userId, topicId])
+  @@index([userId])
+  @@map("topic_mastery")
+}
+
+model ReviewQueueItem {
+  id           String   @id @default(uuid()) @db.Uuid
+  userId       String   @map("user_id") @db.Uuid
+  questionId   String   @map("question_id") @db.Uuid
+  dueAt        DateTime @map("due_at")
+  intervalDays Int      @default(1) @map("interval_days")
+  ease         Decimal  @default(2.5) @db.Decimal(4, 2)
+  lastResult   Boolean? @map("last_result")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  user     User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id])
+
+  @@unique([userId, questionId])
+  @@index([userId, dueAt])
+  @@map("review_queue")
+}
+
+// ───────────────────── Planning & engagement ─────────────────────
+
+model DailyPlan {
+  id             String    @id @default(uuid()) @db.Uuid
+  userId         String    @map("user_id") @db.Uuid
+  date           DateTime  @db.Date
+  items          Json
+  minutesPlanned Int       @map("minutes_planned")
+  completedAt    DateTime? @map("completed_at")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, date])
+  @@map("daily_plans")
+}
+
+model ActivityDay {
+  userId            String   @map("user_id") @db.Uuid
+  date              DateTime @db.Date
+  minutes           Int      @default(0)
+  questionsAnswered Int      @default(0) @map("questions_answered")
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, date])
+  @@map("activity_days")
+}
+
+model ReportedUtmeResult {
+  userId       String   @map("user_id") @db.Uuid
+  year         Int
+  total        Int
+  perSubject   Json     @map("per_subject")
+  proofAssetId String?  @map("proof_asset_id") @db.Uuid
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([userId, year])
+  @@map("reported_utme_results")
+}
+
+// ─────────────────────────── Commerce ────────────────────────────
+
+model Product {
+  id          String   @id @default(uuid()) @db.Uuid
+  code        String   @unique
+  name        String
+  priceKobo   Int      @map("price_kobo")
+  entitlement Json
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  orders       Order[]
+  entitlements Entitlement[]
+
+  @@map("products")
+}
+
+model Order {
+  id                String      @id @default(uuid()) @db.Uuid
+  userId            String?     @map("user_id") @db.Uuid
+  payerPhone        String      @map("payer_phone")
+  productId         String      @map("product_id") @db.Uuid
+  amountKobo        Int         @map("amount_kobo")
+  couponId          String?     @map("coupon_id") @db.Uuid
+  referrerCode      String?     @map("referrer_code")
+  status            OrderStatus @default(pending)
+  paystackReference String      @unique @map("paystack_reference")
+  paidAt            DateTime?   @map("paid_at")
+  createdAt         DateTime    @default(now()) @map("created_at")
+  updatedAt         DateTime    @updatedAt @map("updated_at")
+
+  user         User?         @relation(fields: [userId], references: [id])
+  product      Product       @relation(fields: [productId], references: [id])
+  coupon       Coupon?       @relation(fields: [couponId], references: [id])
+  entitlements Entitlement[]
+  refunds      Refund[]
+  commissions  Commission[]
+
+  @@map("orders")
+}
+
+model Entitlement {
+  id        String    @id @default(uuid()) @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  productId String    @map("product_id") @db.Uuid
+  orderId   String?   @map("order_id") @db.Uuid // null for admin goodwill grants
+  startsAt  DateTime  @map("starts_at")
+  endsAt    DateTime  @map("ends_at")
+  revokedAt DateTime? @map("revoked_at")
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  user    User    @relation(fields: [userId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+  order   Order?  @relation(fields: [orderId], references: [id])
+
+  @@index([userId, endsAt])
+  @@map("entitlements")
+}
+
+model Coupon {
+  id             String    @id @default(uuid()) @db.Uuid
+  code           String    @unique
+  percentOff     Int?      @map("percent_off")
+  amountOffKobo  Int?      @map("amount_off_kobo")
+  maxUses        Int?      @map("max_uses")
+  used           Int       @default(0)
+  expiresAt      DateTime? @map("expires_at")
+  ownerTeacherId String?   @map("owner_teacher_id") @db.Uuid
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  ownerTeacher Teacher? @relation(fields: [ownerTeacherId], references: [userId])
+  orders       Order[]
+
+  @@map("coupons")
+}
+
+model Refund {
+  id               String       @id @default(uuid()) @db.Uuid
+  orderId          String       @map("order_id") @db.Uuid
+  reason           RefundReason
+  amountKobo       Int          @map("amount_kobo")
+  approvedBy       String?      @map("approved_by") @db.Uuid
+  paystackRefundId String?      @map("paystack_refund_id")
+  createdAt        DateTime     @default(now()) @map("created_at")
+  updatedAt        DateTime     @updatedAt @map("updated_at")
+
+  order Order @relation(fields: [orderId], references: [id])
+
+  @@map("refunds")
+}
+
+model GuaranteeClaim {
+  id                   String   @id @default(uuid()) @db.Uuid
+  userId               String   @map("user_id") @db.Uuid
+  windowStart          DateTime @map("window_start")
+  windowEnd            DateTime @map("window_end")
+  baselinePredictionId String?  @map("baseline_prediction_id") @db.Uuid
+  finalPredictionId    String?  @map("final_prediction_id") @db.Uuid
+  planCompletionPct    Decimal? @map("plan_completion_pct") @db.Decimal(5, 2)
+  eligible             Boolean?
+  decision             String?
+  decidedBy            String?  @map("decided_by") @db.Uuid
+  createdAt            DateTime @default(now()) @map("created_at")
+  updatedAt            DateTime @updatedAt @map("updated_at")
+
+  user               User        @relation("ClaimStudent", fields: [userId], references: [id])
+  baselinePrediction Prediction? @relation("BaselinePrediction", fields: [baselinePredictionId], references: [id])
+  finalPrediction    Prediction? @relation("FinalPrediction", fields: [finalPredictionId], references: [id])
+
+  @@map("guarantee_claims")
+}
+
+// ──────────────────────── Teachers & schools ────────────────────────
+
+model Teacher {
+  userId           String    @id @map("user_id") @db.Uuid
+  verifiedAt       DateTime? @map("verified_at")
+  referralCode     String    @unique @map("referral_code")
+  commissionPct    Decimal   @map("commission_pct") @db.Decimal(5, 2)
+  payoutAccountRef String?   @map("payout_account_ref")
+  createdAt        DateTime  @default(now()) @map("created_at")
+  updatedAt        DateTime  @updatedAt @map("updated_at")
+
+  user        User         @relation(fields: [userId], references: [id])
+  classes     Class[]
+  coupons     Coupon[]
+  commissions Commission[]
+
+  @@map("teachers")
+}
+
+model Class {
+  id        String   @id @default(uuid()) @db.Uuid
+  teacherId String?  @map("teacher_id") @db.Uuid
+  schoolId  String?  @map("school_id") @db.Uuid
+  name      String
+  joinCode  String   @unique @map("join_code")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  teacher Teacher?      @relation(fields: [teacherId], references: [userId])
+  school  School?       @relation(fields: [schoolId], references: [id])
+  members ClassMember[]
+
+  @@map("classes")
+}
+
+model ClassMember {
+  classId   String   @map("class_id") @db.Uuid
+  studentId String   @map("student_id") @db.Uuid
+  joinedAt  DateTime @default(now()) @map("joined_at")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  class   Class @relation(fields: [classId], references: [id], onDelete: Cascade)
+  student User  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+
+  @@id([classId, studentId])
+  @@map("class_members")
+}
+
+model Commission {
+  id         String           @id @default(uuid()) @db.Uuid
+  teacherId  String           @map("teacher_id") @db.Uuid
+  orderId    String           @map("order_id") @db.Uuid
+  amountKobo Int              @map("amount_kobo")
+  status     CommissionStatus @default(owed)
+  paidAt     DateTime?        @map("paid_at")
+  createdAt  DateTime         @default(now()) @map("created_at")
+  updatedAt  DateTime         @updatedAt @map("updated_at")
+
+  teacher Teacher @relation(fields: [teacherId], references: [userId])
+  order   Order   @relation(fields: [orderId], references: [id])
+
+  @@map("commissions")
+}
+
+model School {
+  id                String   @id @default(uuid()) @db.Uuid
+  name              String
+  lga               String?
+  state             String?
+  contactName       String?  @map("contact_name")
+  contactPhone      String?  @map("contact_phone")
+  consentDocAssetId String?  @map("consent_doc_asset_id") @db.Uuid
+  createdAt         DateTime @default(now()) @map("created_at")
+  updatedAt         DateTime @updatedAt @map("updated_at")
+
+  users   User[]
+  classes Class[]
+  events  SchoolEvent[]
+
+  @@map("schools")
+}
+
+model SchoolEvent {
+  id            String          @id @default(uuid()) @db.Uuid
+  schoolId      String          @map("school_id") @db.Uuid
+  date          DateTime        @db.Date
+  type          SchoolEventType
+  studentsCount Int?            @map("students_count")
+  reportAssetId String?         @map("report_asset_id") @db.Uuid
+  createdAt     DateTime        @default(now()) @map("created_at")
+  updatedAt     DateTime        @updatedAt @map("updated_at")
+
+  school School @relation(fields: [schoolId], references: [id])
+
+  @@map("school_events")
+}
+
+// ─────────────────────── Messaging & support ───────────────────────
+
+model MessageLog {
+  id         String    @id @default(uuid()) @db.Uuid
+  userId     String?   @map("user_id") @db.Uuid
+  phone      String
+  channel    String // sms | whatsapp | push
+  template   String
+  payload    Json      @default("{}") // never store OTP codes here
+  status     String // queued | sent | failed | delivered
+  providerId String?   @map("provider_id")
+  sentAt     DateTime? @map("sent_at")
+  createdAt  DateTime  @default(now()) @map("created_at")
+  updatedAt  DateTime  @updatedAt @map("updated_at")
+
+  @@index([phone, createdAt])
+  @@map("message_log")
+}
+
+model SupportTicket {
+  id              String       @id @default(uuid()) @db.Uuid
+  userId          String?      @map("user_id") @db.Uuid
+  phone           String?
+  channel         String
+  category        String
+  body            String
+  context         Json         @default("{}")
+  status          TicketStatus @default(open)
+  firstResponseAt DateTime?    @map("first_response_at")
+  resolvedAt      DateTime?    @map("resolved_at")
+  assigneeId      String?      @map("assignee_id") @db.Uuid
+  createdAt       DateTime     @default(now()) @map("created_at")
+  updatedAt       DateTime     @updatedAt @map("updated_at")
+
+  user User? @relation("TicketUser", fields: [userId], references: [id])
+
+  @@index([status, createdAt])
+  @@map("support_tickets")
+}
+
+model Announcement {
+  id                String    @id @default(uuid()) @db.Uuid
+  title             String
+  body              String
+  officialSourceUrl String?   @map("official_source_url")
+  publishedAt       DateTime? @map("published_at")
+  createdAt         DateTime  @default(now()) @map("created_at")
+  updatedAt         DateTime  @updatedAt @map("updated_at")
+
+  @@map("announcements")
+}
+
+// ─────────────────────── Analytics & audit ───────────────────────
+
+model Event {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String?  @map("user_id") @db.Uuid
+  anonId    String?  @map("anon_id")
+  name      String
+  props     Json     @default("{}")
+  ts        DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([name, ts])
+  @@map("events")
+}
+
+model AuditLog {
+  id        String   @id @default(uuid()) @db.Uuid
+  actorId   String?  @map("actor_id") @db.Uuid
+  action    String
+  entity    String
+  entityId  String?  @map("entity_id")
+  before    Json?
+  after     Json?
+  ts        DateTime @default(now())
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([entity, entityId])
+  @@map("audit_log")
+}

@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+
+/* Data saver by default (spec §13): system fonts only, no remote font loads. */
+:root {
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: #fff;
+  color: #0f172a;
+}

@@ -1,0 +1,10 @@
+{
+  "name": "ScoreCoach",
+  "short_name": "ScoreCoach",
+  "description": "Get the score your course needs.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0f766e",
+  "icons": []
+}
