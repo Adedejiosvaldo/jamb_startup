@@ -43,7 +43,18 @@ export function loadEnv(source: NodeJS.ProcessEnv = process.env): Env {
     const issues = parsed.error.issues.map((i) => `  ${i.path.join('.')}: ${i.message}`).join('\n');
     throw new Error(`Invalid environment configuration:\n${issues}`);
   }
-  const env = { ...parsed.data, APP_ENV: parsed.data.APP_ENV ?? parsed.data.NODE_ENV };
+  // On Vercel, web and API share one domain; default links to it when WEB_URL isn't set.
+  const vercelHost = source.VERCEL_PROJECT_PRODUCTION_URL ?? source.VERCEL_URL;
+  const webUrl = source.WEB_URL
+    ? parsed.data.WEB_URL
+    : vercelHost
+      ? `https://${vercelHost}`
+      : parsed.data.WEB_URL;
+  const env = {
+    ...parsed.data,
+    WEB_URL: webUrl,
+    APP_ENV: parsed.data.APP_ENV ?? parsed.data.NODE_ENV,
+  };
   if (env.APP_ENV === 'production') {
     if (env.SMS_PROVIDER === 'console')
       throw new Error('SMS_PROVIDER=console is not allowed in production');

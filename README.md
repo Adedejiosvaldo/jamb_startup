@@ -52,7 +52,7 @@ The e2e tests default to `postgresql://postgres:postgres@localhost:5432/scorecoa
 truncate every table in that database.
 
 Content workflow (syllabus, writing/reviewing questions, past questions): [`docs/content-guide.md`](docs/content-guide.md).
-Deploying to Vercel + Neon: [`docs/deploy-vercel.md`](docs/deploy-vercel.md).
+Deploying to Vercel (one project, `web` + `api` services) + Neon: [`docs/deploy-vercel.md`](docs/deploy-vercel.md).
 
 ## Production configuration (API)
 
@@ -62,7 +62,7 @@ Deploying to Vercel + Neon: [`docs/deploy-vercel.md`](docs/deploy-vercel.md).
 | `JWT_ACCESS_SECRET`, `OTP_HASH_SECRET`                      | ≥ 32 random chars each (`openssl rand -base64 48`)                                 |
 | `WEB_URL`, `CORS_ORIGINS`                                   | Public web origin(s)                                                               |
 | `SMS_PROVIDER=termii`, `TERMII_API_KEY`, `TERMII_SENDER_ID` | OTP + receipts                                                                     |
-| `PAYMENT_PROVIDER=paystack`, `PAYSTACK_SECRET_KEY`          | Point the Paystack webhook to `POST /v1/webhooks/paystack`                         |
+| `PAYMENT_PROVIDER=paystack`, `PAYSTACK_SECRET_KEY`          | Point the Paystack webhook to `POST /api/v1/webhooks/paystack`                     |
 | `PAYMENT_EMAIL_DOMAIN`                                      | Paystack needs an email; phone-only payers get `<digits>@this-domain`              |
 | `SUPPORT_WHATSAPP`                                          | Shown on receipts and parent reports (also `NEXT_PUBLIC_SUPPORT_WHATSAPP` for web) |
 

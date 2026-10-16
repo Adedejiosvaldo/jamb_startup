@@ -15,10 +15,4 @@ export default tseslint.config(
       ],
     },
   },
-  {
-    // Vercel serverless entry is plain CommonJS.
-    files: ['apps/api/api/**/*.js'],
-    languageOptions: { sourceType: 'commonjs', globals: { ...globals.node } },
-    rules: { '@typescript-eslint/no-require-imports': 'off' },
-  },
 );

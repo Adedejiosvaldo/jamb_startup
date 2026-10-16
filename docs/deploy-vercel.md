@@ -1,52 +1,53 @@
-# Deploying to Vercel
+# Deploying to Vercel (one project, two services)
 
-Two Vercel projects from this one repo, plus a Neon Postgres database.
+The repo deploys as **one Vercel project** using [Vercel Services](https://vercel.com/docs/services), configured in
+the root `vercel.json`:
 
-```
-scorecoach-web  → apps/web  (Next.js)          e.g. https://scorecoach-web.vercel.app
-scorecoach-api  → apps/api  (NestJS, 1 function) e.g. https://scorecoach-api.vercel.app
-Neon Postgres   (Vercel Marketplace → Storage → Neon)
-```
+| Service | Root       | Framework                    | Public path               |
+| ------- | ---------- | ---------------------------- | ------------------------- |
+| `web`   | `apps/web` | Next.js                      | everything else (`/(.*)`) |
+| `api`   | `apps/api` | NestJS (entry `src/main.ts`) | `/api/*`                  |
 
-## 1. Database (Neon)
+One domain serves both, e.g. `https://scorecoach.vercel.app` (web) and `https://scorecoach.vercel.app/api/health`
+(API). The browser calls the API same-origin at `/api`, so no CORS setup is needed.
 
-1. In Vercel: **Storage → Create → Neon (Postgres)**. Region: Europe (Frankfurt/London) — closest to Lagos.
-2. Connect it to the **scorecoach-api** project. Vercel adds `DATABASE_URL` (pooled) and `DATABASE_URL_UNPOOLED`.
-3. Add `DIRECT_URL` = the value of `DATABASE_URL_UNPOOLED` (migrations need the direct connection).
+There are **no service bindings**: the web app calls the API only from the browser (client components through
+`apps/web/src/lib/api.ts`), never from its own server, and the API never calls the web app. If server-side rendering
+ever calls the API, add a binding on `web` (`{ "type": "service", "service": "api", "format": "url", "env": "API_URL" }`)
+and use `process.env.API_URL` in that server code.
 
-## 2. API project
+The API accepts its routes with or without the `/api` prefix (`apps/api/src/configure-app.ts`), so it works whether
+Vercel forwards the prefix or strips it, and locally on `http://localhost:4000/api/...`.
 
-New Project → import `Adedejiosvaldo/jamb_startup` → **Root Directory: `apps/api`** (keep "Include files outside
-the root directory" on). `apps/api/vercel.json` sets the build: generate Prisma client, run migrations, build Nest.
+## 1. Create the project
 
-Environment variables (Settings → Environment Variables):
+New Project → import `Adedejiosvaldo/jamb_startup` → leave Root Directory at the repo root. Vercel reads
+`vercel.json` and builds both services.
 
-| Name                | Staging value                                                                                 |
-| ------------------- | --------------------------------------------------------------------------------------------- |
-| `APP_ENV`           | `staging`                                                                                     |
-| `JWT_ACCESS_SECRET` | 48+ random chars (`openssl rand -base64 48`)                                                  |
-| `OTP_HASH_SECRET`   | another 48+ random chars                                                                      |
-| `WEB_URL`           | `https://scorecoach-web.vercel.app` (your web URL)                                            |
-| `CORS_ORIGINS`      | same as `WEB_URL`                                                                             |
-| `SMS_PROVIDER`      | `console` until Termii is ready, then `termii` + `TERMII_API_KEY`, `TERMII_SENDER_ID`         |
-| `DEV_FIXED_OTP`     | e.g. `246810` — staging only, so testers can sign in without SMS. Remove once Termii works.   |
-| `PAYMENT_PROVIDER`  | `fake` until Paystack is ready, then `paystack` + `PAYSTACK_SECRET_KEY` (test key on staging) |
-| `SUPPORT_WHATSAPP`  | your support number, e.g. `2348012345678`                                                     |
+## 2. Database (Neon)
 
-Check `https://<api>/health` → `{"status":"ok","db":"up"}`.
+1. **Storage → Create → Neon (Postgres)**, region Europe (Frankfurt/London) — closest to Lagos. Connect it to the project.
+   Vercel adds `DATABASE_URL` (pooled) and `DATABASE_URL_UNPOOLED`.
+2. Add `DIRECT_URL` = the value of `DATABASE_URL_UNPOOLED`.
+3. Apply migrations from your laptop (and after every schema change):
+   `cd apps/api && DATABASE_URL=… DIRECT_URL=… pnpm db:deploy`
+
+## 3. Environment variables (shared by both services)
+
+| Name                                               | Staging value                                                                                 |
+| -------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `APP_ENV`                                          | `staging`                                                                                     |
+| `JWT_ACCESS_SECRET`                                | 48+ random chars (`openssl rand -base64 48`)                                                  |
+| `OTP_HASH_SECRET`                                  | another 48+ random chars                                                                      |
+| `SMS_PROVIDER`                                     | `console` until Termii is ready, then `termii` + `TERMII_API_KEY`, `TERMII_SENDER_ID`         |
+| `DEV_FIXED_OTP`                                    | e.g. `246810` — staging only, so testers sign in without SMS. Remove once Termii works.       |
+| `PAYMENT_PROVIDER`                                 | `fake` until Paystack is ready, then `paystack` + `PAYSTACK_SECRET_KEY` (test key on staging) |
+| `SUPPORT_WHATSAPP`, `NEXT_PUBLIC_SUPPORT_WHATSAPP` | your support number, e.g. `2348012345678`                                                     |
+
+Not needed on Vercel: `NEXT_PUBLIC_API_URL` (defaults to `/api`), `WEB_URL` (defaults to the project's production
+domain; set it once you add a custom domain), `CORS_ORIGINS` (same origin).
 
 Production: `APP_ENV=production` refuses console SMS, fake payments and `DEV_FIXED_OTP`.
-
-## 3. Web project
-
-New Project → same repo → **Root Directory: `apps/web`**. Environment variables:
-
-| Name                           | Value                                                  |
-| ------------------------------ | ------------------------------------------------------ |
-| `NEXT_PUBLIC_API_URL`          | your API URL, e.g. `https://scorecoach-api.vercel.app` |
-| `NEXT_PUBLIC_SUPPORT_WHATSAPP` | same number as the API                                 |
-
-`NEXT_PUBLIC_*` values are baked in at build time — redeploy after changing them.
 
 ## 4. Seed the database (from your laptop, once)
 
@@ -63,10 +64,9 @@ Never run `db:seed:demo` on the production database.
 
 ## 5. Paystack (when ready)
 
-Dashboard → Settings → API Keys & Webhooks → webhook URL `https://<api>/v1/webhooks/paystack`. Use test keys on
-staging, live keys only on production.
+Webhook URL: `https://<your-domain>/api/v1/webhooks/paystack`. Test keys on staging, live keys only on production.
 
-## Notes
+## Local
 
-- The API runs as one serverless function; the first request after idle takes a second or two (cold start).
-- Push to `main` → Vercel deploys both projects automatically; pull requests get preview URLs.
+- `pnpm dev` — API on :4000, web on :3000 (`NEXT_PUBLIC_API_URL=http://localhost:4000/api` in `apps/web/.env.local`).
+- `vercel dev` — runs both services behind the same routing as production; leave `NEXT_PUBLIC_API_URL` unset.

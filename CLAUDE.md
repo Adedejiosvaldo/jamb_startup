@@ -10,4 +10,4 @@
 - Never serve unreviewed question content to students (`status = live` only).
 - Values marked [VERIFY] in seeds/config are unconfirmed JAMB facts; do not present them as official.
 - Content: `apps/api/prisma/content/` (syllabus + question JSON, validated by tests). See `docs/content-guide.md`. Never copy other apps' question banks.
-- Deploy: Vercel (`apps/web`, `apps/api` as separate projects) + Neon — `docs/deploy-vercel.md`. `APP_ENV` (not NODE_ENV) decides production rules.
+- Deploy: one Vercel project with services (root `vercel.json`: `web` public at `/`, `api` public at `/api`) + Neon — `docs/deploy-vercel.md`. `APP_ENV` (not NODE_ENV) decides production rules.
